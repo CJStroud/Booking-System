@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/Projects/booking-website/public/components/jquery/test/unit/wrap.js",
+        "moment.js",
+        "C:/Projects/booking-website/public/components/moment/locale/cs.js",
+        "C:/Projects/booking-website/public/components/moment/locale/bo.js"
+    ]
+}
