@@ -11,12 +11,12 @@ Class.prototype.BuildFromObj = function(obj){
 }
 
 Class.prototype.createDOM = function(){
-	return "<div class='row class-row'><div class='col-sm-4 col-xs-12'>"+this.name+"</div>"+
-		"<div class='col-sm-4 col-xs-12'>"+
+	return "<div class='row class-row'><div class='col-sm-4 col-xs-12 row-text'>"+this.name+"</div>"+
+		"<div class='col-sm-4 col-xs-8'>"+
 			"<input type='hidden' value="+this.id+" id='classid'>"+
-			"<input type='number' class='input-limit' value="+this.limit+" data-id="+this.id+">"+
+			"<input type='number' class='input-limit form-control' value="+this.limit+" data-id="+this.id+">"+
 		"</div>"+
-		"<div class='col-sm-4 col-xs-12'>"+
+		"<div class='col-sm-4'>"+
 			"<button type='button' class='btn btn-danger btn-remove' id='"+this.id+"'>Delete</button>"+
 		"</div>"+
 	"</div>";

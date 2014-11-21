@@ -22,7 +22,15 @@ var isMobile = {
 
 var classes = new Object();
 
+function removeFunction() {var id = $(this).attr('id');
+delete classes[id];
+$(this).parent().parent().remove();
+}
+
+
 $(document).ready(function(){
+
+
 	$('#btn-add').click(function(){
 		var optionSelected = $("#class-drop-down option:selected");
 		var id = $(optionSelected).attr("id");
@@ -33,12 +41,7 @@ $(document).ready(function(){
 			classes[String(newClass.id)] = newClass;
 			$("#class-container").append(newClass.createDOM());
 
-			$('.btn-remove').click(function(){
-				var id = $(this).attr('id');
-				delete classes[id];
-				$(this).parent().parent().remove();
-				console.log(JSON.stringify(classes));
-			});
+			$('.btn-remove').click(removeFunction);
 
 			$('.input-limit').focusout(function(){
 				var limit = $(this).val();
@@ -65,6 +68,7 @@ $(document).ready(function(){
 
 		$('#create-form').submit();
 	});
+
 	if($('#json-class').val() != ''){
 		var value = $('#json-class').val();
 		var json_classes = JSON.parse(value);
@@ -78,5 +82,6 @@ $(document).ready(function(){
 
 		console.log(classes);
 	}
+	$('.btn-remove').click(removeFunction);
 
 });

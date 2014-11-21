@@ -57,25 +57,26 @@
 		</div>
 	</div>
 
-	<select id="class-drop-down">
+	<select id="class-drop-down" class="selectpicker">
 		<option selected="selected" id="1">Class1</option>
-		<option id="46">Class2</option>
+		<option id="2">Class2</option>
 		<option id="3">Class3</option>
 	</select>
 
 
-	<button id='btn-add' type='button'>Add</button>
+	<button id='btn-add' type='button' class='btn btn-primary'>Add Class</button>
 	<div id='class-container'>
 		<div class='row row-table-header hidden-xs'>
-			<div class='col-sm-4 col-xs-12'>
+			<div class='col-sm-4 col-xs-12 row-header-text'>
 				Class Name
 			</div>
-			<div class='col-sm-4 col-xs-12'>
+			<div class='col-sm-4 col-xs-12 row-header-text'>
 				Limit
 			</div>
 			<div class='col-sm-4 col-xs-12'>
 			</div>
 		</div>
+		<hr>
 	</div>
 
 	<div class='col-sm-12'>
