@@ -21,8 +21,8 @@
 
 		<div class="container">
 			@yield('content')
+			@show
 		</div>
-		@show
 
 	@section('javascript')
 

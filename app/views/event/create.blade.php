@@ -4,14 +4,7 @@
 <div class="container">
 <h1>Create Event</h1>
 
-	@if ($errors->has())
-	<div class="alert alert-danger" role="alert">
-@foreach ($errors->all() as $message)
-	<p>{{$message}}</p>
-@endforeach
-	</div>
-	@endif
-
+@include('partials.errors')
 
 {{ Form::open(array('action' => 'EventController@store', 'id' => 'create-form')) }}
 

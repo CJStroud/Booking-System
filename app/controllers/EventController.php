@@ -11,7 +11,11 @@ class EventController extends \BaseController {
 	 */
 	public function index()
 	{
-		return $this->layout->content = View::make('event.index');
+		$date = new DateTime();
+		$timestamp = $date->getTimestamp();
+		$events = DB::select('select * from event where event_datetime > ' . $timestamp);
+		$oldevents = DB::select('select * from event where event_datetime < ' . $timestamp);
+		return $this->layout->content = View::make('event.index')->with('events', $events)->with('old_events', $oldevents);
 	}
 
 
@@ -23,8 +27,6 @@ class EventController extends \BaseController {
 	public function create()
 	{
 		$options = DB::select('select * from class');
-
-
 		return $this->layout->content = View::make('event.create')->withOptions($options);
 	}
 
@@ -48,7 +50,6 @@ class EventController extends \BaseController {
 			$rules
 		);
 
-		//$json_classes = JSON_decode(JSON_encode(Input::get('classes')));
 		$json_classes = JSON_decode(Input::get('classes'), true);
 
 		if ($validator->fails())
@@ -71,7 +72,7 @@ class EventController extends \BaseController {
 			$event_datetime = $event_date->getTimestamp();
 			$close_datetime = $close_date->getTimestamp();
 
-			$sql_insert_event = "INSERT INTO event (`name`, `slug`, `datetime`, `close_datetime`) VALUES ('". $name ."', '". $slug ."', ".  $event_datetime .", ". $close_datetime .")";
+			$sql_insert_event = "INSERT INTO event (`name`, `slug`, `event_datetime`, `close_datetime`) VALUES ('". $name ."', '". $slug ."', ".  $event_datetime .", ". $close_datetime .")";
 
 			$success = DB::statement($sql_insert_event);
 

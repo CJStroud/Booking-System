@@ -16,7 +16,7 @@ Class.prototype.createDOM = function(){
 			"<input type='hidden' value="+this.id+" id='classid'>"+
 			"<input type='number' class='input-limit form-control' value="+this.limit+" data-id="+this.id+">"+
 		"</div>"+
-		"<div class='col-sm-4'>"+
+		"<div class='col-xs-4'>"+
 			"<button type='button' class='btn btn-danger btn-remove' id='"+this.id+"'>Delete</button>"+
 		"</div>"+
 	"</div>";
