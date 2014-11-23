@@ -86,7 +86,3 @@
 		<button type="submit" class="btn btn-primary btn-submit">Create</button>
 	</div>
 {{ Form::close() }}
-
-
-{{ HTML::script('js/class.js') }}
-{{ HTML::script('js/script.js') }}

@@ -12,16 +12,17 @@
 
 	<input type="hidden" value="{{$event->id}}" name="event-id">
 
-
 	<div class="row">
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('class-drop-down', 'Class', ['class' => '']) }}
-				<select name="class-drop-down" id="class-drop-down" class="selectpicker">
+				<select id="class-drop-down" class="drop-down-holder selectpicker">
 					@foreach ($classes as $class)
 						<option id="{{$class->id}}">{{$class->name}}</option>
 					@endforeach
 				</select>
+
+				<input name="class-drop-down" type="text" class="hidden-text" id="class-input" value="{{$classes[0]->id}}">
 			</div>
 		</div>
 	</div>
@@ -40,7 +41,7 @@
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('skill-drop-down', 'Skill Level', ['class' => '']) }}
-				<select name="skill-drop-down" class="selectpicker">
+				<select id="skill-drop-down" class="selectpicker">
 					<option selected id="1">1 - Low</option>
 					<option id="2">2</option>
 					<option id="3">3</option>
@@ -52,6 +53,7 @@
 					<option id="9">9</option>
 					<option id="10">10 - High</option>
 				</select>
+				<input name="skill-drop-down" type="text" class="hidden-text" id="skill-input" value="1">
 			</div>
 		</div>
 	</div>
@@ -60,13 +62,14 @@
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('frequency1-drop-down', 'Frequency 1', ['class' => '']) }}
-				<select name="frequency1-drop-down" class="selectpicker">
+				<select id="frequency1-drop-down" class="selectpicker">
 					<option selected id="1">Frequency 1</option>
 					<option id="2">Frequency 2</option>
 					<option id="3">Frequency 3</option>
 					<option id="4">Frequency 4</option>
 					<option id="5">Frequency 5</option>
 				</select>
+				<input name="frequency1-drop-down" type="text" class="hidden-text" id="frequency1-input" value="1">
 			</div>
 		</div>
 	</div>
@@ -75,13 +78,14 @@
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('frequency2-drop-down', 'Frequency 2', ['class' => '']) }}
-				<select name="frequency2-drop-down" class="selectpicker">
+				<select id="frequency2-drop-down" class="selectpicker">
 					<option selected id="1">Frequency 2</option>
 					<option id="2">Frequency 2</option>
 					<option id="3">Frequency 3</option>
 					<option id="4">Frequency 4</option>
 					<option id="5">Frequency 5</option>
 				</select>
+				<input name="frequency2-drop-down" type="text" class="hidden-text" id="frequency2-input" value="1">
 			</div>
 		</div>
 	</div>
@@ -96,6 +100,7 @@
 					<option id="4">Frequency 4</option>
 					<option id="5">Frequency 5</option>
 				</select>
+				<input name="frequency3-drop-down" type="text" class="hidden-text" id="frequency3-input" value="1">
 			</div>
 		</div>
 	</div>

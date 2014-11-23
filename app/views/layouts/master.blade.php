@@ -25,7 +25,8 @@
 		</div>
 
 	@section('javascript')
-
+		{{ HTML::script('js/class.js') }}
+		{{ HTML::script('js/script.js') }}
 	@show
 
 	</body>

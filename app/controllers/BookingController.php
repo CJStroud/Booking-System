@@ -69,13 +69,12 @@ class BookingController extends \BaseController {
 			$skill = Input::get('skill-drop-down');
 			$transponder = Input::get('transponder');
 
-			dd(Input::all());
 
-			$sql_insert_booking = "insert into booking (`event_id`, `class_id`, `user_id`, `frequency1_id`, `frequency2_id`, frequency3_id`, `skill`, `transponder` values (" . $event_id . ", " . $class_id . ", " . $user_id . ", " . $frequency1_id . ", " . $frequency2_id . ", " . $frequency3_id . ", " . $skill . ", " . $transponder . ")";
+//			dd(Input::all());
+
+			$sql_insert_booking = "insert into booking (`event_id`, `user_id`, `class_id`, `frequency1_id`, `frequency2_id`, `frequency3_id`, `skill`, `transponder`) VALUES (" . $event_id . ", " . $class_id . ", " . $user_id . ", " . $frequency1_id . ", " . $frequency2_id . ", " . $frequency3_id . ", " . $skill . ", '" . $transponder . "')";
 
 			$result = DB::insert($sql_insert_booking);
-
-			dd($result);
 
 			return Redirect::route('event.index');
 		}

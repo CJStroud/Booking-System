@@ -30,6 +30,16 @@ $(this).parent().parent().remove();
 
 $(document).ready(function(){
 
+	$('select').change(function() {
+		var id = $(this).children(":selected").attr("id");
+		$(this).siblings('.hidden-text').val(id);
+	});
+
+	$('select').load(function() {
+		var id = $(this).children(":selected").attr("id");
+		$(this).siblings('.hidden-text').val(id);
+	});
+
 
 	$('#btn-add').click(function(){
 		var optionSelected = $("#class-drop-down option:selected");
