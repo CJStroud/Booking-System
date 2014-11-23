@@ -20,3 +20,5 @@ Route::get('/', function()
 Route::resource('event', 'EventController');
 Route::get('booking/create/{slug}', 'BookingController@create');
 Route::resource('booking', 'BookingController');
+Route::get('/login', 'UserController@login');
+Route::post('/login', 'UserController@attemptLogin');
