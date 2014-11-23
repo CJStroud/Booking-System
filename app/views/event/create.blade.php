@@ -67,9 +67,9 @@
 	</div>
 
 	<select id="class-drop-down" class="selectpicker">
-		<option selected="selected" id="1">Class1</option>
-		<option id="2">Class2</option>
-		<option id="3">Class3</option>
+		@foreach($options as $option)
+		<option id={{$option->id}}>{{$option->name}}</option>
+		@endforeach
 	</select>
 
 

@@ -22,7 +22,10 @@ class EventController extends \BaseController {
 	 */
 	public function create()
 	{
-		return $this->layout->content = View::make('event.create');
+		$options = DB::select('select * from class');
+
+
+		return $this->layout->content = View::make('event.create')->withOptions($options);
 	}
 
 
@@ -70,15 +73,21 @@ class EventController extends \BaseController {
 
 			$sql_insert_event = "INSERT INTO event (`name`, `slug`, `datetime`, `close_datetime`) VALUES ('". $name ."', '". $slug ."', ".  $event_datetime .", ". $close_datetime .")";
 
-			DB::statement($sql_insert_event);
+			$success = DB::statement($sql_insert_event);
+
+			$event_id = DB::select('SELECT LAST_INSERT_ID() as id');
+
+			$id = current($event_id)->id;
 
 			//add each class to the event_class table
 			foreach($json_classes as $class)
 			{
+				$classId = $class['id'];
 
-				print "id = " . $class['id'];
+				$sql_insert_event_class = "insert into event_class (`event_id`, `class_id`) values (" . $id .", " . $classId .")";
+
+				DB::statement($sql_insert_event_class);
 			}
-
 
 			return Redirect::route('event.index');
 		}
