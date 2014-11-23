@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 		if(classes[id] == null){
 			var name = $(optionSelected).val();
-			var newClass = new Class(id, name, 0);
+			var newClass = new Class(id, name, 25);
 			classes[String(newClass.id)] = newClass;
 			$("#class-container").append(newClass.createDOM());
 

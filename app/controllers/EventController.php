@@ -33,17 +33,11 @@ class EventController extends \BaseController {
 	 */
 	public function store()
 	{
-		return Redirect::back()->withInput();
-		foreach(json_decode(Input::get('classes')) as $class)
-		{
-			print_r($class);
-		}
-		die();
-
 		$rules = array(
 			'name' => 'required',
 			'slug' => 'required|alpha_num',
-
+			'event-datetime' => 'required|date_format:"d/m/Y H:i"',
+			'close-datetime' => 'required|date_format:"d/m/Y H:i"',
 		);
 
 		$validator = Validator::make(
@@ -51,14 +45,41 @@ class EventController extends \BaseController {
 			$rules
 		);
 
+		//$json_classes = JSON_decode(JSON_encode(Input::get('classes')));
+		$json_classes = JSON_decode(Input::get('classes'), true);
+
 		if ($validator->fails())
 		{
 			return Redirect::back()->withInput()->withErrors($validator->messages());
 		}
+		else if (empty($json_classes))
+		{
+			return Redirect::back()->withInput()->withErrors(['Event requires at least one class']);
+		}
 		else
 		{
+			// convert from string to datetime
+			$event_date = DateTime::createFromFormat('d/m/Y H:i', Input::get('event-datetime'));
+			$close_date = DateTime::createFromFormat('d/m/Y H:i', Input::get('close-datetime'));
 
-			DB::Insert();
+
+			$name = Input::get('name');
+			$slug = Input::get('slug');
+			$event_datetime = $event_date->getTimestamp();
+			$close_datetime = $close_date->getTimestamp();
+
+			$sql_insert_event = "INSERT INTO event (`name`, `slug`, `datetime`, `close_datetime`) VALUES ('". $name ."', '". $slug ."', ".  $event_datetime .", ". $close_datetime .")";
+
+			DB::statement($sql_insert_event);
+
+			//add each class to the event_class table
+			foreach($json_classes as $class)
+			{
+
+				print "id = " . $class['id'];
+			}
+
+
 			return Redirect::route('event.index');
 		}
 	}
