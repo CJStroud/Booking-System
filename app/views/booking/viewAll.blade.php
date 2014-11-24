@@ -5,7 +5,7 @@
 
 	@foreach ($bookings as $booking)
 	<div class="row">
-		{{ Form::open(array('route => booking.destroy')) }}
+		{{ Form::open(array('route' => ['booking.destroy', $booking->id], 'method' => 'delete')) }}
 		{{$booking->EventName . " " . $booking->EventDate . " " . $booking->ClassName . " " . $booking->transponder}}
 		<button class="btn btn-danger">Cancel Booking</button>
 		{{Form::close()}}

@@ -97,9 +97,9 @@ class BookingController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		DB::statement('DELTE FROM booking where id = ' . $id);
+		DB::statement('DELETE FROM booking WHERE id = ' . $id);
 
-		Redirect::back();
+		return Redirect::back();
 	}
 
 	public function viewAll()
