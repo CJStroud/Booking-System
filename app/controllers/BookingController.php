@@ -19,7 +19,7 @@ class BookingController extends \BaseController {
 			return Redirect::to('login')->withErrors([$message]);
 		}
 
-		$results = DB::select("select * from event where slug ='" .$slug."'");
+		$results = DB::select('SELECT * FROM event WHERE slug = ?', array($slug));
 
 		if (empty($results))
 		{
@@ -28,19 +28,20 @@ class BookingController extends \BaseController {
 		else
 		{
 			$event = current($results);
-			$class_results = DB::select("select * from event_class where event_id = " . $event->id);
+			$class_results = DB::select('SELECT * FROM event_class WHERE event_id = ?', array($event->id));
 
 			$classes = [];
 
 			foreach($class_results as $result)
 			{
-				$class = DB::select('select * from class where id = ' . $result->class_id);
+				$class = DB::select('SELECT * FROM class WHERE id = ?', array($result->class_id));
 
 				array_push($classes, current($class));
 			}
 
+			$frequencies = DB::select('SELECT * FROM frequency');
 
-			return $this->layout->content = View::make('booking.create')->withEvent($event)->withClasses($classes);
+			return $this->layout->content = View::make('booking.create')->withEvent($event)->withClasses($classes)->withFrequencies($frequencies);
 		}
 	}
 
@@ -80,7 +81,7 @@ class BookingController extends \BaseController {
 
 //			dd(Input::all());
 
-			$sql_insert_booking = "insert into booking (`event_id`, `user_id`, `class_id`, `frequency1_id`, `frequency2_id`, `frequency3_id`, `skill`, `transponder`) VALUES (" . $event_id . ", " . $class_id . ", " . $user_id . ", " . $frequency1_id . ", " . $frequency2_id . ", " . $frequency3_id . ", " . $skill . ", '" . $transponder . "')";
+			$sql_insert_booking = "insert into booking (`event_id`, `user_id`, `class_id`, `frequency1_id`, `frequency2_id`, `frequency3_id`, `skill`, `transponder`) VALUES (" . $event_id . ", " . $user_id . ", " . $class_id . ", " . $frequency1_id . ", " . $frequency2_id . ", " . $frequency3_id . ", " . $skill . ", '" . $transponder . "')";
 
 			$result = DB::insert($sql_insert_booking);
 

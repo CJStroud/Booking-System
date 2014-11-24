@@ -12,22 +12,24 @@ class CreateClassTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('class', function(Blueprint $table)
-	   {
-		   $table->increments('id');
-		   $table->string('name');
-		   $table->timestamps();
-	   });
+
+		DB::statement('CREATE TABLE class (
+			id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			name varchar(60) NOT NULL,
+			active boolean NOT NULL
+			);');
+
+//		Schema::create('class', function(Blueprint $table)
+//	   {
+//		   $table->increments('id');
+//		   $table->string('name');
+//		   $table->boolean('active');
+//	   });
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
 	public function down()
 	{
-		Schema::drop('class');
+		DB::statement('DROP TABLE class');
 	}
 
 }

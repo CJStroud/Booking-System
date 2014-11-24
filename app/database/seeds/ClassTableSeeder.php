@@ -4,42 +4,42 @@ class ClassTableSeeder extends seeder {
 
 	public function run()
 	{
-		DB::table('class')->delete();
+		DB::delete('DELETE FROM class');
 
 		$classes = array (
-			['name' => '2 Wheel Drive Regional'],
-			['name' => '4 Wheel Drive Regional'],
-			['name' => 'Touring Car Club Meeting'],
-			['name' => 'Off Road Buggys Control Tyre'],
-			['name' => '1 12th Club Meeting'],
-			['name' => '1 8th Rallycross'],
-			['name' => 'Touring cars'],
-			['name' => '4 Wheel Drive'],
-			['name' => '2 Wheel Drive'],
-			['name' => '1 12th Scale'],
-			['name' => 'Mardave Class'],
-			['name' => 'Touring Cars 10.5 Turn'],
-			['name' => 'Touring Car 13.5 Turn'],
-			['name' => 'Recoil'],
-			['name' => 'Recoil Club Meeting'],
-			['name' => '1 18th club meeting'],
-			['name' => 'Touring Cars 19T Foam Class'],
-			['name' => 'Touring Car Rubber Class 19T + 27T'],
-			['name' => 'Touring Car Foams'],
-			['name' => 'Touring Car Modified'],
-			['name' => 'GT Class 1/10'],
-			['name' => 'Mini'],
-			['name' => 'Touring Cars 10.5 No Timing'],
-			['name' => '17.5 Timing'],
-			['name' => '17.5 Blinky'],
-			['name' => 'GT12 Class 1/12th'],
-			['name' => 'Open Buggys 1:10'],
-			['name' => 'Micro Buggies']
+			'2 Wheel Drive Regional',
+			'4 Wheel Drive Regional',
+			'Touring Car Club Meeting',
+			'Off Road Buggys Control Tyre',
+			'1 12th Club Meeting',
+			'1 8th Rallycross',
+			'Touring cars',
+			'4 Wheel Drive',
+			'2 Wheel Drive',
+			'1 12th Scale',
+			'Mardave Class',
+			'Touring Cars 10.5 Turn',
+			'Touring Car 13.5 Turn',
+			'Recoil',
+			'Recoil Club Meeting',
+			'1 18th club meeting',
+			'Touring Cars 19T Foam Class',
+			'Touring Car Rubber Class 19T + 27T',
+			'Touring Car Foams',
+			'Touring Car Modified',
+			'GT Class 1/10',
+			'Mini',
+			'Touring Cars 10.5 No Timing',
+			'17.5 Timing',
+			'17.5 Blinky',
+			'GT12 Class 1/12th',
+			'Open Buggys 1:10',
+			'Micro Buggies'
 		);
 
 		foreach($classes as $class)
 		{
-			DB::table('class')->insert($class);
+			DB::insert("INSERT INTO class (name, active) VALUES ('". $class . "', true)");
 		}
 	}
 

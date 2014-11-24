@@ -63,11 +63,9 @@
 			<div class="form-group">
 				{{ Form::label('frequency1-drop-down', 'Frequency 1', ['class' => '']) }}
 				<select id="frequency1-drop-down" class="selectpicker">
-					<option selected id="1">Frequency 1</option>
-					<option id="2">Frequency 2</option>
-					<option id="3">Frequency 3</option>
-					<option id="4">Frequency 4</option>
-					<option id="5">Frequency 5</option>
+					@foreach($frequencies as $frequency)
+					<option id="{{$frequency->id}}">{{$frequency->name}}</option>
+					@endforeach
 				</select>
 				<input name="frequency1-drop-down" type="hidden" class="hidden-text" id="frequency1-input" value="1">
 			</div>
@@ -79,11 +77,9 @@
 			<div class="form-group">
 				{{ Form::label('frequency2-drop-down', 'Frequency 2', ['class' => '']) }}
 				<select id="frequency2-drop-down" class="selectpicker">
-					<option selected id="1">Frequency 2</option>
-					<option id="2">Frequency 2</option>
-					<option id="3">Frequency 3</option>
-					<option id="4">Frequency 4</option>
-					<option id="5">Frequency 5</option>
+					@foreach($frequencies as $frequency)
+					<option id="{{$frequency->id}}">{{$frequency->name}}</option>
+					@endforeach
 				</select>
 				<input name="frequency2-drop-down" type="hidden" class="hidden-text" id="frequency2-input" value="1">
 			</div>
@@ -94,11 +90,9 @@
 			<div class="form-group">
 				{{ Form::label('frequency3-drop-down', 'Frequency 3', ['class' => '']) }}
 				<select name="frequency3-drop-down" class="selectpicker">
-					<option selected id="1">Frequency 1</option>
-					<option id="2">Frequency 2</option>
-					<option id="3">Frequency 3</option>
-					<option id="4">Frequency 4</option>
-					<option id="5">Frequency 5</option>
+					@foreach($frequencies as $frequency)
+					<option id="{{$frequency->id}}">{{$frequency->name}}</option>
+					@endforeach
 				</select>
 
 				<input name="frequency3-drop-down" type="hidden" class="hidden-text" id="frequency3-input" value="1">

@@ -111,7 +111,19 @@ class EventController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$result = DB::select('SELECT * FROM event_class WHERE event_id = ?', array($id));
+
+		$classes = [];
+
+		foreach ($result as $record)
+		{
+			$res = DB::select('SELECT * FROM class WHERE id = ?', array($record->class_id));
+			array_push($classes, $res);
+		}
+
+		dd($classes);
+
+		$this->layout->content = View::make('event.view')->withEvent($event)->withClasses($classes);
 	}
 
 

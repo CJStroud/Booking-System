@@ -17,7 +17,10 @@ class HomeController extends BaseController {
 
 	public function AdminHome()
 	{
-		return View::make('admin.home');
+		$classes = DB::select('SELECT * FROM class WHERE active = true');
+		$disabled = DB::select('SELECT * FROM class WHERE active = false');
+
+		return View::make('admin.home')->withClasses($classes)->withDisabled($disabled);
 	}
 
 }
