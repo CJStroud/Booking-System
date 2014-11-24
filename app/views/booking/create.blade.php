@@ -22,7 +22,7 @@
 					@endforeach
 				</select>
 
-				<input name="class-drop-down" type="text" class="hidden-text" id="class-input" value="{{$classes[0]->id}}">
+				<input name="class-drop-down" type="hidden" class="hidden-text" id="class-input" value="{{$classes[0]->id}}">
 			</div>
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 					<option id="9">9</option>
 					<option id="10">10 - High</option>
 				</select>
-				<input name="skill-drop-down" type="text" class="hidden-text" id="skill-input" value="1">
+				<input name="skill-drop-down" type="hidden" class="hidden-text" id="skill-input" value="1">
 			</div>
 		</div>
 	</div>
@@ -69,7 +69,7 @@
 					<option id="4">Frequency 4</option>
 					<option id="5">Frequency 5</option>
 				</select>
-				<input name="frequency1-drop-down" type="text" class="hidden-text" id="frequency1-input" value="1">
+				<input name="frequency1-drop-down" type="hidden" class="hidden-text" id="frequency1-input" value="1">
 			</div>
 		</div>
 	</div>
@@ -85,7 +85,7 @@
 					<option id="4">Frequency 4</option>
 					<option id="5">Frequency 5</option>
 				</select>
-				<input name="frequency2-drop-down" type="text" class="hidden-text" id="frequency2-input" value="1">
+				<input name="frequency2-drop-down" type="hidden" class="hidden-text" id="frequency2-input" value="1">
 			</div>
 		</div>
 	</div>
@@ -100,13 +100,15 @@
 					<option id="4">Frequency 4</option>
 					<option id="5">Frequency 5</option>
 				</select>
-				<input name="frequency3-drop-down" type="text" class="hidden-text" id="frequency3-input" value="1">
+
+				<input name="frequency3-drop-down" type="hidden" class="hidden-text" id="frequency3-input" value="1">
 			</div>
 		</div>
 	</div>
 
-	<button type="submit" class="btn btn-primary">Confirm</button>
-
+	<div class="row">
+		<button type="submit" class="btn btn-primary col-xs-12 col-sm-6 btn-standard">Confirm</button>
+	</div>
 	{{ Form::close() }}
 
 

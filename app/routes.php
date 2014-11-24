@@ -23,3 +23,8 @@ Route::resource('booking', 'BookingController');
 Route::get('/login', 'UserController@login');
 Route::post('/login', 'UserController@attemptLogin');
 Route::get('/signout', 'Usercontroller@signOut');
+Route::get('/signup', 'Usercontroller@signUp');
+Route::resource('user', 'UserController');
+Route::get('/admin', 'HomeController@AdminHome');
+Route::get('/my-bookings', 'BookingController@viewAll');
+

@@ -14,13 +14,19 @@
 		<div class="collapse navbar-collapse" id="main-navbar-collapsable">
 			<ul class="nav navbar-nav">
 				<li> {{ link_to_route('event.index', 'Events') }} </li>
-				<li><a href="#">My Bookings</a></li>
-				<li><a href="#">Admin</a></li>
+				<li>{{link_to('my-bookings', 'My Bookings')}}</li>
+
+				@if (Session::get('user') != null && Session::get('user')->isAdmin)
+					<li>{{link_to('admin', 'Admin')}}</li>
+				@endif
+
 				<li>
 				@if (Session::get('user') != null)
 					<p class="navbar-text">{{ Session::get('user')->Name() }} - {{ link_to('signout', 'Sign out', ['navbar-link']) }}</p>
+				</li>
 				@else
 					{{link_to('login', 'Login')}}
+					<li>{{link_to('signup', 'Sign up')}}
 				@endif
 				</li>
 			</ul>

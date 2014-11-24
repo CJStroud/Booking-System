@@ -3,21 +3,33 @@
 @section('content')
 
 <div class="container">
-	<h1>Events</h1>
-	<div>{{ link_to_route('event.create', 'Create an event', null, ['class="btn btn-default"']) }}</div>
 
+	<h2>Available to book</h2>
+	<hr>
 	@foreach($events as $event)
-		<h2>{{$event->name}}</h2>
-		<h3>{{date('d/m/Y H:i', $event->event_datetime)}}</h3>
-		<h4>{{$event->id}}</h4>
+	<div class="table-row row">
+		<div class="col-xs-12 col-sm-4 row-text">{{$event->name}}</div>
+		<div class="col-xs-12 col-sm-3 row-text">{{date('d/m/Y H:i', $event->event_datetime)}}</div>
+		<form action="event/{{$event->slug}}">
+			  <button class="col-xs-4 col-sm-2 btn btn-success btn-standard" type="submit">View</button>
+		</form>
+		<form action="booking/create/{{$event->slug}}">
+				<button class="col-xs-4 col-sm-2 btn btn-primary btn-standard">Book</button>
+			</form>
+		</div>
+
 	@endforeach
 
-
-	<h1>Old Events</h1>
+	<h2 class="second-header">Closed</h2>
+	<hr>
 	@foreach($old_events as $event)
-		<h2>{{$event->name}}</h2>
-		<h3>{{date('d/m/Y H:i', $event->event_datetime)}}</h3>
-		<h4>{{$event->id}}</h4>
+	<div class="table-row row">
+		<div class="col-xs-12 col-sm-4 row-text">{{$event->name}}</div>
+		<div class="col-xs-12 col-sm-3 row-text">{{date('d/m/Y H:i', $event->event_datetime)}}</div>
+		<form action="event/{{$event->slug}}">
+			<button class="col-xs-4 col-sm-2 btn btn-success btn-standard" type="submit">View</button>
+		</form>
+	</div>
 	@endforeach
 
 </div>

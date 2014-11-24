@@ -11,6 +11,14 @@ class BookingController extends \BaseController {
 	 */
 	public function create($slug)
 	{
+		$user = Session::get('user');
+
+		if ($user == null)
+		{
+			$message = "You must be logged in to place a booking";
+			return Redirect::to('login')->withErrors([$message]);
+		}
+
 		$results = DB::select("select * from event where slug ='" .$slug."'");
 
 		if (empty($results))
@@ -89,8 +97,25 @@ class BookingController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		DB::statement('DELTE FROM booking where id = ' . $id);
+
+		Redirect::back();
 	}
 
+	public function viewAll()
+	{
+		$user = Session::get('user');
+		if ($user != null)
+		{
+			$bookings = DB::select('SELECT booking.id, booking.transponder, event.name as EventName, event.event_datetime as EventDate, class.name as ClassName FROM booking JOIN event ON event.id = event_id JOIN class ON class.id = class_id
+WHERE user_id = ' . $user->id);
+
+			return $this->layout->content = View::make('booking.viewAll')->with('bookings', $bookings);
+		}
+		else
+		{
+
+		}
+	}
 
 }

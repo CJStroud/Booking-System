@@ -19,7 +19,6 @@ class CreateUserTable extends Migration {
 		   $table->string('surname');
 		   $table->string('email');
 		   $table->string('password');
-		   $table->string('secret');
 		   $table->string('brca');
 		   $table->boolean('isAdmin');
 	   });

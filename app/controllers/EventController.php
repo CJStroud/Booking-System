@@ -26,8 +26,16 @@ class EventController extends \BaseController {
 	 */
 	public function create()
 	{
-		$options = DB::select('select * from class');
-		return $this->layout->content = View::make('event.create')->withOptions($options);
+		$user = Session::get('user');
+		if ($user->isAdmin)
+		{
+			$options = DB::select('select * from class');
+			return $this->layout->content = View::make('event.create')->withOptions($options);
+		}
+		else
+		{
+			return Redirect::route('event.index');
+		}
 	}
 
 
@@ -40,7 +48,7 @@ class EventController extends \BaseController {
 	{
 		$rules = array(
 			'name' => 'required',
-			'slug' => 'required|alpha_num',
+			'slug' => 'required|alpha_dash',
 			'event-datetime' => 'required|date_format:"d/m/Y H:i"',
 			'close-datetime' => 'required|date_format:"d/m/Y H:i"',
 		);

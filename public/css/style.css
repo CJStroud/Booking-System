@@ -1,13 +1,30 @@
 @media only screen and (max-device-width: 700px) {
 	.row-text {
 		padding:10px 0;
+		font-size: 18px;
 	}
 
+}
+
+.second-header {
+	margin-top: 50px;
+}
+
+.btn-standard {
+	margin-right: 20px;
+	margin-bottom: 10px;
 }
 
 #class-container div.row{
 	margin:15px 0px;
 }
+
+.table-row{
+	padding: 10px 0px 15px 20px;
+	margin: 10px 0px;
+	border-bottom: 1px solid #d3d3d3;
+}
+
 
 .row-text {
 	font-size: 16px;
@@ -19,6 +36,12 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+
 .navbar p {
 	padding: 0px 15px;
+}
+
+.btn-submit {
+	margin-bottom: 20px;
+	margin-right: 20px;
 }
