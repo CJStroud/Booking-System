@@ -66,6 +66,13 @@ class UserController extends \BaseController {
 		return $this->layout->content = View::make('user.login');
 	}
 
+	public function signOut()
+	{
+		Session::put('user', null);
+
+		return Redirect::back()->withInput();
+	}
+
 	public function attemptLogin()
 	{
 		$email = Input::get('email');
@@ -79,7 +86,7 @@ class UserController extends \BaseController {
 
 		if ($isMatch)
 		{
-			$user = new User($record->forename, $record->surname, $record->email, $record->brca);
+			$user = new User($record->forename, $record->surname, $record->email, $record->brca, $record->isAdmin);
 			Session::put('user', $user);
 
 			return Redirect::route('event.index');
@@ -114,7 +121,7 @@ class UserController extends \BaseController {
 		}
 		else
 		{
-//			DB::insert('INSERT INTO user (forename, surname, email, password, secret, brca) VALUES (?, ?, ?, ?, ?, ?)',
+//			DB::insert('INSERT INTO user (forename, surname, email, password, secret, brca, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?)',
 //					   array();
 		}
 

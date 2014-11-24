@@ -7,6 +7,8 @@
 		{{ HTML::style('components/bootstrap/dist/css/bootstrap.min.css') }}
 		{{ HTML::style('components/bootstrap-select/dist/css/bootstrap-select.min.css') }}
 		{{ HTML::style('css/style.css') }}
+		{{ HTML::style('components/font-awesome/css/font-awesome.min.css')}}
+
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 		{{ HTML::script('components/jquery/dist/jquery.min.js') }}

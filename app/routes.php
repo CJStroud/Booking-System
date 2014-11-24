@@ -22,3 +22,4 @@ Route::get('booking/create/{slug}', 'BookingController@create');
 Route::resource('booking', 'BookingController');
 Route::get('/login', 'UserController@login');
 Route::post('/login', 'UserController@attemptLogin');
+Route::get('/signout', 'Usercontroller@signOut');

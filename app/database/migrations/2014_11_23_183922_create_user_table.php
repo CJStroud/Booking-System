@@ -21,6 +21,7 @@ class CreateUserTable extends Migration {
 		   $table->string('password');
 		   $table->string('secret');
 		   $table->string('brca');
+		   $table->boolean('isAdmin');
 	   });
 	}
 
