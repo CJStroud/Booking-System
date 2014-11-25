@@ -4,26 +4,19 @@ class EventController extends \BaseController {
 
 	protected $layout = 'layouts.master';
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		$date = new DateTime();
 		$timestamp = $date->getTimestamp();
-		$events = DB::select('select * from event where event_datetime > ' . $timestamp);
-		$oldevents = DB::select('select * from event where event_datetime < ' . $timestamp);
+
+		$events = DB::select('select * from event where close_datetime > ?',
+							array($timestamp));
+		$oldevents = DB::select('select * from event where close_datetime < ?',
+							   array($timestamp));
+
 		return $this->layout->content = View::make('event.index')->with('events', $events)->with('old_events', $oldevents);
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
 		$user = Session::get('user');
@@ -38,12 +31,6 @@ class EventController extends \BaseController {
 		}
 	}
 
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
 		$rules = array(
@@ -80,9 +67,9 @@ class EventController extends \BaseController {
 			$event_datetime = $event_date->getTimestamp();
 			$close_datetime = $close_date->getTimestamp();
 
-			$sql_insert_event = "INSERT INTO event (`name`, `slug`, `event_datetime`, `close_datetime`) VALUES ('". $name ."', '". $slug ."', ".  $event_datetime .", ". $close_datetime .")";
 
-			$success = DB::statement($sql_insert_event);
+			$success = DB::statement('INSERT INTO event (name, slug, event_datetime, close_datetime) VALUES (?, ?, ?, ?)',
+									array($name, $slug, $event_datetime, $close_datetime));
 
 			$event_id = DB::select('SELECT LAST_INSERT_ID() as id');
 
@@ -92,47 +79,34 @@ class EventController extends \BaseController {
 			foreach($json_classes as $class)
 			{
 				$classId = $class['id'];
+				$limit = $class['limit'];
 
-				$sql_insert_event_class = "insert into event_class (`event_id`, `class_id`) values (" . $id .", " . $classId .")";
-
-				DB::statement($sql_insert_event_class);
+				DB::statement('INSERT INTO event_class (event_id, class_id, maximum, locked) values (?, ?, ?, ?)',
+							 array($id, $classId, $limit, false));
 			}
 
 			return Redirect::route('event.index');
 		}
 	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+	public function show($slug)
 	{
-		$result = DB::select('SELECT * FROM event_class WHERE event_id = ?', array($id));
+		$result = DB::select('SELECT * FROM event where slug = ?', array($slug));
 
-		$classes = [];
+		$event = $result[0];
+		$id = $event->id;
 
-		foreach ($result as $record)
-		{
-			$res = DB::select('SELECT * FROM class WHERE id = ?', array($record->class_id));
-			array_push($classes, $res);
-		}
 
-		dd($classes);
+		$result = DB::select('select * FROM event_class WHERE event_id = ?',
+							  array($id));
 
-		$this->layout->content = View::make('event.view')->withEvent($event)->withClasses($classes);
+		dd($result);
+
+		$bookings = DB::select('SELECT user.forename as forename, user.surname as surname, class_id, skill FROM booking INNER JOIN user ON booking.user_id = user.id WHERE event_id = ?', array($id));
+
+		return $this->layout->content = View::make('event.view')->withBookings($bookings)->withEvent($event);
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
 		//

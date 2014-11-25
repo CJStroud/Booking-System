@@ -39,7 +39,7 @@ class ClassTableSeeder extends seeder {
 
 		foreach($classes as $class)
 		{
-			DB::insert("INSERT INTO class (name, active) VALUES ('". $class . "', true)");
+			DB::insert("INSERT INTO class (name, active) VALUES (?, true)", array($class));
 		}
 	}
 

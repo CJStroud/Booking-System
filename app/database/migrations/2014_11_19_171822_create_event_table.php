@@ -12,15 +12,14 @@ class CreateEventTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('event', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('name');
-			$table->string('slug');
-			$table->integer('event_datetime');
-			$table->integer('close_datetime');
-			$table->timestamps();
-		});
+
+		DB::statement('CREATE TABLE event (
+		   id integer NOT NULL  PRIMARY KEY AUTO_INCREMENT,
+		   name varchar(60) NOT NULL,
+		   slug varchar(60) NOT NULL,
+		   event_datetime int NOT NULL,
+		   close_datetime int NOT NULL
+		);');
 	}
 
 	/**
@@ -30,7 +29,7 @@ class CreateEventTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('event');
+		DB::statement('DROP TABLE event');
 	}
 
 }

@@ -13,8 +13,8 @@ class CreateFrequenciesTable extends Migration {
 	public function up()
 	{
 		DB::statement('CREATE TABLE frequency (
-		id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		name varchar(60) NOT NULL);');
+			id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			name varchar(60) NOT NULL);');
 	}
 
 	/**

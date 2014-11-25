@@ -19,12 +19,6 @@ class CreateClassTable extends Migration {
 			active boolean NOT NULL
 			);');
 
-//		Schema::create('class', function(Blueprint $table)
-//	   {
-//		   $table->increments('id');
-//		   $table->string('name');
-//		   $table->boolean('active');
-//	   });
 	}
 
 	public function down()
