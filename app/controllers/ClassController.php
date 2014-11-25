@@ -52,17 +52,23 @@ class ClassController extends \BaseController {
 	{
 		$result = DB::select('SELECT * FROM class WHERE id = ?', array($id));
 
-		$class = $result[0];
-
-		if ($class->active)
-		{
-			DB::update('UPDATE class SET active = false WHERE id = ?', array($id));
-		}
-		else
+		if (!empty($result))
 		{
 			DB::delete('DELETE FROM class WHERE id = ?', array($id));
 		}
 
+		return Redirect::to('/admin');
+	}
+
+	public function disable($id)
+	{
+		DB::update('UPDATE class SET active = false WHERE id = ?', array($id));
+		return Redirect::to('/admin');
+	}
+
+	public function enable($id)
+	{
+		DB::update('UPDATE class SET active = true WHERE id = ?', array($id));
 		return Redirect::to('/admin');
 	}
 

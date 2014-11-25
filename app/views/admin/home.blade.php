@@ -11,7 +11,7 @@
 	<div class="break"></div>
 	<div class="row">
 		<div class="col-sm-6 col-xs-12 row-text">{{ $class->name }}</div>
-		{{ Form::open(array('route' => ['class.destroy', $class->id], 'method' => 'delete')) }}
+		{{ Form::open(array('action' => ['ClassController@disable', $class->id], 'method' => 'post')) }}
 		<div class="col-sm-2 col-xs-12">
 			<button class="btn btn-warning">Disable</button>
 		</div>
@@ -24,8 +24,7 @@
 	<div class="break"></div>
 	<div class="row">
 		<div class="col-sm-6 col-xs-12 row-text">{{ $class->name }}</div>
-		{{ Form::open(array('action' => 'class.store', 'method' => 'post')) }}
-		<input type="hidden" value="{{$class->name}}" name="name">
+		{{ Form::open(array('action' => ['ClassController@enable', $class->id], 'method' => 'post')) }}
 		<div class="col-sm-2 col-xs-6">
 			<button class="btn btn-success">Re-enable</button>
 		</div>

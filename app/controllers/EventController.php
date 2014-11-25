@@ -22,7 +22,7 @@ class EventController extends \BaseController {
 		$user = Session::get('user');
 		if ($user->isAdmin)
 		{
-			$options = DB::select('select * from class');
+			$options = DB::select('SELECT * FROM class WHERE active = true');
 			return $this->layout->content = View::make('event.create')->withOptions($options);
 		}
 		else
