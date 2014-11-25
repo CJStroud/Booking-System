@@ -20,7 +20,26 @@ class ClassController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		if (Input::get('name') != null)
+		{
+			$name = Input::get('name');
+
+			$result = DB::select('SELECT * FROM class WHERE name = ?', array($name));
+
+			if (empty($result))
+			{
+
+			}
+			else
+			{
+				$class = $result[0];
+				DB::update('UPDATE class SET active = true WHERE id = ?', array($class->id));
+			}
+
+		}
+
+		return Redirect::to('/admin');
+
 	}
 
 	/**
@@ -31,8 +50,20 @@ class ClassController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
-	}
+		$result = DB::select('SELECT * FROM class WHERE id = ?', array($id));
 
+		$class = $result[0];
+
+		if ($class->active)
+		{
+			DB::update('UPDATE class SET active = false WHERE id = ?', array($id));
+		}
+		else
+		{
+			DB::delete('DELETE FROM class WHERE id = ?', array($id));
+		}
+
+		return Redirect::to('/admin');
+	}
 
 }

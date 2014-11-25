@@ -4,22 +4,38 @@
 <div class="container">
 	<h1>Admin</h1>
 
-	<hr>
-
 	<div>{{ link_to_route('event.create', 'Create an event', null, ['class="btn btn-default"']) }}</div>
 
-	<h3>Classes</h3>
+	<h2>Active Classes</h2>
 	@foreach ($classes as $class)
+	<div class="break"></div>
 	<div class="row">
-		<div class="col-xs-8">{{ $class->name }}</div>
-		<button class="col-xs-4 btn btn-warning">Disable</button>
+		<div class="col-sm-6 col-xs-12 row-text">{{ $class->name }}</div>
+		{{ Form::open(array('route' => ['class.destroy', $class->id], 'method' => 'delete')) }}
+		<div class="col-sm-2 col-xs-12">
+			<button class="btn btn-warning">Disable</button>
+		</div>
+		{{Form::close()}}
 	</div>
 	@endforeach
 
-	<h3>Disabled Classes</h3>
+	<h2>Disabled Classes</h2>
 	@foreach ($disabled as $class)
-	<div>{{ $class->name }}</div>
-	<button class="btn btn-danger">Delete</button>
+	<div class="break"></div>
+	<div class="row">
+		<div class="col-sm-6 col-xs-12 row-text">{{ $class->name }}</div>
+		{{ Form::open(array('action' => 'class.store', 'method' => 'post')) }}
+		<input type="hidden" value="{{$class->name}}" name="name">
+		<div class="col-sm-2 col-xs-6">
+			<button class="btn btn-success">Re-enable</button>
+		</div>
+		{{Form::close()}}
+		{{ Form::open(array('route' => ['class.destroy', $class->id], 'method' => 'delete')) }}
+		<div class="col-sm-2 col-xs-6">
+			<button class="btn btn-danger">Delete</button>
+		</div>
+		{{Form::close()}}
+	</div>
 	@endforeach
 
 </div>

@@ -100,11 +100,20 @@ class EventController extends \BaseController {
 		$result = DB::select('select * FROM event_class WHERE event_id = ?',
 							  array($id));
 
-		dd($result);
+		$classes = [];
 
-		$bookings = DB::select('SELECT user.forename as forename, user.surname as surname, class_id, skill FROM booking INNER JOIN user ON booking.user_id = user.id WHERE event_id = ?', array($id));
+		foreach($result as $class)
+		{
+			$bookings = DB::select('SELECT user.forename as forename, user.surname as surname, class_id, skill FROM booking INNER JOIN user ON booking.user_id = user.id WHERE event_id = ? AND class_id = ?', array($class->event_id, $class->class_id));
 
-		return $this->layout->content = View::make('event.view')->withBookings($bookings)->withEvent($event);
+			$class->bookings = $bookings;
+			array_push($classes, $class);
+		}
+
+		//dd($classes);
+
+
+		return $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);
 	}
 
 	public function edit($id)

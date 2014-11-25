@@ -27,4 +27,6 @@ Route::get('/signup', 'Usercontroller@signUp');
 Route::resource('user', 'UserController');
 Route::get('/admin', 'HomeController@AdminHome');
 Route::get('/my-bookings', 'BookingController@viewAll');
-
+Route::resource('class', 'ClassController');
+Route::post('/class/disable/{id}', 'ClassController@disable');
+Route::post('/class/enable/{id}', 'ClassController@enable');
