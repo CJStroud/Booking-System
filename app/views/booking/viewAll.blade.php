@@ -10,8 +10,21 @@
 	@foreach ($bookings as $booking)
 	<div class="row">
 		{{ Form::open(array('route' => ['booking.destroy', $booking->id], 'method' => 'delete')) }}
-		{{$booking->EventName . " " . $booking->EventDate . " " . $booking->ClassName . " " . $booking->transponder}}
-		<button class="btn btn-danger">Cancel Booking</button>
+		<div class="col-sm-3 row-text">
+			{{$booking->EventName}}
+		</div>
+		<div class="col-sm-2 row-text">
+			{{date('d/m/Y H:i', $booking->EventDate)}}
+		</div>
+		<div class="col-sm-3 row-text">
+			{{$booking->ClassName}}
+		</div>
+		<div class="col-sm-2 row-text">
+			{{$booking->transponder}}
+		</div>
+		<div class="col-sm-2 col-xs-12">
+			<button class="btn btn-danger">Cancel Booking</button>
+		</div>
 		{{Form::close()}}
 	</div>
 	@endforeach
