@@ -18,9 +18,9 @@ class CreateBookingTable extends Migration {
 		   user_id integer NOT NULL,
 		   event_id integer NOT NULL,
 		   class_id integer NOT NULL,
-		   frequency_1_id integer NOT NULL,
-		   frequency_2_id integer NOT NULL,
-		   frequency_3_id integer NOT NULL,
+		   frequency_1 varchar(30) NOT NULL,
+		   frequency_2 varchar(30) NOT NULL,
+		   frequency_3 varchar(30) NOT NULL,
 		   transponder varchar(60) NOT NULL,
 		   skill integer NOT NULL
 		);');
@@ -41,24 +41,6 @@ class CreateBookingTable extends Migration {
 		    FOREIGN KEY (user_id)
 			REFERENCES user (id)
 		');
-
-		DB::statement('ALTER TABLE booking
-			ADD CONSTRAINT booking_frequency1_id_fk
-			FOREIGN KEY (frequency_1_id)
-			REFERENCES frequency (id)
-		');
-
-		DB::statement('ALTER TABLE booking
-			ADD CONSTRAINT booking_frequency2_id_fk
-			FOREIGN KEY (frequency_2_id)
-			REFERENCES frequency (id)
-		');
-
-		DB::statement('ALTER TABLE booking
-			ADD CONSTRAINT booking_frequency3_id_fk
-			FOREIGN KEY (frequency_3_id)
-			REFERENCES frequency (id)
-		');
 	}
 
 	/**
@@ -76,18 +58,6 @@ class CreateBookingTable extends Migration {
 
 		DB::statement('ALTER TABLE booking
 			DROP FOREIGN KEY booking_user_id_fk');
-
-		DB::statement('ALTER TABLE booking
-			DROP FOREIGN KEY booking_frequency1_id_fk');
-
-		DB::statement('ALTER TABLE booking
-			DROP FOREIGN KEY booking_frequency2_id_fk');
-
-		DB::statement('ALTER TABLE booking
-			DROP FOREIGN KEY booking_frequency3_id_fk');
-
-		DB::statement('DROP TABLE booking');
-
 	}
 
 }

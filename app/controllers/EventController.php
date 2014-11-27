@@ -97,21 +97,34 @@ class EventController extends \BaseController {
 		$id = $event->id;
 
 
-		$result = DB::select('select * FROM event_class WHERE event_id = ?',
+		$result = DB::select('
+					SELECT class_id, event_id, class.name as name, maximum as max
+					FROM event_class
+					INNER JOIN class ON event_class.class_id = class.id
+					WHERE event_id = ?',
 							  array($id));
 
 		$classes = [];
+		$frequencies = [];
+
+		$frequencies = DB::select('SELECT * FROM frequency');
 
 		foreach($result as $class)
 		{
-			$bookings = DB::select('SELECT user.forename as forename, user.surname as surname, class_id, skill FROM booking INNER JOIN user ON booking.user_id = user.id WHERE event_id = ? AND class_id = ?', array($class->event_id, $class->class_id));
+			$bookings = DB::select('
+				SELECT
+				user.forename as forename, user.surname as surname, user.brca as brca,
+				class_id, skill, transponder, frequency_1, frequency_2, frequency_3
+				FROM booking
+				INNER JOIN user ON booking.user_id = user.id
+				WHERE event_id = ? AND class_id = ?',
+				array($class->event_id, $class->class_id));
 
 			$class->bookings = $bookings;
+			$class->count = count($bookings);
 			array_push($classes, $class);
+
 		}
-
-		//dd($classes);
-
 
 		return $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);
 	}

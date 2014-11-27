@@ -7,6 +7,23 @@
 		Must be logged in {{link_to('/login', 'Click Here')}}
 	@else
 	@if (count($bookings) >0)
+	<div class="row">
+		<div class="col-sm-3 row-text">
+			Event
+		</div>
+		<div class="col-sm-2 row-text">
+			Event Date
+		</div>
+		<div class="col-sm-3 row-text">
+			Class
+		</div>
+		<div class="col-sm-2 row-text">
+			Transponder
+		</div>
+		<div class="col-sm-2 col-xs-12">
+		</div>
+	</div>
+
 	@foreach ($bookings as $booking)
 	<div class="row">
 		{{ Form::open(array('route' => ['booking.destroy', $booking->id], 'method' => 'delete')) }}
@@ -23,7 +40,7 @@
 			{{$booking->transponder}}
 		</div>
 		<div class="col-sm-2 col-xs-12">
-			<button class="btn btn-danger">Cancel Booking</button>
+			<button class="btn btn-danger">Cancel</button>
 		</div>
 		{{Form::close()}}
 	</div>

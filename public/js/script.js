@@ -31,8 +31,8 @@ $(this).parent().parent().remove();
 $(document).ready(function(){
 
 	$('select').change(function() {
-		var id = $(this).children(":selected").attr("id");
-		$(this).siblings('.hidden-text').val(id);
+		var value = $(this).children(":selected").attr("value");
+		$(this).siblings('.hidden-text').val(value);
 	});
 
 	$('select').load(function() {

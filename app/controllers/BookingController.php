@@ -72,16 +72,14 @@ class BookingController extends \BaseController {
 			$event_id = Input::get('event-id');
 			$class_id = Input::get('class-drop-down');
 			$user_id = Session::get('user')->id;
-			$frequency1_id = Input::get('frequency1-drop-down');
-			$frequency2_id = Input::get('frequency2-drop-down');
-			$frequency3_id = Input::get('frequency3-drop-down');
+			$frequency1 = Input::get('frequency1-drop-down');
+			$frequency2 = Input::get('frequency2-drop-down');
+			$frequency3 = Input::get('frequency3-drop-down');
 			$skill = Input::get('skill-drop-down');
 			$transponder = Input::get('transponder');
 
-			$sql_insert_booking = "i)";
-
-			$result = DB::insert('INSERT INTO booking (event_id, user_id, class_id, frequency_1_id, frequency_2_id, frequency_3_id, skill, transponder) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-								 array($event_id, $user_id, $class_id, $frequency1_id, $frequency2_id, $frequency3_id, $skill, $transponder));
+			$result = DB::insert('INSERT INTO booking (event_id, user_id, class_id, frequency_1, frequency_2, frequency_3, skill, transponder) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+								 array($event_id, $user_id, $class_id, $frequency1, $frequency2, $frequency3, $skill, $transponder));
 
 			return Redirect::route('event.index');
 		}

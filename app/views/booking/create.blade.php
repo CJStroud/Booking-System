@@ -64,10 +64,10 @@
 				{{ Form::label('frequency1-drop-down', 'Frequency 1', ['class' => '']) }}
 				<select id="frequency1-drop-down" class="selectpicker">
 					@foreach($frequencies as $frequency)
-					<option id="{{$frequency->id}}">{{$frequency->name}}</option>
+					<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 					@endforeach
 				</select>
-				<input name="frequency1-drop-down" type="hidden" class="hidden-text" id="frequency1-input" value="1">
+				<input name="frequency1-drop-down" type="hidden" class="hidden-text" id="frequency1-input" value="{{$frequencies[0]->name}}">
 			</div>
 		</div>
 	</div>
@@ -78,10 +78,10 @@
 				{{ Form::label('frequency2-drop-down', 'Frequency 2', ['class' => '']) }}
 				<select id="frequency2-drop-down" class="selectpicker">
 					@foreach($frequencies as $frequency)
-					<option id="{{$frequency->id}}">{{$frequency->name}}</option>
+					<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 					@endforeach
 				</select>
-				<input name="frequency2-drop-down" type="hidden" class="hidden-text" id="frequency2-input" value="1">
+				<input name="frequency2-drop-down" type="hidden" class="hidden-text" id="frequency2-input" value="{{$frequencies[0]->name}}">
 			</div>
 		</div>
 	</div>
@@ -91,11 +91,11 @@
 				{{ Form::label('frequency3-drop-down', 'Frequency 3', ['class' => '']) }}
 				<select name="frequency3-drop-down" class="selectpicker">
 					@foreach($frequencies as $frequency)
-					<option id="{{$frequency->id}}">{{$frequency->name}}</option>
+					<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 					@endforeach
 				</select>
 
-				<input name="frequency3-drop-down" type="hidden" class="hidden-text" id="frequency3-input" value="1">
+				<input name="frequency3-drop-down" type="hidden" class="hidden-text" id="frequency3-input" value="{{$frequencies[0]->name}}">
 			</div>
 		</div>
 	</div>
