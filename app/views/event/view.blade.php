@@ -8,10 +8,25 @@
 	<h2>{{date('d/m/Y H:i', $event->event_datetime)}}
 	</h2>
 	<hr>
+
 	@foreach($classes as $class)
 	<div class="table">
 	<div class="class-header">
-		{{$class->name}} <div class="class-count label label-primary">{{$class->count}} / {{$class->max}}</div>
+		@if (Session::get('user') != null && Session::get('user')->isAdmin)
+		@if($class->locked)
+		{{Form::open(array('action' => ['EventController@unlock', $class->class_id, $event->id], 'method' => 'post'))}}
+		<button class="btn btn-primary btn-lock">
+		<i class="fa fa-lock"></i></button> Locked
+
+		@else
+		{{Form::open(array('action' => ['EventController@lock', $class->class_id, $event->id], 'method' => 'post'))}}
+		<button class="btn btn-primary btn-lock">
+		<i class="fa fa-unlock"></i></button> Unlocked
+		@endif
+		@endif
+
+		{{$class->name}} <div class="class-count label label-primary"> {{$class->count}} / {{$class->max}}</div>
+		{{Form::close()}}
 	</div>
 		<div class="table-content">
 		<div class="row">

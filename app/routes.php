@@ -30,3 +30,5 @@ Route::get('/my-bookings', 'BookingController@viewAll');
 Route::resource('class', 'ClassController');
 Route::post('/class/disable/{id}', 'ClassController@disable');
 Route::post('/class/enable/{id}', 'ClassController@enable');
+Route::post('event/unlock/{classId}{eventId}', 'EventController@unlock');
+Route::post('event/lock/{classId}{eventId}', 'EventController@lock');

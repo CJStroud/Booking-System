@@ -33,6 +33,9 @@ class EventController extends \BaseController {
 
 	public function store()
 	{
+
+
+
 		$rules = array(
 			'name' => 'required',
 			'slug' => 'required|alpha_dash',
@@ -98,7 +101,7 @@ class EventController extends \BaseController {
 
 
 		$result = DB::select('
-					SELECT class_id, event_id, class.name as name, maximum as max
+					SELECT class_id, event_id, locked, class.name as name, maximum as max
 					FROM event_class
 					INNER JOIN class ON event_class.class_id = class.id
 					WHERE event_id = ?',
@@ -156,6 +159,42 @@ class EventController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function lock($classId, $eventId)
+	{
+		$result = DB::update('UPDATE event_class SET locked = true WHERE class_id = ? AND event_id = ?', array($classId, $eventId));
+
+		$message = null;
+
+		if($result == true)
+		{
+			$message = "Class was locked";
+		}
+		else
+		{
+			$message = "Class could not be locked";
+		}
+
+		return Redirect::back()->withError($message);
+	}
+
+	public function unlock($classId, $eventId)
+	{
+		$result = DB::update('UPDATE event_class SET locked = false WHERE class_id = ? AND event_id = ?', array($classId, $eventId));
+
+		$message = null;
+
+		if($result == true)
+		{
+			$message = "Class was unlocked";
+		}
+		else
+		{
+			$message = "Class could not be unlocked";
+		}
+
+		return Redirect::back()->withError($message);
 	}
 
 

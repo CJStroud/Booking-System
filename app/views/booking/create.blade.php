@@ -18,7 +18,7 @@
 				{{ Form::label('class-drop-down', 'Class', ['class' => '']) }}
 				<select id="class-drop-down" class="drop-down-holder selectpicker">
 					@foreach ($classes as $class)
-						<option id="{{$class->id}}">{{$class->name}}</option>
+					<option id="{{$class->id}}" value="{{$class->id}}">{{$class->name}}</option>
 					@endforeach
 				</select>
 

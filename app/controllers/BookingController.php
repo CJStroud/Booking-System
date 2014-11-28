@@ -66,6 +66,37 @@ class BookingController extends \BaseController {
 		{
 			return Redirect::back()->withInput()->withErrors($validator->messages());
 		}
+
+		$already_booked = DB::select('SELECT * FROM booking WHERE event_id = ? AND class_id = ? AND user_id = ?',
+									 array(Input::get('event-id'), Input::get('class-drop-down'), Session::get('user')->id));
+
+		if(!empty($already_booked))
+		{
+			$message = "You have already made a booking for this event in the selected class";
+			return Redirect::back()->withInput()->withErrors($message);
+		}
+
+		$locked_query = DB::select('SELECT * FROM event_class WHERE event_id = ? AND class_id = ?',
+							   array(Input::get('event-id'), Input::get('class-drop-down')));
+
+		$max = $locked_query[0]->maximum;
+
+		if ($locked_query[0]->locked)
+		{
+			$message = "The class you chose has been locked by the race director";
+			return Redirect::back()->withInput()->withErrors($message);
+		}
+
+		$count_query = DB::select('SELECT COUNT(*) as count FROM booking WHERE event_id = ? AND class_id = ?',
+							 array(Input::get('event-id'), Input::get('class-drop-down')));
+
+		$count = $count_query[0]->count;
+
+		if($count >= $max)
+		{
+			$message = "There are no more spaces available for the class you chose";
+			return Redirect::back()->withInput()->withErrors($message);
+		}
 		else
 		{
 
