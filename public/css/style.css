@@ -83,7 +83,7 @@ label {
 /*Table Styling*/
 .table {
 	font-family: 'Open Sans', sans-serif;
-	margin: 25px 0px;
+	margin: 25px 0px 30px 0px;
 }
 
 .table-header {
@@ -105,7 +105,10 @@ label {
 }
 
 .table-element {
-	height: 100%
+	height: 100%;
+	padding: 10px 0px;
+	vertical-align: middle;
+	margin: auto;
 }
 
 .mobile-title {
@@ -130,7 +133,6 @@ label {
 	margin:15px 0px;
 }
 
-
 .navbar p {
 	padding: 0px 15px;
 }
@@ -138,10 +140,11 @@ label {
 .class-header {
 	width: 100%;
 	background-color: #ddd;
-	padding: 15px 0px;
-	margin-bottom: 15px;
+	padding: 10px 0px 15px 0px;
 	float: left;
 	font-size: 16px;
+	border-top: 1px solid #16a085;
+	margin-bottom: 10px;
 }
 
 .class-count {
@@ -157,14 +160,13 @@ label {
 
 	.mobile-title {
 		visibility: visible;
+		float: left;
+		margin-right: 10px;
+		font-size: 15px;
 	}
 
 	.table-header {
 		visibility: hidden;
 		height: 0px;
-	}
-
-	.table-element {
-		margin: 7px 0px;
 	}
 }

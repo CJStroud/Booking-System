@@ -16,7 +16,7 @@
 					<li><a href="{{URL::action('BookingController@viewAll')}}"><i class="fa fa-calendar"></i> My Bookings</a></li>
 
 					@if (Session::get('user') != null && Session::get('user')->isAdmin)
-					<li>{{link_to('admin', 'Admin')}}</li>
+					<li><a href="{{URL::action('HomeController@AdminHome')}}"><i class="fa fa-ban"></i> Admin</a></li>
 					@endif
 
 					<li>

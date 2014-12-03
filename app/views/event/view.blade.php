@@ -52,7 +52,7 @@
 				<div class="table-element">Skill Level</div>
 			</div>
 			<div class="col-sm-2">
-				<div class="table-element">BRCA Number</div>
+				<div class="table-element">BRCA</div>
 			</div>
 		</div>
 	</div>
@@ -67,12 +67,14 @@
 				</div>
 				<div class="col-xs-12 col-sm-2">
 					<div class="table-element">
-						<div class="mobile-title">Transponder: </div>{{"#" . $booking->transponder }}
+						<div class="mobile-title">Transponder: </div>#{{$booking->transponder }}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-3">
 					<div class="table-element">
-						<div class="mobile-title">Frequencies: </div> {{$booking->frequency_1 . " | " . $booking->frequency_2 . " | " . $booking->frequency_3 }}
+						<div class="mobile-title">
+							Frequencies:
+						</div> {{$booking->frequency_1 . " | " . $booking->frequency_2 . " | " . $booking->frequency_3 }}
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-2">
@@ -82,7 +84,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-2">
 					<div class="table-element">
-						<div class="mobile-title">BRCA Number: </div>#{{$booking->brca}}
+						<div class="mobile-title">BRCA: </div>#{{$booking->brca}}
 					</div>
 				</div>
 			</div>
