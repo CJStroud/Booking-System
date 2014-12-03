@@ -6,6 +6,12 @@
 
 	<div>{{ link_to_route('event.create', 'Create an event', null, ['class="btn btn-default"']) }}</div>
 
+	<h4>Add Class</h4>
+	{{Form::open(array('route' => ['class.store'], 'method' =>'post'))}}
+	<div><input name="name"></div>
+	<button type="submit" class="btn btn-primary">Add</button>
+	{{Form::close()}}
+
 	<h2>Active Classes</h2>
 	@foreach ($classes as $class)
 	<div class="break"></div>

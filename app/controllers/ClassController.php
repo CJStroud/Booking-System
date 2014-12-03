@@ -28,18 +28,16 @@ class ClassController extends \BaseController {
 
 			if (empty($result))
 			{
-
+				DB::insert('INSERT INTO class (name, active) VALUES (?, ?)', array($name, true));
 			}
 			else
 			{
 				$class = $result[0];
 				DB::update('UPDATE class SET active = true WHERE id = ?', array($class->id));
 			}
-
 		}
 
 		return Redirect::to('/admin');
-
 	}
 
 	/**

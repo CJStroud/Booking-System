@@ -23,7 +23,7 @@ class CreateBookingTable extends Migration {
 		   frequency_3 varchar(30) NOT NULL,
 		   transponder varchar(60) NOT NULL,
 		   skill integer NOT NULL
-		);');
+		   );');
 
 
 		DB::statement('ALTER TABLE booking
@@ -50,6 +50,7 @@ class CreateBookingTable extends Migration {
 	 */
 	public function down()
 	{
+
 		DB::statement('ALTER TABLE booking
 			DROP FOREIGN KEY booking_event_id_fk');
 
@@ -58,6 +59,8 @@ class CreateBookingTable extends Migration {
 
 		DB::statement('ALTER TABLE booking
 			DROP FOREIGN KEY booking_user_id_fk');
+
+		DB::statement('DROP TABLE booking');
 	}
 
 }
