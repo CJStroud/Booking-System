@@ -3,59 +3,92 @@
 @section('content')
 
 <div class="container">
-
 	<h2>{{$event->name}}</h2>
-	<h2>{{date('d/m/Y H:i', $event->event_datetime)}}
-	</h2>
-	<hr>
+	<h2>{{date('d/m/Y H:i', $event->event_datetime)}}</h2>
+</div>
 
-	@foreach($classes as $class)
-	<div class="table">
+@foreach($classes as $class)
+<div class="table">
 	<div class="class-header">
-		@if (Session::get('user') != null && Session::get('user')->isAdmin)
-		@if($class->locked)
-		{{Form::open(array('action' => ['EventController@unlock', $class->class_id, $event->id], 'method' => 'post'))}}
-		<button class="btn btn-primary btn-lock">
-		<i class="fa fa-lock"></i></button> Locked
+		<div class="col-xs-12">
+			<div class="container">
+			@if (Session::get('user') != null && Session::get('user')->isAdmin)
 
-		@else
-		{{Form::open(array('action' => ['EventController@lock', $class->class_id, $event->id], 'method' => 'post'))}}
-		<button class="btn btn-primary btn-lock">
-		<i class="fa fa-unlock"></i></button> Unlocked
-		@endif
-		@endif
+			@if($class->locked)
+			{{Form::open(array('action' => ['EventController@unlock', $class->class_id, $event->id], 'method' => 'post'))}}
+			<button class="btn btn-primary btn-lock">
+			<i class="fa fa-lock"></i> Locked</button>
 
-		{{$class->name}} <div class="class-count label label-primary"> {{$class->count}} / {{$class->max}}</div>
-		{{Form::close()}}
-	</div>
-		<div class="table-content">
-		<div class="row">
-		<div class="col-sm-3">Name</div>
-		<div class="col-sm-2">Transponder</div>
-		<div class="col-sm-4">Frequencies</div>
-		<div class="col-sm-3">BRCA Number</div>
+			@else
+			{{Form::open(array('action' => ['EventController@lock', $class->class_id, $event->id], 'method' => 'post'))}}
+			<button class="btn btn-primary btn-lock">
+			<i class="fa fa-unlock"></i> Unlocked</button>
+			@endif
+			@endif
+
+			{{$class->name}}
+
+			<div class="pull-right">
+				<div class="label label-primary">
+					{{$class->count}} / {{$class->max}}
+				</div>
+			</div>
+			</div>
+			{{Form::close()}}
 		</div>
-			<div class="break"></div>
+	</div>
+	<div class="table-header table-row">
+		<div class="container">
+			<div class="col-sm-3">
+				<div class="table-element">Name</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="table-element">Transponder</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="table-element">Frequencies</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="table-element">Skill Level</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="table-element">BRCA Number</div>
+			</div>
+		</div>
+	</div>
+
 		@foreach($class->bookings as $booking)
-
-		<div class="row">
-		<div class="col-sm-3">
-		{{ $booking->forename . " " . $booking->surname }}
+		<div class="table-row">
+			<div class="container">
+				<div class="col-xs-12 col-sm-3">
+					<div class="table-element">
+						<div class="mobile-title">Name: </div>{{ $booking->forename . " " . $booking->surname }}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-2">
+					<div class="table-element">
+						<div class="mobile-title">Transponder: </div>{{"#" . $booking->transponder }}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-3">
+					<div class="table-element">
+						<div class="mobile-title">Frequencies: </div> {{$booking->frequency_1 . " | " . $booking->frequency_2 . " | " . $booking->frequency_3 }}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-2">
+					<div class="table-element">
+						<div class="mobile-title">Skill Level: </div>{{$booking->skill}}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-2">
+					<div class="table-element">
+						<div class="mobile-title">BRCA Number: </div>#{{$booking->brca}}
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-sm-2">
-		{{"#" . $booking->transponder }}
-		</div>
-		<div class="col-sm-4">
-			{{$booking->frequency_1 . " | " . $booking->frequency_2 . " | " . $booking->frequency_3 }}
-		</div>
-		<div class="col-sm-3">
-			{{$booking->brca}}
-		</div>
-		</div>
-
-	@endforeach
-		</div>
+		@endforeach
 	</div>
 	@endforeach
-
+<div class="container">
 </div>

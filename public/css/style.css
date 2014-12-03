@@ -87,9 +87,8 @@ label {
 }
 
 .table-header {
-	border-bottom: 1px solid #ddd;
-	margin-bottom: 10px;
-	padding-bottom: 5px;
+	border-bottom: 1px solid #16a085;
+	font-size: 15px;
 }
 
 .header-element {
@@ -102,13 +101,19 @@ label {
 
 .table-row {
 	width:100%;
-	float: left;
-	padding-top: 5px;
-	padding-bottom: 10px;
+	padding: 5px 0px;
 }
 
 .table-element {
 	height: 100%
+}
+
+.mobile-title {
+	visibility: hidden;
+}
+
+.desktop-title {
+	visibility: visible;
 }
 
 /*End Table Styling*/
@@ -131,23 +136,33 @@ label {
 }
 
 .class-header {
-	background-color: #e7e7e7;
-	padding: 10px 10px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	width: 100%;
+	background-color: #ddd;
+	padding: 15px 0px;
+	margin-bottom: 15px;
+	float: left;
+	font-size: 16px;
 }
 
 .class-count {
-	float: right;
 	font-size: 14px;
 }
 
 .btn-lock {
-	margin-right: 20px;
 	border-radius: 25px;
+	margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 770px) {
+
+	.mobile-title {
+		visibility: visible;
+	}
+
+	.table-header {
+		visibility: hidden;
+		height: 0px;
+	}
 
 	.table-element {
 		margin: 7px 0px;
