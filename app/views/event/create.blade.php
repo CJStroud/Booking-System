@@ -41,9 +41,10 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
 
-
+	<div class="row">
 		<div class='col-md-6 col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('close-datetimeinput', 'Cut Off Date and Time', ['class' => '']) }}
@@ -59,30 +60,50 @@
 		</div>
 	</div>
 
-	<select id="class-drop-down" class="selectpicker">
-		@foreach($options as $option)
-		<option id={{$option->id}}>{{$option->name}}</option>
-		@endforeach
-	</select>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<select id="class-drop-down" class="selectpicker">
+				@foreach($options as $option)
+				<option id={{$option->id}}>{{$option->name}}</option>
+				@endforeach
+			</select>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<button id='btn-add' type='button' class='btn btn-primary'>Add Class</button>
+		</div>
+	</div>
+</div>
 
-	<button id='btn-add' type='button' class='btn btn-primary'>Add Class</button>
 	<div id='class-container'>
-		<div class='row row-table-header hidden-xs'>
-			<div class='col-sm-4 col-xs-12 row-header-text'>
-				Class Name
-			</div>
-			<div class='col-sm-4 col-xs-12 row-header-text'>
-				Limit
-			</div>
-			<div class='col-sm-4 col-xs-12'>
+		<div class="container">
+			<div class="table">
+				<div class='hidden-xs'>
+					<div class="header-element">
+						<div class='col-sm-4 col-xs-12'>
+							Class Name
+						</div>
+					</div>
+					<div class="header-element">
+						<div class='col-sm-4 col-xs-12'>
+							Limit
+						</div>
+					</div>
+					<div class='col-sm-4 col-xs-12'>
+					</div>
+				</div>
 			</div>
 		</div>
-		<hr>
 	</div>
 
-	<div class='col-sm-12'>
-		<input type='hidden' name='classes' id='json-class' value='{{ Input::old("classes") }}'>
-		<button type="submit" class="btn btn-primary btn-submit">Create</button>
+<div class="container">
+	<div class="row">
+		<div class='col-sm-12'>
+			<input type='hidden' name='classes' id='json-class' value='{{ Input::old("classes") }}'>
+			<button type="submit" class="btn btn-primary btn-submit">Create</button>
+		</div>
 	</div>
+</div>
 {{ Form::close() }}
