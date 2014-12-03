@@ -1,6 +1,11 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
 .navbar {
 	width: 100%;
 	background-color: #16a085;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .navbar-default .navbar-nav>li>a,
@@ -8,7 +13,7 @@
 .navbar-default .navbar-text a
 {
 	color: #fff;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -19,7 +24,7 @@
 	width:100%;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 15px;
 }
 
@@ -76,10 +81,21 @@ label {
 
 /*Table Styling*/
 .table {
-
+	font-family: 'Open Sans', sans-serif;
+	margin: 25px 0px;
 }
 
-.table .table-row:nth-child(2n) {
+.table-header {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
+.header-element {
+	font-size: 16px;
+}
+
+.table-row:nth-child(2n) {
 	background-color: #f4f4f4;
 }
 
@@ -95,29 +111,10 @@ label {
 
 /*End Table Styling*/
 
-.form-group {
-	height: 100%;
-}
-
-
 #class-container div.row{
 	margin:15px 0px;
 }
 
-
-.row {
-	margin-bottom: 10px;
-}
-
-.row-text {
-	font-size: 16px;
-	font-family: 'Roboto', sans-serif;
-}
-
-.row-header-text {
-	font-size: 18px;
-	font-family: 'Roboto', sans-serif;
-}
 
 .navbar p {
 	padding: 0px 15px;
@@ -126,12 +123,6 @@ label {
 .btn-submit {
 	margin-bottom: 20px;
 	margin-right: 20px;
-}
-
-.break {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #d3d3d3;
 }
 
 .class-header {
@@ -146,13 +137,6 @@ label {
 	font-size: 14px;
 }
 
-.table-content {
-	background-color: #f6f6f6;
-	padding:5px 10px;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-}
-
 .btn-lock {
 	margin-right: 20px;
 	border-radius: 25px;
@@ -160,16 +144,7 @@ label {
 
 @media only screen and (max-width: 770px) {
 
-	.row {
-
-	}
-
-	.row-text {
-		padding:15px;
-		font-size: 18px;
-	}
-
-	.btn{
-		width:100%;
+	.table-element {
+		margin: 7px 0px;
 	}
 }

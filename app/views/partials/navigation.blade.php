@@ -12,7 +12,7 @@
 
 			<div class="collapse navbar-collapse" id="main-navbar-collapsable">
 				<ul class="nav navbar-nav">
-					<li><a href="event.index"><i class="fa fa-home"></i> Events</a></li>
+					<li><a href="event"><i class="fa fa-home"></i> Events</a></li>
 					<li><a href="my-bookings"><i class="fa fa-calendar"></i> My Bookings</a></li>
 
 					@if (Session::get('user') != null && Session::get('user')->isAdmin)
