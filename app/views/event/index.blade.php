@@ -11,12 +11,17 @@
 		<div class="col-xs-12 col-sm-4 row-text">{{$event->name}}</div>
 		<div class="col-xs-12 col-sm-3 row-text">{{date('d/m/Y H:i', $event->event_datetime)}}</div>
 		<form action="event/{{$event->slug}}">
-			  <button class="col-xs-4 col-sm-2 btn btn-success btn-standard" type="submit">View</button>
+			<div class="col-xs-12 col-sm-2">
+				<button class="btn btn-success btn-standard" type="submit">View</button>
+			</div>
 		</form>
 		<form action="booking/create/{{$event->slug}}">
+			<div class="col-xs-12 col-sm-2">
 				<button class="col-xs-4 col-sm-2 btn btn-primary btn-standard">Book</button>
-			</form>
-		</div>
+			</div>
+		</form>
+	</div>
+
 
 	@endforeach
 
@@ -27,7 +32,9 @@
 		<div class="col-xs-12 col-sm-4 row-text">{{$event->name}}</div>
 		<div class="col-xs-12 col-sm-3 row-text">{{date('d/m/Y H:i', $event->event_datetime)}}</div>
 		<form action="event/{{$event->slug}}">
-			<button class="col-xs-4 col-sm-2 btn btn-success btn-standard" type="submit">View</button>
+			<div class="col-xs-12 col-sm-2">
+				<button class=" btn btn-success btn-standard" type="submit">View</button>
+			</div>
 		</form>
 	</div>
 	@endforeach

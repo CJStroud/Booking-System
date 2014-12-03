@@ -13,17 +13,18 @@
 	<input type="hidden" value="{{$event->id}}" name="event-id">
 
 	<div class="row">
-		<div class='col-sm-12'>
-			<div class="form-group">
+		<div class="form-group">
+			<div class="col-sm-12 col-md-1">
 				{{ Form::label('class-drop-down', 'Class', ['class' => '']) }}
-				<select id="class-drop-down" class="drop-down-holder selectpicker">
+			</div>
+			<div class="col-sm-12 col-md-11">
+				<select id="class-drop-down" class="drop-down-holder selectpicker id-select">
 					@foreach ($classes as $class)
-					<option id="{{$class->id}}" value="{{$class->id}}">{{$class->name}}</option>
+					<option id="{{$class->id}}">{{$class->name}}</option>
 					@endforeach
 				</select>
-
-				<input name="class-drop-down" type="hidden" class="hidden-text" id="class-input" value="{{$classes[0]->id}}">
 			</div>
+			<input name="class-drop-down" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
 		</div>
 	</div>
 
@@ -41,7 +42,7 @@
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('skill-drop-down', 'Skill Level', ['class' => '']) }}
-				<select id="skill-drop-down" class="selectpicker">
+				<select id="skill-drop-down" class="selectpicker id-select">
 					<option selected id="1">1 - Low</option>
 					<option id="2">2</option>
 					<option id="3">3</option>
@@ -62,7 +63,7 @@
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('frequency1-drop-down', 'Frequency 1', ['class' => '']) }}
-				<select id="frequency1-drop-down" class="selectpicker">
+				<select id="frequency1-drop-down" class="selectpicker value-select">
 					@foreach($frequencies as $frequency)
 					<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 					@endforeach
@@ -76,7 +77,7 @@
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('frequency2-drop-down', 'Frequency 2', ['class' => '']) }}
-				<select id="frequency2-drop-down" class="selectpicker">
+				<select id="frequency2-drop-down" class="selectpicker value-select">
 					@foreach($frequencies as $frequency)
 					<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 					@endforeach
@@ -89,7 +90,7 @@
 		<div class='col-sm-12'>
 			<div class="form-group">
 				{{ Form::label('frequency3-drop-down', 'Frequency 3', ['class' => '']) }}
-				<select name="frequency3-drop-down" class="selectpicker">
+				<select name="frequency3-drop-down" class="selectpicker value-select">
 					@foreach($frequencies as $frequency)
 					<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 					@endforeach
@@ -100,8 +101,8 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<button type="submit" class="btn btn-primary col-xs-12 col-sm-6 btn-standard">Confirm</button>
+	<div class="row col-sm-12 col-md-6">
+		<button type="submit" class="btn btn-primary btn-standard">Confirm</button>
 	</div>
 	{{ Form::close() }}
 

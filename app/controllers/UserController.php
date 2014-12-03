@@ -124,7 +124,12 @@ class UserController extends \BaseController {
 		$result = DB::select('SELECT * FROM user WHERE email = ?',
 						   array($email));
 
-		$record = current($result);
+		if (empty($result))
+		{
+			return Redirect::back()->withInput()->withErrors("The details you entered where incorrect");
+		}
+
+		$record = $result[0];
 		$isMatch = Hash::check($password, $record->password);
 
 		if ($isMatch)

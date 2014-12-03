@@ -20,14 +20,14 @@ class EventController extends \BaseController {
 	public function create()
 	{
 		$user = Session::get('user');
-		if ($user->isAdmin)
+		if ($user == null || !$user->isAdmin)
 		{
-			$options = DB::select('SELECT * FROM class WHERE active = true');
-			return $this->layout->content = View::make('event.create')->withOptions($options);
+			return Redirect::route('event.index');
 		}
 		else
 		{
-			return Redirect::route('event.index');
+			$options = DB::select('SELECT * FROM class WHERE active = true');
+			return $this->layout->content = View::make('event.create')->withOptions($options);
 		}
 	}
 

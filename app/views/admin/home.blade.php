@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="container">
-	<h1>Admin</h1>
-
-	<div>{{ link_to_route('event.create', 'Create an event', null, ['class="btn btn-default"']) }}</div>
+	<div>{{ link_to_route('event.create', 'Create an event', null, ['class="btn btn-primary create-class"']) }}</div>
 
 	<h4>Add Class</h4>
 	{{Form::open(array('route' => ['class.store'], 'method' =>'post'))}}

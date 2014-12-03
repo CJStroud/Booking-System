@@ -17,10 +17,19 @@ class HomeController extends BaseController {
 
 	public function AdminHome()
 	{
-		$classes = DB::select('SELECT * FROM class WHERE active = true');
-		$disabled = DB::select('SELECT * FROM class WHERE active = false');
+		$user = Session::get('user');
+		if ($user == null || !$user->isAdmin)
+		{
+			return Redirect::route('event.index');
+		}
+		else
+		{
+			$classes = DB::select('SELECT * FROM class WHERE active = true');
+			$disabled = DB::select('SELECT * FROM class WHERE active = false');
 
-		return View::make('admin.home')->withClasses($classes)->withDisabled($disabled);
+			return View::make('admin.home')->withClasses($classes)->withDisabled($disabled);
+		}
+
 	}
 
 }

@@ -30,16 +30,25 @@ $(this).parent().parent().remove();
 
 $(document).ready(function(){
 
-	$('select').change(function() {
-		var value = $(this).children(":selected").attr("value");
-		$(this).siblings('.hidden-text').val(value);
-	});
-
-	$('select').load(function() {
+	$('.id-select').change(function() {
 		var id = $(this).children(":selected").attr("id");
 		$(this).siblings('.hidden-text').val(id);
 	});
 
+	$('.id-select').load(function() {
+		var id = $(this).children(":selected").attr("id");
+		$(this).siblings('.hidden-text').val(id);
+	});
+
+	$('.value-select').change(function() {
+		var value = $(this).children(":selected").attr("value");
+		$(this).siblings('.hidden-text').val(value);
+	});
+
+	$('.value-select').load(function() {
+		var value = $(this).children(":selected").attr("value");
+		$(this).siblings('.hidden-text').val(value);
+	});
 
 	$('#btn-add').click(function(){
 		var optionSelected = $("#class-drop-down option:selected");
