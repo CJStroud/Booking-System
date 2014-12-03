@@ -19,6 +19,8 @@
 	width:100%;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
 }
 
 .btn-primary {
@@ -35,12 +37,12 @@
 }
 
 .btn-success {
-	background-color: #2ecc71;
+	background-color: #9b59b6;
 	border: 0px;
 }
 
 .btn-success:hover {
-	background-color: #27ae60;
+	background-color: #8e44ad;
 }
 
 .btn-danger {
