@@ -17,8 +17,8 @@
 
 .btn {
 	width:100%;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
 }
@@ -74,28 +74,36 @@ label {
 	margin: auto 0;
 }
 
+/*Table Styling*/
+.table {
+
+}
+
+.table .table-row:nth-child(2n) {
+	background-color: #f4f4f4;
+}
+
+.table-row {
+	width:100%;
+	float: left;
+	padding: 15px 0px;
+}
+
+.table-element {
+	height: 100%
+}
+
+/*End Table Styling*/
+
 .form-group {
 	height: 100%;
 }
 
-.second-header {
-	margin-top: 50px;
-}
-
-.btn-standard {
-	margin-right: 20px;
-	margin-bottom: 10px;
-}
 
 #class-container div.row{
 	margin:15px 0px;
 }
 
-.table-row{
-	padding: 10px 0px 15px 20px;
-	margin: 10px 0px;
-	border-bottom: 1px solid #d3d3d3;
-}
 
 .row {
 	margin-bottom: 10px;
