@@ -9,41 +9,35 @@
 	{{ Form::open(array('action' => 'BookingController@store', 'id' => 'create-form')) }}
 
 	<input type="hidden" value="{{$event->id}}" name="event-id">
-	<div class="form">
-		<div class="row">
+
+	<div class="row">
+		<div class="col-xs-12">
 			<div class="form-group">
-				<div class="col-xs-12">
-					{{ Form::label('class-drop-down', 'Class', ['class' => '']) }}
-				</div>
-				<div class="col-xs-12">
-					<select id="class-drop-down" class="drop-down-holder selectpicker id-select">
-						@foreach ($classes as $class)
-						<option id="{{$class->id}}">{{$class->name}}</option>
-						@endforeach
-					</select>
-				</div>
-				<input name="class-drop-down" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
+				{{ Form::label('class-drop-down', 'Class', ['class' => '']) }}
+				<select id="class-drop-down" class="drop-down-holder selectpicker id-select form-control">
+					@foreach ($classes as $class)
+					<option id="{{$class->id}}">{{$class->name}}</option>
+					@endforeach
+				</select>
 			</div>
+			<input name="class-drop-down" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
 		</div>
+	</div>
 
 		<div class="row">
-			<div class="form-group">
-				<div class="col-xs-12">
+			<div class="col-xs-12">
+				<div class="form-group">
 					{{ Form::label('transponder', 'Transponder Number', ['class' => '']) }}
-				</div>
-				<div class="col-xs-12">
 				<input type="text" class="form-control" placeholder="E.g 12345678" name='transponder' value="{{ Input::old('trans') }}">
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="form-group">
-				<div class='col-xs-12'>
+			<div class='col-xs-12'>
+				<div class="form-group">
 					{{ Form::label('skill-drop-down', 'Skill Level', ['class' => '']) }}
-				</div>
-				<div class="col-xs-12">
-					<select id="skill-drop-down" class="selectpicker id-select">
+					<select id="skill-drop-down" class="selectpicker id-select form-control">
 						<option selected id="1">1 - Low</option>
 						<option id="2">2</option>
 						<option id="3">3</option>
@@ -61,12 +55,10 @@
 		</div>
 
 		<div class="row">
-			<div class="form-group">
-				<div class='col-xs-12'>
+			<div class='col-xs-12'>
+				<div class="form-group">
 					{{ Form::label('frequency1-drop-down', 'Frequency 1', ['class' => '']) }}
-				</div>
-				<div class="col-xs-12">
-					<select id="frequency1-drop-down" class="selectpicker value-select">
+					<select id="frequency1-drop-down" class="selectpicker value-select form-control">
 						@foreach($frequencies as $frequency)
 						<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 						@endforeach
@@ -77,12 +69,10 @@
 		</div>
 
 		<div class="row">
-			<div class="form-group">
-				<div class='col-xs-12'>
+			<div class='col-xs-12'>
+				<div class="form-group">
 					{{ Form::label('frequency2-drop-down', 'Frequency 2', ['class' => '']) }}
-				</div>
-				<div class="col-xs-12">
-					<select id="frequency2-drop-down" class="selectpicker value-select">
+					<select id="frequency2-drop-down" class="selectpicker value-select form-control">
 						@foreach($frequencies as $frequency)
 						<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 						@endforeach
@@ -93,12 +83,10 @@
 		</div>
 
 		<div class="row">
-			<div class="form-group">
-				<div class='col-xs-12'>
+			<div class='col-xs-12'>
+				<div class="form-group">
 					{{ Form::label('frequency3-drop-down', 'Frequency 3', ['class' => '']) }}
-				</div>
-				<div class="col-xs-12">
-					<select name="frequency3-drop-down" class="selectpicker value-select">
+					<select name="frequency3-drop-down" class="selectpicker value-select form-control">
 						@foreach($frequencies as $frequency)
 						<option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
 						@endforeach

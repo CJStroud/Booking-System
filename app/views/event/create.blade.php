@@ -9,16 +9,16 @@
 {{ Form::open(array('action' => 'EventController@store', 'id' => 'create-form')) }}
 
 	<div class="row">
-		<div class='col-sm-12'>
+		<div class='col-xs-12'>
 			<div class="form-group">
-			{{ Form::label('name', 'Event Name', ['class' => '']) }}
-			<input type="text" class="form-control" placeholder="Example Event 2014 Round 1" name="name" value="{{ Input::old('name') }}">
+				{{ Form::label('name', 'Event Name', ['class' => '']) }}
+				<input type="text" class="form-control" placeholder="Example Event 2014 Round 1" name="name" value="{{ Input::old('name') }}">
 			</div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class='col-sm-12'>
+		<div class='col-xs-12'>
 			<div class="form-group">
 			{{ Form::label('slug', 'Slug', ['class' => '']) }}
 			<input type="text" class="form-control" placeholder="example-event-2014-round-1" name='slug' value="{{ Input::old('slug') }}">
@@ -28,7 +28,7 @@
 
 
 	<div class="row">
-		<div class='col-md-6 col-sm-12'>
+		<div class='col-xs-12'>
 			<div class="form-group">
 				{{ Form::label('event-datetimeinput', 'Event Date and Time', ['class' => '']) }}
 				<div class='input-group date' id='event-datetimeinput'>
@@ -45,7 +45,7 @@
 
 
 	<div class="row">
-		<div class='col-md-6 col-sm-12'>
+		<div class='col-xs-12'>
 			<div class="form-group">
 				{{ Form::label('close-datetimeinput', 'Cut Off Date and Time', ['class' => '']) }}
 				<div class='input-group date' id='close-datetimeinput'>
@@ -62,29 +62,32 @@
 
 	<div class="row">
 		<div class="col-xs-12">
+			<div class="form-group">
 			{{ Form::label('class-container', 'Classes', ['class' => '']) }}
-		</div>
-		<div class="col-xs-12 col-sm-6">
-			<select id="class-drop-down" class="selectpicker">
+			<select id="class-drop-down" class="selectpicker form-control">
 				@foreach($options as $option)
 				<option id={{$option->id}}>{{$option->name}}</option>
 				@endforeach
 			</select>
+			</div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
-			<button id='btn-add' type='button' class='btn btn-primary'>Add Class</button>
+			<div class="form-group">
+				<button id='btn-add' type='button' class='btn btn-primary'>Add Class</button>
+			</div>
 		</div>
 	</div>
 
 
 </div>
 
+<div class="table">
 	<div id='class-container'>
 		<div class="container">
-			<div class="row table">
+			<div class="row">
 				<div class='hidden-xs'>
 					<div class="header-element">
 						<div class='col-sm-4 col-xs-12'>
@@ -102,12 +105,15 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 <div class="container">
 	<div class="row">
 		<div class='col-sm-12'>
+			<div class="form-group">
 			<input type='hidden' name='classes' id='json-class' value='{{ Input::old("classes") }}'>
 			<button type="submit" class="btn btn-primary btn-submit">Create</button>
+			</div>
 		</div>
 	</div>
 </div>
