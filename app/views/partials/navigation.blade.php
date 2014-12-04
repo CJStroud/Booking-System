@@ -26,7 +26,7 @@
 					@else
 					<a href="{{URL::action('UserController@login')}}"><i class="fa fa-sign-in"></i> Login</a>
 
-					<li><a href="{{URL::action('UserController@signUp')}}"><i cUsercontroller@signUplass="fa fa-user"></i> Sign Up</a>
+					<li><a href="{{URL::action('UserController@signUp')}}"><i class="fa fa-user"></i> Sign Up</a>
 						@endif
 					</li>
 				</ul>
