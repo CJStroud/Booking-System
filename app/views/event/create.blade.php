@@ -61,6 +61,9 @@
 	</div>
 
 	<div class="row">
+		<div class="col-xs-12">
+			{{ Form::label('class-container', 'Classes', ['class' => '']) }}
+		</div>
 		<div class="col-xs-12 col-sm-6">
 			<select id="class-drop-down" class="selectpicker">
 				@foreach($options as $option)
@@ -75,11 +78,13 @@
 			<button id='btn-add' type='button' class='btn btn-primary'>Add Class</button>
 		</div>
 	</div>
+
+
 </div>
 
 	<div id='class-container'>
 		<div class="container">
-			<div class="table">
+			<div class="row table">
 				<div class='hidden-xs'>
 					<div class="header-element">
 						<div class='col-sm-4 col-xs-12'>
