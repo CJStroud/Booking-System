@@ -19,8 +19,8 @@
 					<option id="{{$class->id}}">{{$class->name}}</option>
 					@endforeach
 				</select>
+				<input name="class-drop-down" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
 			</div>
-			<input name="class-drop-down" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
 		</div>
 	</div>
 
