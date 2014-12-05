@@ -6,6 +6,15 @@
 
 	@include('partials.errors')
 
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="alert alert-info alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				Already have an account? <a href="login" class="alert-link">Login here</a>!
+			</div>
+		</div>
+	</div>
+
 	{{ Form::open(array('action' => 'UserController@store', 'id' => 'create-form')) }}
 
 	<div class="row">
@@ -63,20 +72,11 @@
 	</div>
 
 	<div class="row">
-	<div class="col-xs-12">
-		<button type="submit" class="btn btn-primary">Create Account</button>
-	</div>
+		<div class="col-xs-12">
+			<button type="submit" class="btn btn-primary">Create Account</button>
+		</div>
 	</div>
 
 	{{Form::close()}}
-
-	<div class="row">
-	<div class="col-xs-12">
-		<div class="alert alert-info alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			Already have an account? <a href="login" class="alert-link">Login here</a>!
-		</div>
-	</div>
-	</div>
 
 </div>

@@ -11,12 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('index');
-});
-
-
+Route::resource('/', 'EventController');
 Route::resource('event', 'EventController');
 Route::get('booking/create/{slug}', 'BookingController@create');
 Route::resource('booking', 'BookingController');
