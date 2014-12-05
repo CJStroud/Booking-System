@@ -1,7 +1,10 @@
 {
-	"name": "halesownmodelcarclub.com",
-	"dependencies": {
-	"bootstrap": "~3.3.1",
-	"jquery": "~2.1.1"
-	}
+  "name": "halesownmodelcarclub.com",
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "jquery": "~2.1.1",
+    "font-awesome": "~4.2.0",
+    "bootstrap-select": "~1.6.3",
+    "moment": "~2.8.4"
+  }
 }
