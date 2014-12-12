@@ -1,4 +1,4 @@
-<?php namespace 'HMCC\Form';
+<?php namespace HMCC\Form;
 
 interface FormInterface {
 

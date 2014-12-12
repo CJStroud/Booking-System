@@ -1,7 +1,7 @@
-<?php namespace 'HMCC\Form';
+<?php namespace HMCC\Form;
 
-use HMCC\Repository\RepositoryInterface;
 use HMCC\Validation\ValidatorInterface;
+use HMCC\Repository\RepositoryInterface;
 
 abstract class Form implements FormInterface
 {
@@ -65,9 +65,9 @@ abstract class Form implements FormInterface
 	 * Validates the inputs given
 	 * @param Array $input An array of all the inputs of the form.
 	 */
-	public function validate(Array $input)
+	public function validate(Array $inputs)
 	{
-		if ($this->fails($input)) {
+		if ($this->fails($inputs)) {
 
 			$errors = $this->validator->errors;
 
@@ -80,9 +80,9 @@ abstract class Form implements FormInterface
 	* @param  Array $input
 	* @return boolean Returns TRUE or FALSE if the form passes validation
 	*/
-	public function passes(Array $input)
+	public function passes(Array $inputs)
 	{
-		return $this->validator->passes($input);
+		return $this->validator->passes($inputs);
 	}
 
 	/**
@@ -90,9 +90,9 @@ abstract class Form implements FormInterface
 	* @param Array $input
 	* @returns boolean Returns TRUE or FALSE if the form fail validation
 	*/
-	public function fails(array $input)
+	public function fails(Array $inputs)
 	{
-		return !$this->passes($input);
+		return !$this->passes($inputs);
 	}
 
 }
