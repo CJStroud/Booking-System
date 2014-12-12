@@ -6,7 +6,7 @@ use Illumiate\Support\MessageBag;
 class FormException extends Exception
 {
 
-	public function __construct(MessageBag $messages)
+	public function __construct($messages)
 	{
 		$this->messages = $messages;
 	}
