@@ -1,8 +1,9 @@
 <?php namespace HMCC\Validation;
 
+use App;
 use Illuminate\Support\ServiceProvider;
 
-class ValidationServiceProvider extends ServiceProvider {
+class ValidatorServiceProvider extends ServiceProvider {
 
 	public function register()
 	{
