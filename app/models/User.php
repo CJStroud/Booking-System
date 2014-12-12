@@ -1,26 +1,26 @@
 <?php
 
-class User {
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-	public $id;
-	public $forename;
-	public $surname;
-	public $email;
-	public $brca;
-	public $isAdmin;
+class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	public function __construct($id, $forename, $surname, $email, $brca, $isAdmin)
-	{
-		$this->id = $id;
-		$this->forename = $forename;
-		$this->surname = $surname;
-		$this->email = $email;
-		$this->brca = $brca;
-		$this->isAdmin = $isAdmin;
-	}
+	use UserTrait, RemindableTrait;
 
-	public function Name()
-	{
-		return $this->forename . " " . $this->surname;
-	}
+	/**
+		* The database table used by the model.
+		*
+		* @var string
+		*/
+	protected $table = 'users';
+
+	/**
+		* The attributes excluded from the model's JSON form.
+		*
+		* @var array
+		*/
+	protected $hidden = array('password', 'remember_token');
+
 }

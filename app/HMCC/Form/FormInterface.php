@@ -7,7 +7,7 @@ interface FormInterface {
 	 * @param Array $inputs Array of all the inputs for the table
 	 * @return boolean Returns TRUE or FALSE depending on if the store was successful
 	 */
-	public function store(Array $inputs) {};
+	public function store(Array $inputs);
 
 
 	/**
@@ -16,14 +16,14 @@ interface FormInterface {
 	 * @param Array $inputs Array of all the inputs for the table.
 	 * @return boolean Returns TRUE or FALSE depending on if the update was successful.
 	 */
-	public function update($id, Array $inputs) {};
+	public function update($id, Array $inputs);
 
 	/**
 	 * Deletes the record specified by $id
 	 * @param Integer $id The id of the record you want to delete.
 	 * @return boolean Returns TRUE or FALSE depending on if the delete was successful.
 	 */
-	public function delete($id) {};
+	public function delete($id);
 
 
 

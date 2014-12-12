@@ -3,7 +3,7 @@
 use Exception;
 use Illumiate\Support\MessageBag;
 
-public class FormException extends Exception
+class FormException extends Exception
 {
 
 	public function __construct(MessageBag $messages)

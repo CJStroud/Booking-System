@@ -122,9 +122,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
-		'HMCC\Repository\RepositoryServiceProvider',
 		'HMCC\Validation\ValidatorServiceProvider',
 		'HMCC\Form\FormServiceProvider',
+		'HMCC\Repository\RepositoryServiceProvider',
 
 	),
 
