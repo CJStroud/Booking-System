@@ -1,7 +1,9 @@
-/bootstrap/compiled.php
-/vendor
-/assets/components
-/node_modules/
+bootstrap/compiled.php
+vendor
+assets/components
+node_modules/
+public/css
+public/js
 composer.phar
 composer.lock
 .env.*.php
