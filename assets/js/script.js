@@ -1,4 +1,4 @@
-var classes = new Object();
+var classes = {};
 
 //removes the parent of the parent of the button
 function removeFunction() {
@@ -38,7 +38,7 @@ $(document).ready(function(){
 		var optionSelected = $("#class-drop-down option:selected");
 		var id = $(optionSelected).attr("id");
 
-		if(classes[id] == null){
+		if(classes[id] === null){
 			// get selected name
 			var name = $(optionSelected).val();
 			// generate new class
@@ -58,7 +58,7 @@ $(document).ready(function(){
 					$(this).focus();
 				}
 			});
-			var newClass = new Class(0,0,0);
+			newClass = new Class(0,0,0);
 			newClass.BuildFromObj(JSON.parse(JSON.stringify(classes)));
 		}
 	});
@@ -71,7 +71,7 @@ $(document).ready(function(){
 		$('#create-form').submit();
 	});
 
-	if($('#json-class').val() != ''){
+	if($('#json-class').val() !== ''){
 		var value = $('#json-class').val();
 		var json_classes = JSON.parse(value);
 
