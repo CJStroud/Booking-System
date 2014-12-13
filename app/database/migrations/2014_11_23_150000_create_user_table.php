@@ -12,16 +12,30 @@ class CreateUserTable extends Migration {
 	 */
 	public function up()
 	{
-		DB::statement('CREATE TABLE user (
-		   id integer NOT NULL  PRIMARY KEY AUTO_INCREMENT,
-		   forename varchar(60) NOT NULL,
-		   surname varchar(60) NOT NULL,
-		   email varchar(60) NOT NULL,
-		   password varchar(80) NOT NULL,
-		   secret varchar(20) NOT NULL,
-		   brca varchar(60) NOT NULL,
-		   isAdmin boolean NOT NULL
-		);');
+		Schema::create( 'users', function( $table ) {
+
+			$table->engine = 'InnoDB';
+
+			$table->increments('id');
+
+			$table->string('forename', 60);
+			$table->string('surname', 60);
+			$table->string('email');
+			$table->string('password');
+			$table->string('secret');
+			$table->string('brca');
+			$table->string('transponder');
+
+			$table->integer('skill');
+
+			$table->boolean('is_admin');
+			$table->boolean('banned');
+
+			$table->timestamps();
+			$table->softDeletes();
+			$table->rememberToken();
+
+		});
 	}
 
 	/**
@@ -31,7 +45,7 @@ class CreateUserTable extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement('DROP TABLE user');
+		Schema::dropIfExists('users');
 	}
 
 }

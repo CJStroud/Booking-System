@@ -12,9 +12,13 @@ class CreateFrequenciesTable extends Migration {
 	 */
 	public function up()
 	{
-		DB::statement('CREATE TABLE frequency (
-			id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
-			name varchar(60) NOT NULL);');
+		Schema::create( 'frequencies', function( $table ) {
+
+			$table->engine = 'InnoDB';
+
+			$table->increments('id');
+			$table->string('name', 60);
+		});
 	}
 
 	/**
@@ -24,7 +28,7 @@ class CreateFrequenciesTable extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement('DROP TABLE frequency;');
+		Schema::dropIfExists('frequencies');
 	}
 
 }
