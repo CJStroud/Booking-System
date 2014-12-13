@@ -12,23 +12,20 @@ class CreateEventClassTable extends Migration {
 	 */
 	public function up()
 	{
-		DB::statement('CREATE TABLE event_class (
-		   id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		   class_id integer NOT NULL,
-		   event_id integer NOT NULL,
-		   maximum integer NOT NULL,
-		   locked boolean NOT NULL
-		);');
+		Schema::create( 'event_classes', function( $table ) {
 
-		DB::statement('ALTER TABLE event_class
-			ADD CONSTRAINT class_id_fk
-			FOREIGN KEY (class_id)
-			REFERENCES class(id);');
+			$table->engine = 'InnoDB';
 
-		DB::statement('ALTER TABLE event_class
-			ADD CONSTRAINT event_id_fk
-			FOREIGN KEY event_id_fk (event_id)
-			REFERENCES event(id);');
+			$table->integer('class_id')->unsigned();
+			$table->integer('event_id')->unsigned();
+
+			$table->integer('limit');
+			$table->boolean('locked');
+
+			$table->foreign('class_id')->references('id')->on('classes');
+			$table->foreign('event_id')->references('id')->on('events');
+
+		});
 	}
 
 	/**
@@ -38,13 +35,7 @@ class CreateEventClassTable extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement('ALTER TABLE event_class
-			DROP FOREIGN KEY class_id_fk');
-
-		DB::statement('ALTER TABLE event_class
-			DROP FOREIGN KEY event_id_fk');
-
-		DB::statement('DROP TABLE event_class');
+		Schema::dropIfExists('event_classes');
 	}
 
 }

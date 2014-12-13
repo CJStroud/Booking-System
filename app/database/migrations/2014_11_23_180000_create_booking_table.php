@@ -12,35 +12,25 @@ class CreateBookingTable extends Migration {
 	 */
 	public function up()
 	{
+		Schema::create( 'bookings', function( $table ) {
 
-		DB::statement('CREATE TABLE booking (
-		   id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		   user_id integer NOT NULL,
-		   event_id integer NOT NULL,
-		   class_id integer NOT NULL,
-		   frequency_1 varchar(30) NOT NULL,
-		   frequency_2 varchar(30) NOT NULL,
-		   frequency_3 varchar(30) NOT NULL,
-		   transponder varchar(60) NOT NULL,
-		   skill integer NOT NULL
-		   );');
+			$table->engine = 'InnoDB';
 
+			$table->increments('id');
 
-		DB::statement('ALTER TABLE booking
-			ADD CONSTRAINT booking_event_id_fk
-		    FOREIGN KEY (event_id)
-			REFERENCES event (id)');
+			$table->integer('user_id')->unsigned();
+			$table->integer('event_id')->unsigned();
+			$table->integer('class_id')->unsigned();
 
-		DB::statement('ALTER TABLE booking
-			ADD CONSTRAINT booking_class_id_fk
-			FOREIGN KEY (class_id)
-			REFERENCES class(id);');
+			$table->string('transponder');
+			$table->integer('skill_level');
 
-		DB::statement('ALTER TABLE booking
-			ADD CONSTRAINT booking_user_id_fk
-		    FOREIGN KEY (user_id)
-			REFERENCES user (id)
-		');
+			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('event_id')->references('id')->on('events');
+			$table->foreign('class_id')->references('id')->on('classes');
+		});
 	}
 
 	/**
@@ -50,17 +40,7 @@ class CreateBookingTable extends Migration {
 	 */
 	public function down()
 	{
-
-		DB::statement('ALTER TABLE booking
-			DROP FOREIGN KEY booking_event_id_fk');
-
-		DB::statement('ALTER TABLE booking
-			DROP FOREIGN KEY booking_class_id_fk');
-
-		DB::statement('ALTER TABLE booking
-			DROP FOREIGN KEY booking_user_id_fk');
-
-		DB::statement('DROP TABLE booking');
+		Schema::dropIfExists('bookings');
 	}
 
 }

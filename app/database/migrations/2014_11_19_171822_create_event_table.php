@@ -12,14 +12,20 @@ class CreateEventTable extends Migration {
 	 */
 	public function up()
 	{
+		Schema::create( 'events', function( $table ) {
 
-		DB::statement('CREATE TABLE event (
-		   id integer NOT NULL  PRIMARY KEY AUTO_INCREMENT,
-		   name varchar(60) NOT NULL,
-		   slug varchar(60) NOT NULL,
-		   event_datetime int NOT NULL,
-		   close_datetime int NOT NULL
-		);');
+			$table->engine = 'InnoDB';
+
+			$table->increments('id');
+
+			$table->string('name', 60);
+			$table->string('slug', 60);
+
+			$table->integer('start_time');
+			$table->integer('close_time');
+
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -29,7 +35,7 @@ class CreateEventTable extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement('DROP TABLE event');
+		Schema::dropIfExists('events');
 	}
 
 }

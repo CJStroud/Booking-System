@@ -12,18 +12,23 @@ class CreateClassTable extends Migration {
 	 */
 	public function up()
 	{
+		Schema::create( 'classes', function( $table ) {
 
-		DB::statement('CREATE TABLE class (
-			id integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
-			name varchar(60) NOT NULL,
-			active boolean NOT NULL
-			);');
+			$table->engine = 'InnoDB';
 
+			$table->increments('id');
+
+			$table->string('name', 60);
+			$table->boolean('active');
+
+			$table->softDeletes();
+
+		});
 	}
 
 	public function down()
 	{
-		DB::statement('DROP TABLE class');
+		Schema::dropIfExists( 'classes' );
 	}
 
 }
