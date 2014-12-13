@@ -1,8 +1,20 @@
 <?php
 
+use HMCC\Form\EventForm;
+
 class EventController extends \BaseController {
 
 	protected $layout = 'layouts.master';
+
+	/**
+	 * @var EventForm
+	 */
+	protected $form;
+
+	public function __construct(EventForm $form)
+	{
+		$this->form = $form;
+	}
 
 	public function index()
 	{
@@ -24,19 +36,10 @@ class EventController extends \BaseController {
 
 	public function create()
 	{
-		$user = Session::get('user');
-		// check the user is admin, if not direct to home page
-		if ($user == null || !$user->isAdmin)
-		{
-			return Redirect::route('event.index');
-		}
-		else
-		{
-			// get all classes that are active
-			$options = DB::select('SELECT * FROM class WHERE active = true');
-			// generate create event page and give it the classes that can be used
-			return $this->layout->content = View::make('event.create')->withOptions($options);
-		}
+		//Todo Add validation that user is an admin
+
+		$options = DB::select('SELECT * FROM class WHERE active = true');
+		return $this->layout->content = View::make('event.create')->withOptions($options);
 	}
 
 	public function store()

@@ -16,9 +16,7 @@ class EventRepository extends Repository
 	{
 		parent::store($data);
 
-		$classes = json_decode($data['classes']);
-
-		foreach($classes as $class)
+		foreach($data['classes'] as $class)
 		{
 			$this->eventClassRepository->store($class);
 		}
