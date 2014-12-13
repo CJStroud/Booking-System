@@ -16,7 +16,8 @@ class UserRepository extends Repository
 		$record->forename = $data['forename'];
 		$record->surname = $data['surname'];
 		$record->email = $data['email'];
-		$record->password = Hash::make($data['password'] . $record->email);
+		$record->password = $data['password'];
+		$record->secret = $data['secret'];
 		$record->brca = $data['brca'];
 
 		return $record->save();

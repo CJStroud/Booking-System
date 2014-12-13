@@ -41,67 +41,9 @@ class EventController extends \BaseController {
 
 	public function store()
 	{
-		// create the validation rules for the input
-		$rules = array(
-			'name' => 'required',
-			'slug' => 'required|alpha_dash',
-			'event-datetime' => 'required|date_format:"d/m/Y H:i"',
-			'close-datetime' => 'required|date_format:"d/m/Y H:i"',
-		);
+		$this->form->store(Input::all());
 
-		// validate all the inputs against the rules
-		$validator = Validator::make(
-			Input::all(),
-			$rules
-		);
-
-		// decode the classes because they are passed through in json format
-		$json_classes = JSON_decode(Input::get('classes'), true);
-
-		// if the validation fails then return with error messages
-		if ($validator->fails())
-		{
-			return Redirect::back()->withInput()->withErrors($validator->messages());
-		}
-		// if no classes have been selected then return with error message
-		else if (empty($json_classes))
-		{
-			return Redirect::back()->withInput()->withErrors(['Event requires at least one class']);
-		}
-		else
-		{
-			// convert dates from string to datetime
-			$event_date = DateTime::createFromFormat('d/m/Y H:i', Input::get('event-datetime'));
-			$close_date = DateTime::createFromFormat('d/m/Y H:i', Input::get('close-datetime'));
-
-			// convert dates from datetime to timestamps
-			$event_datetime = $event_date->getTimestamp();
-			$close_datetime = $close_date->getTimestamp();
-
-			$name = Input::get('name');
-			$slug = Input::get('slug');
-
-			// create a new event in the database
-			DB::statement('INSERT INTO event (name, slug, event_datetime, close_datetime) VALUES (?, ?, ?, ?)',
-									array($name, $slug, $event_datetime, $close_datetime));
-
-			// get the id of the event last created
-			$event_id = DB::select('SELECT LAST_INSERT_ID() as id');
-
-			$id = current($event_id)->id;
-
-			//add each class for the event to the event_class table
-			foreach($json_classes as $class)
-			{
-				$classId = $class['id'];
-				$limit = $class['limit'];
-
-				DB::statement('INSERT INTO event_class (event_id, class_id, maximum, locked) values (?, ?, ?, ?)',
-							 array($id, $classId, $limit, false));
-			}
-
-			return Redirect::route('event.index');
-		}
+		return Redirect::route('event.index');
 	}
 
 	public function show($slug)

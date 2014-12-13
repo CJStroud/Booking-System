@@ -7,5 +7,8 @@ class Event extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $table = 'event';
+	protected $table = 'events';
+
+	protected $fillable = array('name', 'slug', 'start_time', 'close_time');
 }
+
