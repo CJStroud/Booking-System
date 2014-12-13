@@ -14,7 +14,6 @@ class FormServiceProvider extends ServiceProvider
 		$this->app->error(function (FormException $e) {
 
 			return Redirect::back()
-				->with('error', $e->getErrorMessage())
 				->withInput()
 				->withErrors($e->getMessages());
 
