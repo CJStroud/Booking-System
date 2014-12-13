@@ -11,8 +11,6 @@ class EventValidator extends Validator
 	{
 		$passes = parent::passes($input);
 
-		$classes = json_decode($input['classes'], true);
-
 		if (empty($classes))
 		{
 			$this->errors->add('classes', 'An event requires at least one class');
