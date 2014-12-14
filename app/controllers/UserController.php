@@ -23,8 +23,7 @@ class UserController extends \BaseController {
 	public function store()
 	{
 		$this->form->store(Input::all());
-
-		return Redirect::route('event.index');
+		return $this->attemptLogin();
 	}
 
 	public function signUp()
@@ -42,43 +41,19 @@ class UserController extends \BaseController {
 	public function attemptLogin()
 	{
 		$email = Input::get('email');
+		$password = Input::get('password');
 
-		// append email to password
-		$password = Input::get('password') . $email;
-
-		// find any users with the entered email
-		$result = DB::select('SELECT * FROM user WHERE email = ?',
-							array($email));
-
-		// inform the user that the details they entered were incorrect
-		if (empty($result))
+		if($this->form->checkLogin($email, $password))
 		{
-			return Redirect::back()->withInput()->withErrors("The details you entered where incorrect");
-		}
-
-		// encrypt password and see if it matches the one from the database
-		$record = $result[0];
-		$isMatch = Hash::check($password, $record->password);
-
-		// if both the email and password match then then log the user in and save details to session
-		if ($isMatch)
-		{
-			$user = new User($record->id, $record->forename, $record->surname, $record->email, $record->brca, $record->isAdmin);
-			Session::put('user', $user);
-
 			return Redirect::route('event.index');
 		}
-		else
-		{
-			// inform the user that the details entered were incorrect
-			return Redirect::back()->withInput()->withErrors("The details you entered where incorrect");
-		}
+
+		return Redirect::back()->withInput()->withErrors("The details you entered where incorrect");
 	}
 
 	public function signOut()
 	{
-		// blank out the user in session to log the user out
-		Session::put('user', null);
+		Auth::logout();
 
 		return Redirect::back()->withInput();
 	}

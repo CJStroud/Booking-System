@@ -3,6 +3,7 @@
 use HMCC\Validation\UserValidator;
 use HMCC\Repository\UserRepository;
 use Hash;
+use Auth;
 
 class UserForm extends Form
 {
@@ -17,8 +18,22 @@ class UserForm extends Form
 		$secret = str_random(15);
 		$inputs['secret'] = $secret;
 
-		$inputs['password'] = Hash::make($inputs['password'] . $secret);
-
 		return parent::store($inputs);
+	}
+
+	public function checkLogin($email, $password)
+	{
+		$secret = $this->repository->getSecret($email);
+
+		// append secret to password
+		$password =  $password . $secret;
+
+
+		if (Auth::attempt(array('email' => $email, 'password' => $password)))
+		{
+			return true;
+		}
+
+		return false;
 	}
 }

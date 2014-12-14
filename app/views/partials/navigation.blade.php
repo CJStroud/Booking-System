@@ -15,13 +15,13 @@
 					<li><a href="{{URL::route('event.index')}}"><i class="fa fa-home"></i> Events</a></li>
 					<li><a href="{{URL::action('BookingController@viewAll')}}"><i class="fa fa-calendar"></i> My Bookings</a></li>
 
-					@if (Session::get('user') != null && Session::get('user')->isAdmin)
+					@if (Auth::check() && Auth::user()->is_admin)
 					<li><a href="{{URL::action('HomeController@AdminHome')}}"><i class="fa fa-ban"></i> Admin</a></li>
 					@endif
 
 					<li>
-						@if (Session::get('user') != null)
-						<p class="navbar-text">{{ Session::get('user')->Name() }} - <a href="{{URL::action('UserController@signOut')}}" class="navbar-link">Sign Out <i class="fa fa-sign-out"></i></a></p>
+						@if (Auth::check())
+						<p class="navbar-text">{{ Auth::user()->forename . ' ' .Auth::user()->surname }} - <a href="{{URL::action('UserController@signOut')}}" class="navbar-link">Sign Out <i class="fa fa-sign-out"></i></a></p>
 					</li>
 					@else
 					<a href="{{URL::action('UserController@login')}}"><i class="fa fa-sign-in"></i> Login</a>

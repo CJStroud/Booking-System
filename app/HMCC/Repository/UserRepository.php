@@ -16,10 +16,20 @@ class UserRepository extends Repository
 		$record->forename = $data['forename'];
 		$record->surname = $data['surname'];
 		$record->email = $data['email'];
-		$record->password = $data['password'];
+		$record->password = Hash::make($data['password'] . $data['secret']);
 		$record->secret = $data['secret'];
 		$record->brca = $data['brca'];
 
 		return $record->save();
+	}
+
+	public function getSecret($email)
+	{
+		$user =  $this->model->where('email', '=', $email)->first();
+
+		if($user == null)
+			return '';
+
+		return $user->secret;
 	}
 }
