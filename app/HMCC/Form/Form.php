@@ -9,7 +9,7 @@ abstract class Form implements FormInterface
 	/**
 	 * @var RepositoryInterface
 	 */
-	protected $repository;
+	public $repository;
 
 	/**
 	 * @var ValidatorInterface

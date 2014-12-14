@@ -1,14 +1,15 @@
 <?php namespace HMCC\Repository;
 
-use Event;
+use RaceEvent;
 
 class EventRepository extends Repository
 {
 	protected $eventClassRepository;
 
-	public function __construct(Event $event, EventClassRepository $eventClassRepository)
+	public function __construct(RaceEvent $event, EventClassRepository $eventClassRepository)
 	{
 		$this->model = $event;
+
 		$this->eventClassRepository = $eventClassRepository;
 	}
 
@@ -20,5 +21,15 @@ class EventRepository extends Repository
 		{
 			$this->eventClassRepository->store($class);
 		}
+	}
+
+	public function getEventsBeforeClose($timestamp)
+	{
+		return $this->model->where('close_time', '>', $timestamp)->get();
+	}
+
+	public function getEventsAfterClose($timestamp)
+	{
+		return $this->model->where('close_time', '<=', $timestamp)->get();
 	}
 }

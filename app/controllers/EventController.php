@@ -19,16 +19,14 @@ class EventController extends \BaseController {
 	public function index()
 	{
 		// get current timestamp
-		$date = new DateTime();
-		$timestamp = $date->getTimestamp();
+		$timestamp = time();
 
 		// get all events that have a close date in the future
-		$events = DB::select('select * from event where close_datetime > ?',
-							array($timestamp));
+		$events = $this->form->repository->getEventsBeforeClose($timestamp);
 
 		// get all events that have a close date in the past
-		$oldevents = DB::select('select * from event where close_datetime < ?',
-							   array($timestamp));
+		$oldevents = $this->form->repository->getEventsAfterClose($timestamp);
+
 
 		// create event page and give it events and old events
 		return $this->layout->content = View::make('event.index')->with('events', $events)->with('old_events', $oldevents);
