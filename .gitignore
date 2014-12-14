@@ -4,6 +4,7 @@ assets/components
 node_modules/
 public/css
 public/js
+public/fonts
 composer.phar
 composer.lock
 .env.*.php
