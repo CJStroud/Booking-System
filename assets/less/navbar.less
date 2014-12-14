@@ -1,8 +1,10 @@
 .navbar {
 	width: 100%;
-	background-color: #16a085;
+	background-color: @primary;
 	font-family: 'Open Sans', sans-serif;
 	border-radius: 0px;
+	border: 0;
+	margin-bottom: 0;
 }
 
 .navbar-default .navbar-nav>li>a,
@@ -11,6 +13,11 @@
 {
 	color: #fff;
 	font-size: 14px;
+
+	&:hover {
+		color: #fff;
+		background-color: darken(@primary, 5%);
+	}
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -20,3 +27,25 @@
 .navbar p {
 	padding: 0px 15px;
 }
+
+.navbar-brand {
+	padding: 0 15px;
+	display: inline-table;
+	img {
+		height: 75px;
+		display: block;
+		width: 75px;
+	}
+}
+
+.navbar-nav {
+	@media only screen and (min-width: @screen-sm) {
+		display: inline-flex;
+		height: 75px;
+
+		li {
+			margin: auto 0;
+		}
+	}
+}
+
