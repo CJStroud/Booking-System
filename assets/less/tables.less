@@ -1,0 +1,47 @@
+.table {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.table-header {
+	border-bottom: 1px solid #16a085;
+	font-size: 15px;
+}
+
+.header-element {
+	font-size: 16px;
+}
+
+.table-row:nth-child(2n) {
+	background-color: #f4f4f4;
+}
+
+.table-row {
+	width:100%;
+	padding: 5px 0px;
+}
+
+.table-element {
+	height: 100%;
+	padding: 10px 0px;
+	vertical-align: middle;
+	margin: auto;
+}
+
+.mobile-title {
+	visibility: hidden;
+}
+
+@media only screen and (max-width: 770px) {
+
+	.mobile-title {
+		visibility: visible;
+		float: left;
+		margin-right: 10px;
+		font-size: 15px;
+	}
+
+	.table-header {
+		visibility: hidden;
+		height: 0px;
+	}
+}
