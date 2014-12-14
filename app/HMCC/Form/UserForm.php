@@ -2,6 +2,7 @@
 
 use HMCC\Validation\UserValidator;
 use HMCC\Repository\UserRepository;
+use Hash;
 
 class UserForm extends Form
 {
@@ -16,7 +17,7 @@ class UserForm extends Form
 		$secret = str_random(15);
 		$inputs['secret'] = $secret;
 
-		$inputs['password'] = Hash::make($input['password'] . $secret);
+		$inputs['password'] = Hash::make($inputs['password'] . $secret);
 
 		return parent::store($inputs);
 	}
