@@ -42,8 +42,8 @@ module.exports = function(grunt) {
 			dist: {
 				src: [
 					'assets/components/jquery/dist/jquery.min.js',
-					'assets/components/bootstrap-select/dist/js/bootstrap-select.min.js',
 					'assets/components/bootstrap/dist/js/bootstrap.min.js',
+					'assets/components/bootstrap-select/dist/js/bootstrap-select.min.js',
 					'assets/js/*.js'
 				],
 				dest: 'public/js/<%= pkg.name %>.js',
