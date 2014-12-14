@@ -49,6 +49,11 @@ class BookingController extends \BaseController {
 
 	public function store()
 	{
+
+		$this->form->store(Input::all());
+
+
+
 		// set up validation rules
 		$rules = array(
 			'transponder' => 'required|numeric'
