@@ -1,13 +1,13 @@
 <?php
 
-class RaceEventClass extends Eloquent {
+class RaceClass extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'event_classes';
+	protected $table = 'classes';
 
 	public $timestamps = false;
 

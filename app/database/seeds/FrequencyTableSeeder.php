@@ -1,66 +1,67 @@
 <?php
 
+use HMCC\Repository\FrequencyRepository;
+
 class FrequencyTableSeeder extends seeder {
 
-    public function run()
-    {
-        DB::statement('DELETE FROM frequency');
+	protected $repository;
 
-        $frequencies = array(
-            '26.975 Black or Grey/Brown',
-            '26.995 Brown',
-            '27.025 Brown/Red',
-            '27.045 Red',
-            '27.075 Red/Orange',
-            '27.095 Orange',
-            '27.125 Orange/Yellow',
-            '27.145 Yellow',
-            '27.175 Yellow/Green',
-            '27.195 Green',
-            '27.225 Green/Blue',
-            '27.245 Blue',
-            '27.255 Blue (as well)',
-            '27.275 White or Purple',
-            '40.665',
-            '40.675',
-            '40.685',
-            '40.695',
-            '40.705',
-            '40.715',
-            '40.725',
-            '40.735',
-            '40.745',
-            '40.755',
-            '40.765',
-            '40.775',
-            '40.785',
-            '40.795',
-            '40.815',
-            '40.825',
-            '40.835',
-            '40.845',
-            '40.855',
-            '40.865',
-            '40.875',
-            '40.885',
-            '40.895',
-            '40.905',
-            '40.915',
-            '40.925',
-            '40.935',
-            '40.945',
-            '40.955',
-            '40.965',
-            '40.975',
-            '40.985',
-            '40.995',
-        );
+	public function __construct(FrequencyRepository $repository)
+	{
+		$this->repository = $repository;
+	}
 
-        foreach($frequencies as $frequency)
-        {
-            DB::insert("INSERT INTO frequency (name) VALUES ('" . $frequency . "')");
-        }
+	public function run()
+	{
+		DB::table('frequencies')->delete();
 
-
-    }
+		$this->repository->store(['name' => '2.4 Ghz']);
+		$this->repository->store(['name' => '26.975 Black or Grey/Brown']);
+		$this->repository->store(['name' => '26.995 Brown']);
+		$this->repository->store(['name' => '27.025 Brown/Red']);
+		$this->repository->store(['name' => '27.045 Red']);
+		$this->repository->store(['name' => '27.075 Red/Orange']);
+		$this->repository->store(['name' => '27.095 Orange']);
+		$this->repository->store(['name' => '27.125 Orange/Yellow']);
+		$this->repository->store(['name' => '27.145 Yellow']);
+		$this->repository->store(['name' => '27.175 Yellow/Green']);
+		$this->repository->store(['name' => '27.195 Green']);
+		$this->repository->store(['name' => '27.225 Green/Blue']);
+		$this->repository->store(['name' => '27.245 Blue']);
+		$this->repository->store(['name' => '27.255 Blue (as well)']);
+		$this->repository->store(['name' => '27.275 White or Purple']);
+		$this->repository->store(['name' => '40.665']);
+		$this->repository->store(['name' => '40.675']);
+		$this->repository->store(['name' => '40.685']);
+		$this->repository->store(['name' => '40.695']);
+		$this->repository->store(['name' => '40.705']);
+		$this->repository->store(['name' => '40.715']);
+		$this->repository->store(['name' => '40.725']);
+		$this->repository->store(['name' => '40.735']);
+		$this->repository->store(['name' => '40.745']);
+		$this->repository->store(['name' => '40.755']);
+		$this->repository->store(['name' => '40.765']);
+		$this->repository->store(['name' => '40.775']);
+		$this->repository->store(['name' => '40.785']);
+		$this->repository->store(['name' => '40.795']);
+		$this->repository->store(['name' => '40.815']);
+		$this->repository->store(['name' => '40.825']);
+		$this->repository->store(['name' => '40.835']);
+		$this->repository->store(['name' => '40.845']);
+		$this->repository->store(['name' => '40.855']);
+		$this->repository->store(['name' => '40.865']);
+		$this->repository->store(['name' => '40.875']);
+		$this->repository->store(['name' => '40.885']);
+		$this->repository->store(['name' => '40.895']);
+		$this->repository->store(['name' => '40.905']);
+		$this->repository->store(['name' => '40.915']);
+		$this->repository->store(['name' => '40.925']);
+		$this->repository->store(['name' => '40.935']);
+		$this->repository->store(['name' => '40.945']);
+		$this->repository->store(['name' => '40.955']);
+		$this->repository->store(['name' => '40.965']);
+		$this->repository->store(['name' => '40.975']);
+		$this->repository->store(['name' => '40.985']);
+		$this->repository->store(['name' => '40.995']);
+	}
 }

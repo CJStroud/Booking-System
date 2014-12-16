@@ -18,7 +18,7 @@ class CreateClassTable extends Migration {
 
 			$table->increments('id');
 
-			$table->string('name', 60);
+			$table->string('name', 120);
 			$table->boolean('active');
 
 			$table->softDeletes();

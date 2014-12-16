@@ -1,42 +1,48 @@
 <?php
 
+use HMCC\Repository\UserRepository;
+
 class UserTableSeeder extends seeder {
 
-    public function run()
-    {
-        DB::statement('DELETE FROM user');
+	protected $repository;
 
-        $users = array (
-            array(
-                'forename' => 'Chris',
-                'surname' => 'Stroud',
-                'email' => 'chris.stroud@gmail.com',
-                'password' => Hash::make('password' . 'chris.stroud@gmail.com'),
-                'brca' => '213048',
-                'isAdmin' => true
-            ),
-            array('forename' => 'Admin',
-                  'surname' => 'User',
-                  'email' => 'admin',
-                  'password' => Hash::make('admin' . 'admin'),
-                  'brca' => '4398985',
-                  'isAdmin' => true
-            ),
-             array('forename' => 'Example',
-                  'surname' => 'User',
-                  'email' => 'example@mail.com',
-                  'password' => Hash::make('password' . 'example@mail.com'),
-                  'brca' => '834934',
-                  'isAdmin' => false
-            )
+	public function __construct(UserRepository $repository)
+	{
+		$this->repository = $repository;
+	}
 
-        );
+	public function run()
+	{
+		DB::table('users')->delete();
 
-        foreach($users as $user)
-        {
-            DB::statement('INSERT INTO user (forename, surname, email, password, brca, isAdmin) VALUES (?, ?, ?, ?, ?, ?)',
-                 array($user['forename'], $user['surname'], $user['email'], $user['password'], $user['brca'], $user['isAdmin']));
-        }
-    }
+		$secret = str_random(15);
+		$user = array(
+			'forename' => 'Chris',
+			'surname' => 'Stroud',
+			'email' => 'chris.stroud@gmail.com',
+			'password' => 'password',
+			'secret' => $secret,
+			'brca' => '213048',
+			'transponder' => '1273823',
+			'skill' => 5,
+			'is_admin' => true
+		);
+		$this->repository->store($user);
+
+		$secret = str_random(15);
+		$user = array(
+			'forename' => 'Andy',
+			'surname' => 'Bird',
+			'email' => 'andy.bird@gmail.com',
+			'password' => Hash::make('password' . $secret),
+			'secret' => $secret,
+			'brca' => '9382372',
+			'transponder' => '93047563',
+			'skill' => 8,
+			'is_admin' => false,
+		);
+		$this->repository->store($user);
+
+	}
 
 }
