@@ -12,7 +12,7 @@ class BookingValidator extends Validator
 		// event is full
 		// event is locked
 
-		return parent::passes($input)
+		return parent::passes($input);
 	}
 }
 

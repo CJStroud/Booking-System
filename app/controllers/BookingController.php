@@ -1,50 +1,48 @@
 <?php
 
+use HMCC\Form\BookingForm;
+use HMCC\Repository\FrequencyRepository;
+use HMCC\Repository\RaceEventRepository;
+
 class BookingController extends \BaseController {
 
 	protected $layout = 'layouts.master';
 
+	/**
+	 * @var BookingForm
+	 */
+	protected $form;
+
+	/**
+	 * @var RaceEventRepository
+	 */
+	protected $raceEventRepository;
+
+	/**
+	 * @var FrequencyRepository
+	 */
+	protected $frequencyRepository;
+
+	public function __construct(BookingForm $form, RaceEventRepository $raceEventRepository, FrequencyRepository $frequencyRepository)
+	{
+		$this->form = $form;
+		$this->raceEventRepository = $raceEventRepository;
+		$this->frequencyRepository = $frequencyRepository;
+	}
+
 	public function create($slug)
 	{
-		$user = Session::get('user');
-
-		//if user is not logged in redirect to login page
-		if ($user == null)
+		if (!Auth::check())
 		{
 			$message = "You must be logged in to place a booking";
 			return Redirect::to('login')->withErrors([$message]);
 		}
 
-		// get the event where the slug matches the requested one
-		$results = DB::select('SELECT * FROM event WHERE slug = ?', array($slug));
+		$event = $this->raceEventRepository->getEventBySlug($slug);
+		$classes = $event->classes;
+		$frequencies = $this->frequencyRepository->all();
 
-
-		// if the slug does not exist then redirect to the event/home page
-		if (empty($results))
-		{
-			return Redirect::route('event.index');
-		}
-		else
-		{
-			$event = current($results);
-			$class_results = DB::select('SELECT * FROM event_class WHERE event_id = ?', array($event->id));
-
-			$classes = [];
-
-			// add all the classes associated with the event to classes array
-			foreach($class_results as $result)
-			{
-				$class = DB::select('SELECT * FROM class WHERE id = ?', array($result->class_id));
-
-				array_push($classes, current($class));
-			}
-
-			// get all frequencies
-			$frequencies = DB::select('SELECT * FROM frequency');
-
-			// create create booking page using the event, classes and frequencies
-			return $this->layout->content = View::make('booking.create')->withEvent($event)->withClasses($classes)->withFrequencies($frequencies);
-		}
+		return $this->layout->content = View::make('booking.create')->withEvent($event)->withClasses($classes)->withFrequencies($frequencies);
 	}
 
 	public function store()
