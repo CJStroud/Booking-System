@@ -11,15 +11,17 @@ class RaceEventController extends \BaseController {
 	 */
 	protected $form;
 
-
 	/**
 	 * @var RaceEventClassRepository
 	 */
 	protected $raceEventClassRepository;
 
-	public function __construct(RaceEventForm $form, RaceEventClassRepository $raceEventClassRepository)
+	protected $raceClassRepository;
+
+	public function __construct(RaceEventForm $form, RaceEventClassRepository $raceEventClassRepository, RaceClassRepository $raceClassRepository)
 	{
 		$this->form = $form;
+		$this->raceClassRepository = $raceClassRepository
 		$this->raceEventClassRepository = $raceEventClassRepository;
 	}
 
@@ -34,11 +36,15 @@ class RaceEventController extends \BaseController {
 		return $this->layout->content = View::make('event.index')->with('events', $events)->with('old_events', $oldevents);
 	}
 
+	/**
+	 * Creates the view for a new event
+	 * @returns Laravel View
+	 */
 	public function create()
 	{
-		// todo add validation that user is an admin
-		$options = DB::select('SELECT * FROM class WHERE active = true');
-		return $this->layout->content = View::make('event.create')->withOptions($options);
+		$classes = $this->raceClassRepository->getAllActive();
+
+		return $this->layout->content = View::make('event.create')->withOptions($classes);
 	}
 
 	public function store()

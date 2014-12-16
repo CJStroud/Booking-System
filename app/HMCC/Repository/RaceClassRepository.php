@@ -8,4 +8,9 @@ class RaceClassRepository extends Repository
 	{
 		$this->model = $raceClass;
 	}
+
+	public function getAllActive()
+	{
+		return $this->model->where('active', '=', true);
+	}
 }
