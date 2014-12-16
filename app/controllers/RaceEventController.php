@@ -18,24 +18,18 @@ class RaceEventController extends \BaseController {
 
 	public function index()
 	{
-		// get current timestamp
 		$timestamp = time();
 
-		// get all events that have a close date in the future
 		$events = $this->form->repository->getEventsBeforeClose($timestamp);
 
-		// get all events that have a close date in the past
 		$oldevents = $this->form->repository->getEventsAfterClose($timestamp);
 
-
-		// create event page and give it events and old events
 		return $this->layout->content = View::make('event.index')->with('events', $events)->with('old_events', $oldevents);
 	}
 
 	public function create()
 	{
 		// todo add validation that user is an admin
-		// todo
 		$options = DB::select('SELECT * FROM class WHERE active = true');
 		return $this->layout->content = View::make('event.create')->withOptions($options);
 	}
