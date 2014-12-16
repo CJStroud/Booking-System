@@ -32,7 +32,7 @@ class CreateBookingFrequencies extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('booking_frequencies');
+		Schema::dropIfExists('booking_frequencies');
 	}
 
 }

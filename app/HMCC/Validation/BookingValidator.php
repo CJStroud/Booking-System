@@ -7,9 +7,12 @@ class BookingValidator extends Validator
 	public function passes(Array $input)
 	{
 		// Todo Validation checks
+
 		// user has already booked
 		// event is full
 		// event is locked
+
+		return parent::passes($input)
 	}
 }
 
