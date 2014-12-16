@@ -1,17 +1,17 @@
 <?php
 
-use HMCC\Form\EventForm;
+use HMCC\Form\RaceEventForm;
 
-class EventController extends \BaseController {
+class RaceEventController extends \BaseController {
 
 	protected $layout = 'layouts.master';
 
 	/**
-	 * @var EventForm
+	 * @var RaceEventForm
 	 */
 	protected $form;
 
-	public function __construct(EventForm $form)
+	public function __construct(RaceEventForm $form)
 	{
 		$this->form = $form;
 	}

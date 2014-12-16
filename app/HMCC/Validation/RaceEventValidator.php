@@ -1,6 +1,6 @@
 <?php namespace HMCC\Validation;
 
-class EventValidator extends Validator
+class RaceEventValidator extends Validator
 {
 	protected $rules = ['name' => 'required',
 						'slug' => 'required|alpha_dash',

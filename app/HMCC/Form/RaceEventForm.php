@@ -1,11 +1,11 @@
 <?php namespace HMCC\Form;
 
-use HMCC\Validation\EventValidator;
-use HMCC\Repository\EventRepository;
+use HMCC\Validation\RaceEventValidator;
+use HMCC\Repository\RaceEventRepository;
 
-class EventForm extends Form
+class RaceEventForm extends Form
 {
-	public function __construct(EventRepository $repository, EventValidator $validator)
+	public function __construct(RaceEventRepository $repository, RaceEventValidator $validator)
 	{
 		$this->repository = $repository;
 		$this->validator = $validator;

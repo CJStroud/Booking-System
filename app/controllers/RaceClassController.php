@@ -1,6 +1,6 @@
 <?php
 
-class ClassController extends \BaseController {
+class RaceClassController extends \BaseController {
 
 	public function store()
 	{

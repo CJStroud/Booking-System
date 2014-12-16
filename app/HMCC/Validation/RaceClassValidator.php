@@ -1,6 +1,6 @@
 <?php namespace HMCC\Validation;
 
-class ClassValidator extends Validator
+class RaceClassValidator extends Validator
 {
 	protected $rules = ['name' => 'required|unique:classes'];
 }

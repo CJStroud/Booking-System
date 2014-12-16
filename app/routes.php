@@ -13,7 +13,7 @@
 Route::get('/', function() {
 	return View::make('index');
 });
-Route::resource('event', 'EventController');
+Route::resource('event', 'RaceEventController');
 Route::get('booking/create/{slug}', 'BookingController@create');
 Route::resource('booking', 'BookingController');
 Route::get('/login', 'UserController@login');
@@ -23,8 +23,8 @@ Route::get('/signup', 'UserController@signUp');
 Route::resource('user', 'UserController');
 Route::get('/admin', 'HomeController@AdminHome');
 Route::get('/my-bookings', 'BookingController@viewAll');
-Route::resource('class', 'ClassController');
-Route::post('/class/disable/{id}', 'ClassController@disable');
-Route::post('/class/enable/{id}', 'ClassController@enable');
-Route::post('event/unlock/{classId}{eventId}', 'EventController@unlock');
-Route::post('event/lock/{classId}{eventId}', 'EventController@lock');
+Route::resource('class', 'RaceClassController');
+Route::post('/class/disable/{id}', 'RaceClassController@disable');
+Route::post('/class/enable/{id}', 'RaceClassController@enable');
+Route::post('event/unlock/{classId}{eventId}', 'RaceEventController@unlock');
+Route::post('event/lock/{classId}{eventId}', 'RaceEventController@lock');
