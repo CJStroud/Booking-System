@@ -1,16 +1,30 @@
 .navbar {
 	width: 100%;
-	background-color: #16a085;
+	background-color: @primary;
 	font-family: 'Open Sans', sans-serif;
 	border-radius: 0px;
+	border: 0;
+	margin-bottom: 0;
 }
 
 .navbar-default .navbar-nav>li>a,
-.navbar-default .navbar-text,
-.navbar-default .navbar-text a
 {
 	color: #fff;
-	font-size: 14px;
+	font-size: 1em;
+
+	&:hover {
+		color: #fff;
+		background-color: darken(@primary, 5%);
+	}
+
+	i {
+		margin-right: 5px;
+	}
+}
+.navbar-default .navbar-text,
+.navbar-default .navbar-text a {
+	color: #fff;
+	font-size: 1em;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -19,4 +33,34 @@
 
 .navbar p {
 	padding: 0px 15px;
+}
+
+.navbar-brand {
+	padding: 0 15px;
+	display: inline-table;
+	img {
+		height: 50px;
+		display: block;
+		width: 50px;
+	}
+}
+
+.navbar-nav {
+	@media only screen and (min-width: @screen-sm) {
+		display: inline-flex;
+
+		li {
+			margin: auto 0;
+		}
+	}
+}
+
+@spacing: 5px;
+
+.fa-spacing-right {
+	margin-right: @spacing;
+}
+
+.fa-spacing-left {
+	margin-left: @spacing;
 }
