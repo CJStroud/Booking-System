@@ -1,6 +1,8 @@
 <?php
 
 use HMCC\Form\RaceEventForm;
+use HMCC\Repository\RaceClassRepository;
+use HMCC\Repository\RaceEventClassRepository;
 
 class RaceEventController extends \BaseController {
 
@@ -24,7 +26,7 @@ class RaceEventController extends \BaseController {
 	public function __construct(RaceEventForm $form, RaceEventClassRepository $raceEventClassRepository, RaceClassRepository $raceClassRepository)
 	{
 		$this->form = $form;
-		$this->raceClassRepository = $raceClassRepository
+		$this->raceClassRepository = $raceClassRepository;
 		$this->raceEventClassRepository = $raceEventClassRepository;
 	}
 
