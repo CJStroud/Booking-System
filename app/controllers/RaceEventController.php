@@ -11,9 +11,16 @@ class RaceEventController extends \BaseController {
 	 */
 	protected $form;
 
-	public function __construct(RaceEventForm $form)
+
+	/**
+	 * @var RaceEventClassRepository
+	 */
+	protected $raceEventClassRepository;
+
+	public function __construct(RaceEventForm $form, RaceEventClassRepository $raceEventClassRepository)
 	{
 		$this->form = $form;
+		$this->raceEventClassRepository = $raceEventClassRepository;
 	}
 
 	public function index()
@@ -51,43 +58,16 @@ class RaceEventController extends \BaseController {
 
 	public function lock($classId, $eventId)
 	{
-		// try to lock the event_class record
-		$result = DB::update('UPDATE event_class SET locked = true
-							WHERE class_id = ? AND event_id = ?',
-							 array($classId, $eventId));
+		$this->eventClassRepository->lock($eventId, $classId);
 
-		$message = null;
-
-		// if locking was successful
-		if($result == true)
-		{
-			$message = "Class was locked";
-		}
-		else
-		{
-			$message = "Class could not be locked";
-		}
-
-		return Redirect::back()->withError($message);
+		return Redirect::back();
 	}
 
 	public function unlock($classId, $eventId)
 	{
-		// try to unlock the event_class record
-		$result = DB::update('UPDATE event_class SET locked = false WHERE class_id = ? AND event_id = ?', array($classId, $eventId));
+		$this->eventClassRepository->unlock($eventId, $classId);
 
-		$message = null;
-
-		if($result == true)
-		{
-			$message = "Class was unlocked";
-		}
-		else
-		{
-			$message = "Class could not be unlocked";
-		}
-
-		return Redirect::back()->withError($message);
+		return Redirect::back();
 	}
 
 
