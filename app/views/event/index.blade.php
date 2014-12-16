@@ -31,7 +31,7 @@
 			</div>
 
 			<div class="col-xs-12 col-sm-3">
-				<div class="table-element">{{date('d/m/Y H:i', $event->event_datetime)}}</div>
+				<div class="table-element">{{date('d/m/Y H:i', $event->start_time)}}</div>
 			</div>
 			<form action="event/{{$event->slug}}">
 				<div class="col-xs-12 col-sm-2">
@@ -75,7 +75,7 @@
 			</div>
 
 			<div class="col-xs-12 col-sm-3">
-				<div class="table-element">{{date('d/m/Y H:i', $event->event_datetime)}}</div>
+				<div class="table-element">{{date('d/m/Y H:i', $event->start_time)}}</div>
 			</div>
 			<form action="event/{{$event->slug}}">
 				<div class="col-xs-12 col-sm-2">
