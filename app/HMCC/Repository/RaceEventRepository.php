@@ -30,6 +30,13 @@ class RaceEventRepository extends Repository
 		}
 	}
 
+	public function getEventBySlug($slug)
+	{
+		$event = $this->model->where('slug', '=', $slug)->firstOrFail();
+		$event->classes = $this->raceEventClassRepository->getEventClassesByEventId($event->id);
+		return $event;
+	}
+
 	public function getEventsBeforeClose($timestamp)
 	{
 		return $this->model->where('close_time', '>', $timestamp)->get();

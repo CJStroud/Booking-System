@@ -34,8 +34,8 @@ class RaceEventController extends \BaseController {
 
 	public function create()
 	{
-		//Todo Add validation that user is an admin
-
+		// todo add validation that user is an admin
+		// todo
 		$options = DB::select('SELECT * FROM class WHERE active = true');
 		return $this->layout->content = View::make('event.create')->withOptions($options);
 	}
@@ -49,44 +49,8 @@ class RaceEventController extends \BaseController {
 
 	public function show($slug)
 	{
-		// get event record for the selected slug
-		$result = DB::select('SELECT * FROM event where slug = ?', array($slug));
-
-		$event = $result[0];
-		$id = $event->id;
-
-		// get all class information for the selected event from class_event and class tables
-		$result = DB::select('
-					SELECT class_id, event_id, locked, class.name as name, maximum as max
-					FROM event_class
-					INNER JOIN class ON event_class.class_id = class.id
-					WHERE event_id = ?',
-							  array($id));
-
-		$classes = [];
-		$frequencies = [];
-
-		// get all frequencies
-		$frequencies = DB::select('SELECT * FROM frequency');
-
-		// get all the bookings for each class of the event
-		foreach($result as $class)
-		{
-			$bookings = DB::select('
-				SELECT
-				user.forename as forename, user.surname as surname, user.brca as brca,
-				class_id, skill, transponder, frequency_1, frequency_2, frequency_3
-				FROM booking
-				INNER JOIN user ON booking.user_id = user.id
-				WHERE event_id = ? AND class_id = ?',
-				array($class->event_id, $class->class_id));
-
-			// add the bookings information to the class
-			$class->bookings = $bookings;
-			$class->count = count($bookings);
-			array_push($classes, $class);
-
-		}
+		$event = $this->form->repository->getEventBySlug($slug);
+		$classes = $event->classes;
 
 		return $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);
 	}
