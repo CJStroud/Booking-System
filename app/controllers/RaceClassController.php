@@ -1,57 +1,59 @@
 <?php
 
+use HMCC\Form\RaceClassForm;
+
 class RaceClassController extends \BaseController {
 
+	/**
+	 * @var RaceClassForm
+	 */
+	protected $form;
+
+	public function __constructor(RaceClassForm $form)
+	{
+		$this->form = $form;
+	}
+
+	/**
+	 * Stores a new class record
+	 * @returns Laravel Redirect Back
+	 */
 	public function store()
 	{
-		$name = Input::get('name');
-		// check for input
-		if ($name != null)
-		{
-			// get any results that match the name entered
-			$result = DB::select('SELECT * FROM class WHERE name = ?', array($name));
-
-			// if it is a new name then create a new class
-			if (empty($result))
-			{
-				DB::insert('INSERT INTO class (name, active) VALUES (?, ?)', array($name, true));
-			}
-			// if name exists then set the class property 'active' to true
-			else
-			{
-				$class = $result[0];
-				DB::update('UPDATE class SET active = true WHERE id = ?', array($class->id));
-			}
-		}
-
+		$this->form->store(Input::all());
 		return Redirect::to('/admin');
 	}
 
+	/**
+	 * Deletes a class record
+	 * @param   integer  $id The id of the class record to be destroyed
+	 * @returns Redirect laravel redirect
+	 */
 	public function destroy($id)
 	{
-		$result = DB::select('SELECT * FROM class WHERE id = ?', array($id));
-
-		// check the class exists
-		if (!empty($result))
-		{
-			// remove the class from the database
-			DB::delete('DELETE FROM class WHERE id = ?', array($id));
-		}
-
+		$this->form->repository->delete($id);
 		return Redirect::to('/admin');
 	}
 
+	/**
+	 * Disable a class
+	 * @param   integer  $id The id of the class to be disabled
+	 * @returns Redirect laravel redirect
+	 */
 	public function disable($id)
 	{
-		// set the class property 'active' to false
-		DB::update('UPDATE class SET active = false WHERE id = ?', array($id));
+		$this->form->repository->disable($id);
 		return Redirect::to('/admin');
 	}
 
+	/**
+	 * Enable a class
+	 * @param   integer  $id The id of the class to be enabled
+	 * @returns Redirect laravel redirect
+	 */
 	public function enable($id)
 	{
-		// set the class property 'active' to true
-		DB::update('UPDATE class SET active = true WHERE id = ?', array($id));
+		$this->form->repository->enable($id);
 		return Redirect::to('/admin');
 	}
 
