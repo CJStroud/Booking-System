@@ -40,4 +40,23 @@ class RaceEventClassRepository extends Repository
 		return $array;
 
 	}
+
+	public function lock($eventId, $classId)
+	{
+		$eventClass = $this->model->where('event_id', '=', $eventId)->where('class_id', '=', $classId)->first();
+
+		$eventClass->locked = true;
+
+		$eventClass->save();
+	}
+
+	public function unlock($eventId, $classId)
+	{
+		$eventClass = $this->model->where('event_id', '=', $eventId)->where('class_id', '=', $classId)->first();
+
+		$eventClass->locked = false;
+
+		$eventClass->save();
+	}
+
 }

@@ -1,6 +1,8 @@
 <?php
 
 use HMCC\Form\RaceEventForm;
+use HMCC\Repository\RaceClassRepository;
+use HMCC\Repository\RaceEventClassRepository;
 
 class RaceEventController extends \BaseController {
 
@@ -11,35 +13,53 @@ class RaceEventController extends \BaseController {
 	 */
 	protected $form;
 
-	public function __construct(RaceEventForm $form)
+	/**
+	 * @var RaceEventClassRepository
+	 */
+	protected $raceEventClassRepository;
+
+	/**
+	 * @var RaceClassRepository
+	 */
+	protected $raceClassRepository;
+
+	public function __construct(RaceEventForm $form, RaceEventClassRepository $raceEventClassRepository, RaceClassRepository $raceClassRepository)
 	{
 		$this->form = $form;
+		$this->raceClassRepository = $raceClassRepository;
+		$this->raceEventClassRepository = $raceEventClassRepository;
 	}
 
+	/**
+	 * Shows all of the events
+	 * @returns Event.Index View
+	 */
 	public function index()
 	{
-		// get current timestamp
 		$timestamp = time();
 
-		// get all events that have a close date in the future
 		$events = $this->form->repository->getEventsBeforeClose($timestamp);
 
-		// get all events that have a close date in the past
 		$oldevents = $this->form->repository->getEventsAfterClose($timestamp);
 
-
-		// create event page and give it events and old events
 		return $this->layout->content = View::make('event.index')->with('events', $events)->with('old_events', $oldevents);
 	}
 
+	/**
+	 * Creates the view for a new event
+	 * @returns Event.Create View
+	 */
 	public function create()
 	{
-		// todo add validation that user is an admin
-		// todo
-		$options = DB::select('SELECT * FROM class WHERE active = true');
-		return $this->layout->content = View::make('event.create')->withOptions($options);
+		$classes = $this->raceClassRepository->getAllActive();
+
+		return $this->layout->content = View::make('event.create')->withOptions($classes);
 	}
 
+	/**
+	 * Stores a new event using form inputs
+	 * @returns Event.Index View
+	 */
 	public function store()
 	{
 		$this->form->store(Input::all());
@@ -47,6 +67,11 @@ class RaceEventController extends \BaseController {
 		return Redirect::route('event.index');
 	}
 
+	/**
+	 * Gets event information using slug
+	 * @param   $slug    The   slug of the event
+	 * @returns Event.View View
+	 */
 	public function show($slug)
 	{
 		$event = $this->form->repository->getEventBySlug($slug);
@@ -55,46 +80,29 @@ class RaceEventController extends \BaseController {
 		return $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);
 	}
 
+	/**
+	 * Locks the event class
+	 * @param   integer  $classId The id of the class
+	 * @param   integer  $eventId The id of the event
+	 * @returns Laravel redirect back
+	 */
 	public function lock($classId, $eventId)
 	{
-		// try to lock the event_class record
-		$result = DB::update('UPDATE event_class SET locked = true
-							WHERE class_id = ? AND event_id = ?',
-							 array($classId, $eventId));
+		$this->eventClassRepository->lock($eventId, $classId);
 
-		$message = null;
-
-		// if locking was successful
-		if($result == true)
-		{
-			$message = "Class was locked";
-		}
-		else
-		{
-			$message = "Class could not be locked";
-		}
-
-		return Redirect::back()->withError($message);
+		return Redirect::back();
 	}
 
+	/**
+	 * Unlocks the event class
+	 * @param   integer  $classId The id of the class
+	 * @param   integer  $eventId The id of the event
+	 * @returns Laravel redirect back
+	 */
 	public function unlock($classId, $eventId)
 	{
-		// try to unlock the event_class record
-		$result = DB::update('UPDATE event_class SET locked = false WHERE class_id = ? AND event_id = ?', array($classId, $eventId));
+		$this->eventClassRepository->unlock($eventId, $classId);
 
-		$message = null;
-
-		if($result == true)
-		{
-			$message = "Class was unlocked";
-		}
-		else
-		{
-			$message = "Class could not be unlocked";
-		}
-
-		return Redirect::back()->withError($message);
+		return Redirect::back();
 	}
-
-
 }
