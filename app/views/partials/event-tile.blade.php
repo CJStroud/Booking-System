@@ -1,24 +1,28 @@
-<div class="col-xs-12 col-sm-4">
+<div class="col-xs-12">
 	<div class="tile">
-		<div class="tile-head bg-primary">
-			<div class="col-xs-12">
-				<h4 class="text-center">{{ $event->name }}</h4>
-			</div>
+		<div class="tile-head">
+			<a href="#" class="event-fold">
+				<div class="col-xs-12">
+					<h1><i class="fa fa-angle-double-up fa-spacing-right"></i>{{ $event->name }}</h1>
+				</div>
+			</a>
 		</div>
 		<div class="tile-body">
-				<p>Closes</p>
-			<div class="col-xs-12">
-				<p>{{ date('dS F Y H:i', $event->close_time) }}</p>
-			</div>
-				<p>Starts</p>
-			<div class="col-xs-12">
-				<p>{{ date('dS F Y H:i', $event->start_time) }}</p>
-			</div>
-			<div class="col-xs-12 col-sm-6 ">
-				<a class="btn btn-primary" href="{{ route('event.show', ['id' => $event->id]) }}">View</a>
-			</div>
-			<div class="col-xs-12 col-sm-6 ">
-				<a class="btn btn-primary" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book</a>
+			<div class="tile-body-content">
+				<div class="col-xs-12 col-sm-6">
+					<p>Event Starts</p>
+					<div class="col-xs-12 time">
+						<p>{{ date('H:i', $event->start_time) }}</p>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="col-xs-12">
+						<a class="btn btn-primary" href="{{ route('event.show', ['id' => $event->id]) }}">View</a>
+					</div>
+					<div class="col-xs-12">
+						<a class="btn btn-primary" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

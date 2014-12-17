@@ -44,6 +44,7 @@ module.exports = function(grunt) {
 					'assets/components/jquery/dist/jquery.min.js',
 					'assets/components/bootstrap/dist/js/bootstrap.min.js',
 					'assets/components/bootstrap-select/dist/js/bootstrap-select.min.js',
+					'assets/components/Flowtype.js/flowtype.js',
 					'assets/js/*.js'
 				],
 				dest: 'public/js/<%= pkg.name %>.js',
