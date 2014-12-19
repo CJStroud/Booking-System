@@ -48,7 +48,7 @@ $(function () {
 				});
 
 			$(tile).animate({
-				'margin-bottom': '-20px'
+				'margin-bottom': '-1%'
 			},
 				{
 					duration: duration,
