@@ -9,4 +9,5 @@ class Booking extends Eloquent {
 	 */
 	protected $table = 'bookings';
 
+	protected $fillable = ['user_id', 'event_id', 'class_id', 'transponder', 'skill_level'];
 }

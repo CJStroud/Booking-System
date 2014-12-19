@@ -17,7 +17,7 @@ class BookingRepository extends Repository
 		$count = $this->model
 			->where('event_id',  '=', $eventId)
 			->where('class_id', '=', $classId)
-			->where('user_id', '=', $userId)->count;
+			->where('user_id', '=', $userId)->count();
 
 		return $count == 0;
 	}
