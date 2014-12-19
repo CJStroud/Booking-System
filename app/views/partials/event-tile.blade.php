@@ -1,7 +1,7 @@
 <div class="col-xs-12">
 	<div class="tile">
 		<div class="tile-head">
-			<a href="#" class="event-fold">
+			<a href="#" class="fold">
 				<div class="col-xs-12 col-sm-6">
 					<h1><i class="fa fa-angle-double-up fa-spacing-right"></i>{{ $event->name }}</h1>
 				</div>
