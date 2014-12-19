@@ -8,7 +8,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/"><img src="img/logo.svg" alt="Brand"></a>
+				<a class="navbar-brand" href="/"><img src="/img/logo.svg" alt="Brand"></a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="main-navbar-collapsable">
