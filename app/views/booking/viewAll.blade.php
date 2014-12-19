@@ -3,7 +3,7 @@
 <div class="container">
 	<h1>My Bookings</h1>
 </div>
-	@if (Session::get('user') == null)
+	@if (!Auth::check())
 	<div class="container">
 		Must be logged in {{link_to('/login', 'Click Here')}}
 	</div>
@@ -34,17 +34,17 @@
 			{{ Form::open(array('route' => ['booking.destroy', $booking->id], 'method' => 'delete')) }}
 			<div class="col-sm-3">
 				<div class="table-element">
-					{{$booking->EventName}}
+					{{$booking->raceEvent}}
 				</div>
 			</div>
 			<div class="col-sm-2">
 				<div class="table-element">
-					{{date('d/m/Y H:i', $booking->EventDate)}}
+					{{date('d/m/Y H:i', $booking->startTime)}}
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<div class="table-element">
-					{{$booking->ClassName}}
+					{{$booking->raceClass}}
 				</div>
 			</div>
 			<div class="col-sm-2">

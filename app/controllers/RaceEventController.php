@@ -69,7 +69,7 @@ class RaceEventController extends \BaseController {
 
 	/**
 	 * Gets event information using slug
-	 * @param   $slug    The   slug of the event
+	 * @param integer $slug The   slug of the event
 	 * @returns Event.View View
 	 */
 	public function show($slug)
@@ -78,6 +78,16 @@ class RaceEventController extends \BaseController {
 		$classes = $event->classes;
 
 		return $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);
+	}
+
+	/**
+	 * Deletes the event using the id
+	 * @param integer $id The id of the evnt to delete
+	 */
+	public function destroy($id)
+	{
+		$event = RaceEvent::find($id);
+		$event->delete();
 	}
 
 	/**

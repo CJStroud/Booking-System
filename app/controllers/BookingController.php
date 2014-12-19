@@ -45,6 +45,10 @@ class BookingController extends \BaseController {
 		return $this->layout->content = View::make('booking.create')->withEvent($event)->withClasses($classes)->withFrequencies($frequencies);
 	}
 
+	/**
+	 * Saves a new booking record
+	 * @returns Redirect redirects the user to the event index page
+	 */
 	public function store()
 	{
 		$this->form->store(Input::all());
@@ -52,30 +56,25 @@ class BookingController extends \BaseController {
 		return Redirect::route('event.index');
 	}
 
+	/**
+	 * Deletes a booking record using the id given
+	 * @param   integer       $id The id of the booking to delete
+	 * @returns Redirect.Back redirects the user back to the previous page
+	 */
 	public function destroy($id)
 	{
-		// delete the booking from the booking table
-		DB::statement('DELETE FROM booking WHERE id = ' . $id);
+		$booking = Booking::find($id);
+		$booking->delete();
 
 		return Redirect::back();
 	}
 
 	public function viewAll()
 	{
-		// get the user details
-		$user = Session::get('user');
-		$bookings = null;
-
-		if ($user != null)
+		if (Auth::check())
 		{
-			// get all the bookings associated with the user
-			$bookings = DB::select('SELECT booking.id, booking.transponder, event.name as EventName, event.event_datetime as EventDate, class.name as ClassName FROM booking JOIN event ON event.id = event_id JOIN class ON class.id = class_id
-WHERE user_id = ' . $user->id);
-
+			$bookings = $this->form->repository->getAllUser(Auth::id());
+			return $this->layout->content = View::make('booking.viewAll')->with('bookings', $bookings);
 		}
-
-		// create my bookings page and pass in the bookings
-		return $this->layout->content = View::make('booking.viewAll')->with('bookings', $bookings);
 	}
-
 }

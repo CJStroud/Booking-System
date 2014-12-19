@@ -1,15 +1,21 @@
 <?php namespace HMCC\Repository;
 
+use User;
 use Booking;
+use RaceClass;
+use RaceEvent;
 
 class BookingRepository extends Repository
 {
 	protected $userRepository;
 
-	public function __construct(Booking $booking, UserRepository $userRepository)
+	protected $raceEventRepository;
+
+	protected $raceClassRepository;
+
+	public function __construct(Booking $booking)
 	{
 		$this->model = $booking;
-		$this->userRepository = $userRepository;
 	}
 
 	public function unique($eventId, $classId, $userId)
@@ -32,12 +38,31 @@ class BookingRepository extends Repository
 
 		foreach($bookings as $booking)
 		{
-			$user = $this->userRepository->find($booking->user_id);
+			$user = User::find($booking->user_id);
 			$booking->user = $user;
 
 			$result[] = $booking;
 		}
 
+		return $result;
+	}
+
+	public function getAllUser($userId)
+	{
+		$bookings = $this->model->where('user_id',  '=', $userId)->get();
+
+		$result = [];
+
+		foreach($bookings as $booking)
+		{
+			$class = RaceClass::find($booking->class_id);
+			$event = RaceEvent::find($booking->event_id);
+
+			$booking->raceClass = $class->name;
+			$booking->raceEvent = $event->name;
+			$booking->startTime = $event->start_time;
+			$result[] = $booking;
+		}
 
 		return $result;
 	}
