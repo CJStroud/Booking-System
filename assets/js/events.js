@@ -59,8 +59,8 @@ $(function () {
 	});
 
 	$('.time p').flowtype({
-		minFont: 35,
-		maxFont: 60,
+		minFont: 25,
+		maxFont: 35,
 		fontRatio: 10
 	});
 

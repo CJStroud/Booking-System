@@ -26,6 +26,24 @@
 	.button-variant(#fff, #0090B2, darken(#0090B2, 10%));
 }
 
+.btn-simple {
+	color: #555;
+	text-align: right;
+	border-bottom: 1px solid @light-gray;
+	border-radius: 0;
+
+	@media screen and (max-width: @screen-sm)
+	{
+		text-align: center;
+	}
+
+	&:hover, &:focus {
+		color: @secondary;
+		border-bottom: 1px solid @secondary;
+		box-shadow: 0 0 0 0 #fff;
+	}
+}
+
 .btn-lock {
 	border-radius: 25px;
 	margin-bottom: 10px;

@@ -28,10 +28,10 @@
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					<div class="col-xs-12">
-						<a class="btn btn-primary" href="{{ route('event.show', ['id' => $event->id]) }}">View</a>
+						<a class="btn btn-simple" href="{{ route('event.show', ['id' => $event->id]) }}">View<i class="fa fa-arrow-right fa-spacing-left"></i></a>
 					</div>
 					<div class="col-xs-12">
-						<a class="btn btn-primary" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book</a>
+						<a class="btn btn-simple" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right fa-spacing-left"></i></a>
 					</div>
 				</div>
 			</div>
