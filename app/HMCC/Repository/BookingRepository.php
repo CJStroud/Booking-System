@@ -49,7 +49,7 @@ class BookingRepository extends Repository
 
 	public function getAllUser($userId)
 	{
-		$bookings = $this->model->where('user_id',  '=', $userId)->get();
+		$bookings = $this->model->where('user_id',  '=', $userId)->orderBy('event_id')->get();
 
 		$result = [];
 
