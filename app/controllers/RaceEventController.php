@@ -38,12 +38,29 @@ class RaceEventController extends \BaseController {
 	{
 		$timestamp = time();
 
-		$events = $this->form->repository->getEventsBeforeClose($timestamp);
+		$allEvents = $this->form->repository->getAllInDateOrder();
 
-		$oldevents = $this->form->repository->getEventsAfterClose($timestamp);
+		$events = [];
 
-		return $this->layout->content = View::make('event.index')->with('events', $events)->with('old_events', $oldevents);
+		$now = time();
+
+		foreach ($allEvents as $event)
+		{
+			if ($event->start_time <= $now)
+			{
+				$event->isFinished = true;
+			}
+			else if ($event->close_time <= $now)
+			{
+				$event->isClosed = true;
+			}
+
+			$events[] = $event;
+		}
+
+		return $this->layout->content = View::make('event.index')->with('events', $events);
 	}
+
 
 	/**
 	 * Creates the view for a new event

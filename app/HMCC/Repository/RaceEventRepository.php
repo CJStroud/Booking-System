@@ -37,13 +37,10 @@ class RaceEventRepository extends Repository
 		return $event;
 	}
 
-	public function getEventsBeforeClose($timestamp)
+	public function getAllInDateOrder()
 	{
-		return $this->model->where('close_time', '>', $timestamp)->get();
+		$events = $this->model->orderBy('start_time', 'desc')->get();
+		return $events;
 	}
 
-	public function getEventsAfterClose($timestamp)
-	{
-		return $this->model->where('close_time', '<=', $timestamp)->get();
-	}
 }

@@ -1,5 +1,13 @@
 <div class="col-xs-12">
-	<div class="tile">
+
+	@if ($event->isClosed)
+		<div class="tile closed">
+	@elseif ($event->isFinished)
+		<div class="tile finished">
+	@else
+		<div class="tile">
+	@endif
+
 		<div class="tile-head">
 			<a href="#" class="event-fold">
 				<div class="col-xs-12 col-sm-6">
@@ -16,13 +24,29 @@
 					<div class="col-xs-12 col-sm-6">
 						<p>Booking Closes</p>
 						<div class="time">
-							<p>{{ date('d/m/Y', $event->close_time) }} <span>{{ date('H:i', $event->close_time) }}</span></p>
+
+							<p>
+							@if ($event->isClosed || $event->isFinished)
+								Closed
+							@else
+								{{ date('d/m/Y', $event->close_time) }} <span>{{ date('H:i', $event->close_time) }}</span>
+							@endif
+							</p>
+
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6">
 						<p>Event Starts</p>
 						<div class="time">
-							<p>{{ date('d/m/Y', $event->start_time) }} <span>{{ date('H:i', $event->start_time) }}</span></p>
+
+							<p>
+								@if ($event->isFinished)
+								Finished
+								@else
+								{{ date('d/m/Y', $event->start_time) }} <span>{{ date('H:i', $event->start_time) }}</span>
+								@endif
+							</p>
+
 						</div>
 					</div>
 				</div>
@@ -31,7 +55,17 @@
 						<a class="btn btn-simple" href="{{ route('event.show', ['slug' => $event->slug]) }}">View<i class="fa fa-arrow-right fa-spacing-left"></i></a>
 					</div>
 					<div class="col-xs-12">
-						<a class="btn btn-simple" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right fa-spacing-left"></i></a>
+
+						<?php
+							$disable = "";
+							if ($event->isClosed || $event->isFinished)
+							{
+								$disable = "disabled";
+							}
+						?>
+
+						<a class="btn btn-simple {{ $disable  }}" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right fa-spacing-left"></i></a>
+
 					</div>
 				</div>
 			</div>

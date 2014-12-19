@@ -13,26 +13,6 @@
 			@foreach($events as $event)
 				@include('partials.event-tile', ['event' => $event])
 			@endforeach
-
-			@foreach($old_events as $old)
-				@include('partials.event-tile', ['event' => $old])
-			@endforeach
-
-			@foreach($events as $event)
-				@include('partials.event-tile', ['event' => $event])
-			@endforeach
-
-			@foreach($old_events as $old)
-				@include('partials.event-tile', ['event' => $old])
-			@endforeach
-
-			@foreach($events as $event)
-				@include('partials.event-tile', ['event' => $event])
-			@endforeach
-
-			@foreach($old_events as $old)
-				@include('partials.event-tile', ['event' => $old])
-			@endforeach
 		</div>
 	</div>
 </div>
