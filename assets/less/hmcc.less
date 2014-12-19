@@ -1,7 +1,7 @@
 @import 'assets/components/bootstrap/less/bootstrap.less';
 @import 'assets/components/bootstrap-select/less/bootstrap-select.less';
 @import 'assets/components/font-awesome/less/font-awesome.less';
-@import url(//fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 @import 'variables';
@@ -11,6 +11,7 @@
 @import 'classes';
 @import 'banner';
 @import 'alert';
+@import 'tiles';
 
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -31,4 +32,31 @@ label {
 .form {
 	margin: 30px 0px;
 }
+
+.events {
+	background-color: @light-gray;
+
+	@media only screen and (max-width: @screen-sm) {
+		.container {
+			padding: 0;
+		}
+
+		.tiles > .col-xs-12 {
+			padding: 0;
+		}
+
+		.tile-body {
+			padding: 0 15px;
+		}
+
+	}
+	padding: 20px;
+
+}
+
+.bg-primary {
+	background-color: @primary;
+}
+
+
 
