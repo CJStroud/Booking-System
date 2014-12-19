@@ -26,7 +26,10 @@ $(function () {
 			},
 				{
 					duration: duration,
-					queue: false
+					queue: false,
+					complete: function () {
+						$(tileBody).height('auto');
+			}
 				});
 
 		} else {
