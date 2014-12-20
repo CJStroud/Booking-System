@@ -32,10 +32,6 @@
 								{{ date('d/m/Y', $event->close_time) }} <span>{{ date('H:i', $event->close_time) }}</span>
 							@endif
 							</p>
-
-=======
-							<p>{{ date('d/m/Y', $event->close_time) }} <span>{{ date('H:i', $event->close_time) }}</span></p>
->>>>>>> master
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6">
@@ -65,7 +61,7 @@
 							}
 						?>
 
-						<a class="btn btn-simple {{ $disable  }}" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right fa-spacing-left"></i></a>
+						<a class="btn btn-simple {{ $disable  }} btn-lg" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right fa-spacing-left"></i></a>
 					</div>
 				</div>
 			</div>
