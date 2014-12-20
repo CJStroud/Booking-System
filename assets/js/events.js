@@ -1,16 +1,16 @@
 $(function () {
-	$('.tiles').on('click', '.event-fold', function (e) {
+	$('.tiles').on('click', '.fold', function (e) {
 		e.preventDefault();
 		var tile = $(this).parents('.tile'),
 		    tileBody = $(tile).children('.tile-body'),
-			eventFoldIcon = $(this).find('i'),
+			foldIcon = $(this).find('i'),
 			tileBodyContentHeight = $(tileBody).children('.tile-body-content').height() + (parseInt($('.tile-body-content').css('padding-top').substring(0, 2)) * 2),
 		    duration = 300;
 
 		if ($(tileBody).height() === 0) {
 
-			$(eventFoldIcon).removeClass('fa-angle-double-down');
-			$(eventFoldIcon).addClass('fa-angle-double-up');
+			$(foldIcon).removeClass('fa-angle-double-down');
+			$(foldIcon).addClass('fa-angle-double-up');
 
 			$(tileBody).animate({
 				height: tileBodyContentHeight,
@@ -34,8 +34,8 @@ $(function () {
 
 		} else {
 
-			$(eventFoldIcon).removeClass('fa-angle-double-up');
-			$(eventFoldIcon).addClass('fa-angle-double-down');
+			$(foldIcon).removeClass('fa-angle-double-up');
+			$(foldIcon).addClass('fa-angle-double-down');
 
 
 			$(tileBody).animate({
@@ -61,6 +61,12 @@ $(function () {
 	$('.time p').flowtype({
 		minFont: 25,
 		maxFont: 35,
+		fontRatio: 10
+	});
+
+	$('.class-field p').flowtype({
+		minFont: 18,
+		maxFont: 25,
 		fontRatio: 10
 	});
 

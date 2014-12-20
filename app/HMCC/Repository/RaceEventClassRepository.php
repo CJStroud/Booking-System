@@ -6,13 +6,11 @@ use stdClass;
 class RaceEventClassRepository extends Repository
 {
 	protected $raceClassRepository;
-	protected $bookingRepository;
 
-	public function __construct(RaceEventClass $raceEventClass, RaceClassRepository $raceClassRepository, BookingRepository $bookingRepository)
+	public function __construct(RaceEventClass $raceEventClass, RaceClassRepository $raceClassRepository)
 	{
 		$this->model = $raceEventClass;
 		$this->raceClassRepository = $raceClassRepository;
-		$this->bookingRepository = $bookingRepository;
 	}
 
 	public function get($eventId, $classId)
@@ -42,7 +40,6 @@ class RaceEventClassRepository extends Repository
 			$storedClass->locked = $eventClass->locked;
 
 			$storedClass->maxEntrants = $eventClass->limit;
-			$storedClass->bookings = $this->bookingRepository->getBookingsByEventIdAndClassId($id, $class->id);
 
 			$array[] = $storedClass;
 		}

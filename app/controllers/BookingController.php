@@ -45,6 +45,11 @@ class BookingController extends \BaseController {
 		return $this->layout->content = View::make('booking.create')->withEvent($event)->withClasses($classes)->withFrequencies($frequencies);
 	}
 
+	public function createWithClassId($slug, $class_id)
+	{
+
+	}
+
 	/**
 	 * Saves a new booking record
 	 * @returns Redirect redirects the user to the event index page
