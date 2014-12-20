@@ -91,6 +91,7 @@ class RaceEventController extends \BaseController {
 		foreach ($classes as $class)
 		{
 			$class->bookings = $this->bookingRepository->getBookingsByEventIdAndClassId($event->id, $class->id);
+
 		}
 
 		return $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);

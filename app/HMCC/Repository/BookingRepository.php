@@ -52,7 +52,9 @@ class BookingRepository extends Repository
 		foreach($bookings as $booking)
 		{
 			$user = $this->userRepository->find($booking->user_id);
+			$frequencies = $this->bookingFrequencyRepository->getFrequenciesByBookingId($booking->id);
 			$booking->user = $user;
+			$booking->frequencies = $frequencies;
 
 			$result[] = $booking;
 		}
