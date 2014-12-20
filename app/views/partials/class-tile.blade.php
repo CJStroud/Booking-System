@@ -12,6 +12,9 @@
 		</div>
 		<div class="tile-body">
 			<div class="tile-body-content bookings">
+				<div class="col-xs-12 col-sm-3 col-sm-offset-9 booking-controls">
+					<a href="{{ route('booking.create.class', [ 'slug' => $slug, 'class_id' => $class->id ]) }}" class="btn btn-simple btn-lg">Book<i class="fa fa-arrow-right fa-spacing-left"></i></a>
+				</div>
 				@foreach ($class->bookings as $booking)
 					<div class="booking">
 						<div class="col-xs-12 col-sm-3">
