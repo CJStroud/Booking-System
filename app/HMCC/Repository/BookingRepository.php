@@ -1,21 +1,34 @@
 <?php namespace HMCC\Repository;
 
-use User;
 use Booking;
-use RaceClass;
-use RaceEvent;
+use HMCC\Repository\UserRepository;
+use HMCC\Repository\RaceClassRepository;
+use HMCC\Repository\RaceEventRepository;
+use HMCC\Repository\BookingFrequencyRepository;
 
 class BookingRepository extends Repository
 {
 	protected $userRepository;
 
-	protected $raceEventRepository;
-
 	protected $raceClassRepository;
 
-	public function __construct(Booking $booking)
+	protected $raceEventRepository;
+
+	protected $bookingFrequencyRepository;
+
+	public function __construct(
+		Booking $booking,
+		UserRepository $userRepository,
+		RaceClassRepository $raceClassRepository,
+		RaceEventRepository $raceEventRepository,
+		BookingFrequencyRepository $bookingFrequencyRepository
+	)
 	{
 		$this->model = $booking;
+		$this->userRepository = $userRepository;
+		$this->raceClassRepository = $raceClassRepository;
+		$this->raceEventRepository = $raceEventRepository;
+		$this->bookingFrequencyRepository = $bookingFrequencyRepository;
 	}
 
 	public function unique($eventId, $classId, $userId)
@@ -38,8 +51,10 @@ class BookingRepository extends Repository
 
 		foreach($bookings as $booking)
 		{
-			$user = User::find($booking->user_id);
+			$user = $this->userRepository->find($booking->user_id);
+			$frequencies = $this->bookingFrequencyRepository->getFrequenciesByBookingId($booking->id);
 			$booking->user = $user;
+			$booking->frequencies = $frequencies;
 
 			$result[] = $booking;
 		}
@@ -55,12 +70,14 @@ class BookingRepository extends Repository
 
 		foreach($bookings as $booking)
 		{
-			$class = RaceClass::find($booking->class_id);
-			$event = RaceEvent::find($booking->event_id);
+			$class = $this->raceClassRepository->find($booking->class_id);
+			$event = $this->raceEventRepository->find($booking->event_id);
+			$frequencies = $this->bookingFrequencyRepository->getFrequenciesByBookingId($booking->id);
 
 			$booking->raceClass = $class->name;
 			$booking->raceEvent = $event->name;
 			$booking->startTime = $event->start_time;
+			$booking->frequencies = $frequencies;
 			$result[] = $booking;
 		}
 

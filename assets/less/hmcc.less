@@ -33,7 +33,7 @@ label {
 	margin: 30px 0px;
 }
 
-.events {
+.tiles-container {
 	background-color: @light-gray;
 
 	@media only screen and (max-width: @screen-sm) {
@@ -52,6 +52,23 @@ label {
 
 		.tile-body {
 			padding: 0 15px;
+		}
+
+	}
+
+	@media only screen and (min-width: @screen-sm){
+
+		& {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.container {
+			padding: 0;
+		}
+
+		.tiles > .col-xs-12 {
+			padding: 0;
 		}
 
 	}
