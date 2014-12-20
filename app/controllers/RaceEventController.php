@@ -3,6 +3,7 @@
 use HMCC\Form\RaceEventForm;
 use HMCC\Repository\RaceClassRepository;
 use HMCC\Repository\RaceEventClassRepository;
+use HMCC\Repository\BookingRepository;
 
 class RaceEventController extends \BaseController {
 
@@ -23,11 +24,21 @@ class RaceEventController extends \BaseController {
 	 */
 	protected $raceClassRepository;
 
-	public function __construct(RaceEventForm $form, RaceEventClassRepository $raceEventClassRepository, RaceClassRepository $raceClassRepository)
+	/**
+	 * @var BookingRepository
+	 */
+	protected $bookingRepository;
+
+	public function __construct(
+		RaceEventForm $form,
+		RaceEventClassRepository $raceEventClassRepository,
+		RaceClassRepository $raceClassRepository,
+		BookingRepository $bookingRepository)
 	{
 		$this->form = $form;
 		$this->raceClassRepository = $raceClassRepository;
 		$this->raceEventClassRepository = $raceEventClassRepository;
+		$this->bookingRepository = $bookingRepository;
 	}
 
 	/**
@@ -76,6 +87,11 @@ class RaceEventController extends \BaseController {
 	{
 		$event = $this->form->repository->getEventBySlug($slug);
 		$classes = $event->classes;
+
+		foreach ($classes as $class)
+		{
+			$class->bookings = $this->bookingRepository->getBookingsByEventIdAndClassId($event->id, $class->id);
+		}
 
 		return $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);
 	}
