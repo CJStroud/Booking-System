@@ -15,6 +15,7 @@ Route::get('/', function() {
 });
 Route::resource('event', 'RaceEventController');
 Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
+Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);
 Route::resource('booking', 'BookingController', ['except' => 'create']);
 Route::get('/login', 'UserController@login');
 Route::post('/login', 'UserController@attemptLogin');
