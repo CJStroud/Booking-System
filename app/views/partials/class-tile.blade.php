@@ -11,8 +11,84 @@
 			</a>
 		</div>
 		<div class="tile-body">
-			<div class="tile-body-content">
+			<div class="tile-body-content bookings">
+				@foreach ($class->bookings as $booking)
+					<div class="booking">
+						<div class="col-xs-12 col-sm-3">
+							<p>Name</p>
+							<div class="field class-field">
+								<p>{{ $booking->user->forename }} {{ $booking->user->surname }}</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<p>BRCA</p>
+							<div class="field class-field">
+								<p>#{{ $booking->user->brca }}</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<p>Transponder</p>
+							<div class="field class-field">
+								<p>#{{ $booking->transponder }}</p>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<p>Skill Level</p>
+							<div class="field class-field">
+								<p>{{ $booking->skill_level }} / 10</p>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<p>Frequencies</p>
+							@foreach ($booking->frequencies as $frequency)
+								<div class="col-xs-12 col-sm-4">
+									<div class="field class-field">
+										<p>{{ $frequency->name }}</p>
+									</div>
+								</div>
+							@endforeach
+						</div>
+					</div>
+				@endforeach
 
+				@foreach ($class->bookings as $booking)
+				<div class="booking">
+					<div class="col-xs-12 col-sm-3">
+						<p>Name</p>
+						<div class="field class-field">
+							<p>{{ $booking->user->forename }} {{ $booking->user->surname }}</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<p>BRCA</p>
+						<div class="field class-field">
+							<p>#{{ $booking->user->brca }}</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<p>Transponder</p>
+						<div class="field class-field">
+							<p>#{{ $booking->transponder }}</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<p>Skill Level</p>
+						<div class="field class-field">
+							<p>{{ $booking->skill_level }} / 10</p>
+						</div>
+					</div>
+					<div class="col-xs-12">
+						<p>Frequencies</p>
+						@foreach ($booking->frequencies as $frequency)
+						<div class="col-xs-12 col-sm-4">
+							<div class="field class-field">
+								<p>{{ $frequency->name }}</p>
+							</div>
+						</div>
+						@endforeach
+					</div>
+				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>

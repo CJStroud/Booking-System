@@ -64,6 +64,12 @@ $(function () {
 		fontRatio: 10
 	});
 
+	$('.class-field p').flowtype({
+		minFont: 18,
+		maxFont: 25,
+		fontRatio: 10
+	});
+
 	$('.tile-head h1').flowtype({
 		minFont: 20,
 		maxFont: 55,

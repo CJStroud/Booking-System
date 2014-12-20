@@ -9,7 +9,7 @@
 			@foreach($classes as $class)
 				@include('partials.class-tile', ['class' => $class])
 			@endforeach
-			</div>
+		</div>
 	</div>
 </div>
 
