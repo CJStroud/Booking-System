@@ -4,6 +4,9 @@ use BookingFrequency;
 
 class BookingFrequencyRepository extends Repository
 {
+	/**
+	 * @var FrequencyRepository
+	 */
 	protected $frequencyRepository;
 
 	public function __construct(BookingFrequency $bookingFrequency, FrequencyRepository $frequencyRepository)
