@@ -12,7 +12,7 @@
   color: #fff;
   font-size: 1em;
 
-  &:hover {
+  &:hover, &:active, &:focus {
     color: #fff;
     background-color: darken(@flat-dark-blue, 5%);
   }
@@ -48,6 +48,32 @@
     li {
       margin: auto 0;
     }
+  }
+}
+
+//.navbar .profile-icon {
+//  height: 19px;
+//}
+
+.svg-icon {
+
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: -18%;
+
+  &:before {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    content: " ";
+    width: 19px;
+    height: 19px;
+    position: absolute;
+  }
+
+  &.svg-user:before {
+    background-image: url('/img/profile-icon.svg');
   }
 }
 
