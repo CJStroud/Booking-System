@@ -1,49 +1,71 @@
 .btn {
-	width:100%;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	font-family: 'Open Sans', sans-serif;
+  width:100%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .btn-primary {
-	.button-variant(#fff, @secondary, darken(@secondary, 10%));
+  .button-variant(#777, @light-gray, darken(@light-gray, 10%));
 }
 
 .btn-success {
-	.button-variant(#fff, @success, darken(@success, 10%));
+  .button-variant(#fff, @success, darken(@success, 10%));
 }
 
 .btn-danger {
-	.button-variant(#fff, @danger, darken(@danger, 10%));
+  .button-variant(#fff, @danger, darken(@danger, 10%));
 }
 
 .btn-warning  {
-	.button-variant(#fff, @warning, darken(@warning, 10%));
+  .button-variant(#fff, @warning, darken(@warning, 10%));
 }
 
 .btn-secondary  {
-	.button-variant(#fff, #0090B2, darken(#0090B2, 10%));
+  .button-variant(#fff, #0090B2, darken(#0090B2, 10%));
 }
 
 .btn-simple {
-	color: #555;
-	text-align: right;
-	border-bottom: 1px solid @light-gray;
-	border-radius: 0;
+  color: #555;
+  text-align: right;
+  border-bottom: 1px solid @light-gray;
+  border-radius: 0;
 
-	@media screen and (max-width: @screen-sm)
-	{
-		text-align: center;
-	}
+  @media screen and (max-width: @screen-sm)
+  {
+    text-align: center;
+  }
 
-	&:hover, &:focus {
-		color: @secondary;
-		border-bottom: 1px solid @secondary;
-		box-shadow: 0 0 0 0 #fff;
-	}
+  &:hover, &:focus {
+    color: @secondary;
+    border-bottom: 1px solid @secondary;
+    box-shadow: 0 0 0 0 #fff;
+  }
 }
 
 .btn-lock {
-	border-radius: 25px;
-	margin-bottom: 10px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+}
+
+.btn-with-addon {
+  padding: 0;
+  & span {
+    padding: 6px 0;
+  }
+}
+
+.btn-text {
+  width: 75%;
+  float: left;
+  display: inline-block;
+}
+
+.btn-addon {
+  width: 25%;
+  float:right;
+  background-color: #555;
+  color: #fff;
+}
+
+.btn-addon-primary {
+  background-color: @flat-dark-blue;
 }
