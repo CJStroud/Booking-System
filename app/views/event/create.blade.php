@@ -10,29 +10,39 @@
 
     <div class="row">
         <div class='col-xs-12'>
-            <div class="form-group">
+            <div class="form-group event-name">
                 {{ Form::label('name', 'Event Name', ['class' => '']) }}
-                <input type="text" class="form-control" placeholder="Example Event 2014 Round 1" name="name" value="{{ Input::old('name') }}">
+                <input type="text" class="form-control" placeholder="this is the name of the event" name="name" value="{{ Input::old('name') }}">
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class='col-xs-12'>
-            <div class="form-group">
+            <div class="form-group event-slug">
             {{ Form::label('slug', 'Slug', ['class' => '']) }}
-            <input type="text" class="form-control" placeholder="example-event-2014-round-1" name='slug' value="{{ Input::old('slug') }}">
+            <input type="text" class="form-control" placeholder="this is the name url of the event" name='slug' value="{{ Input::old('slug') }}">
         </div>
         </div>
     </div>
 
 
     <div class="row">
-        <div class='col-xs-12'>
+        <div class='col-xs-12 col-sm-6'>
             <div class="form-group">
-                {{ Form::label('event-datetimeinput', 'Event Date and Time', ['class' => '']) }}
-                <div class='input-group' id='event-datetimeinput'>
-                    <input type='text' class="datepicker form-control" id='event-datetimepicker' placeholder='Pick a date'
+                {{ Form::label('event-date', 'Event date', ['class' => '']) }}
+                <div class='date' id='event-date'>
+                    <input type='text' class="datepicker form-control col-xs-12" id='event-datetimepicker' placeholder='date of the event'
+                    value="{{ Input::old('event-datetime') }}"
+                           name='event-datetime'/>
+                </div>
+            </div>
+        </div>
+        <div class='col-xs-12 col-sm-6'>
+            <div class="form-group">
+                {{ Form::label('event-time', 'Event time', ['class' => '']) }}
+                <div class='' id='event-time'>
+                    <input type='text' class="timepicker form-control" id='event-datetimepicker' placeholder='time of the event'
                     value="{{ Input::old('event-datetime') }}"
                            name='event-datetime'/>
                 </div>
@@ -42,16 +52,23 @@
 
 
     <div class="row">
-        <div class='col-xs-12'>
+        <div class='col-xs-12 col-sm-6'>
             <div class="form-group">
-                {{ Form::label('close-datetimeinput', 'Cut Off Date and Time', ['class' => '']) }}
-                <div class='input-group date' id='close-datetimeinput'>
-                    <input type='text' class="form-control datepicker" id='close-datetimepicker' data-date-format='DD/MM/YYYY hh:mm' placeholder='dd/mm/yyyy hh:mm'
-                           value="@if (Input::old('close-datetime') == null){{date('d/m/Y H:i', strtotime('next friday') + (60 * 60 * 17)) }}@else{{ Input::old('close-datetime') }}@endif"
-                           name='close-datetime'/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                {{ Form::label('event-date', 'Event close date', ['class' => '']) }}
+                <div class='date' id='event-close-date'>
+                    <input type='text' class="datepicker form-control col-xs-12" id='event-datetimepicker' placeholder='date booking closes'
+                    value="{{ Input::old('event-datetime') }}"
+                           name='event-datetime'/>
+                </div>
+            </div>
+        </div>
+        <div class='col-xs-12 col-sm-6'>
+            <div class="form-group">
+                {{ Form::label('event-time', 'Event close time', ['class' => '']) }}
+                <div class='' id='event-close-time'>
+                    <input type='text' class="timepicker form-control" id='event-datetimepicker' placeholder='time booking closes'
+                    value="{{ Input::old('event-datetime') }}"
+                           name='event-datetime'/>
                 </div>
             </div>
         </div>

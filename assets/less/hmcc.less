@@ -1,7 +1,12 @@
 @import 'assets/components/bootstrap/less/bootstrap.less';
 @import 'assets/components/bootstrap-select/less/bootstrap-select.less';
 @import 'assets/components/font-awesome/less/font-awesome.less';
-@import 'assets/components/pickadate/lib/themes-source/*.less';
+@import 'assets/components/pickadate/lib/themes-source/base.less';
+@import 'assets/components/pickadate/lib/themes-source/base.date.less';
+@import 'assets/components/pickadate/lib/themes-source/base.time.less';
+@import 'assets/components/pickadate/lib/themes-source/default.less';
+@import 'assets/components/pickadate/lib/themes-source/default.date.less';
+@import 'assets/components/pickadate/lib/themes-source/default.time.less';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 @import url(http://fonts.googleapis.com/css?family=Lobster);
@@ -32,6 +37,11 @@ label {
 
 .form {
     margin: 30px 0px;
+}
+
+.form-control[readonly].datepicker, .form-control[readonly].timepicker {
+    background-color:#fff;
+    cursor: pointer;
 }
 
 .tiles-container {
