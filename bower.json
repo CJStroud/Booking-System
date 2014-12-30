@@ -5,6 +5,7 @@
     "jquery": "~2.1.1",
     "font-awesome": "~4.2.0",
     "bootstrap-select": "~1.6.3",
-    "Flowtype.js": "~1.1.0"
+    "Flowtype.js": "~1.1.0",
+    "pickadate": "~3.5.4"
   }
 }
