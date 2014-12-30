@@ -45,7 +45,10 @@ module.exports = function(grunt) {
                     'assets/components/bootstrap/dist/js/bootstrap.min.js',
                     'assets/components/bootstrap-select/dist/js/bootstrap-select.min.js',
                     'assets/components/Flowtype.js/flowtype.js',
-                    'assets/components/pickadate/lib/*.js',
+                    'assets/components/pickadate/lib/picker.js',
+                    'assets/components/pickadate/lib/picker.date.js',
+                    'assets/components/pickadate/lib/picker.time.js',
+                    'assets/components/pickadate/lib/legacy.js',
                     'assets/js/*.js'
                 ],
                 dest: 'public/js/<%= pkg.name %>.js',
