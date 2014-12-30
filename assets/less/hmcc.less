@@ -1,6 +1,7 @@
 @import 'assets/components/bootstrap/less/bootstrap.less';
 @import 'assets/components/bootstrap-select/less/bootstrap-select.less';
 @import 'assets/components/font-awesome/less/font-awesome.less';
+@import 'assets/components/pickadate/lib/themes-source/default.less';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 @import url(http://fonts.googleapis.com/css?family=Lobster);
@@ -14,70 +15,70 @@
 @import 'tiles';
 
 body {
-	font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 select {
-	width: 100%;
+    width: 100%;
 }
 
 label {
-	text-align: center;
-	color: #525252;
-	font-size: 16px;
-	margin: auto 0;
-	padding-bottom: 5px;
+    text-align: center;
+    color: #525252;
+    font-size: 16px;
+    margin: auto 0;
+    padding-bottom: 5px;
 }
 
 .form {
-	margin: 30px 0px;
+    margin: 30px 0px;
 }
 
 .tiles-container {
-	background-color: @light-gray;
+    background-color: @light-gray;
 
-	@media only screen and (max-width: @screen-sm) {
+    @media only screen and (max-width: @screen-sm) {
 
-		& {
-			padding: 0;
-		}
+        & {
+            padding: 0;
+        }
 
-		.container {
-			padding: 0;
-		}
+        .container {
+            padding: 0;
+        }
 
-		.tiles > .col-xs-12 {
-			padding: 0;
-		}
+        .tiles > .col-xs-12 {
+            padding: 0;
+        }
 
-		.tile-body {
-			padding: 0 15px;
-		}
+        .tile-body {
+            padding: 0 15px;
+        }
 
-	}
+    }
 
-	@media only screen and (min-width: @screen-sm){
+    @media only screen and (min-width: @screen-sm){
 
-		& {
-			padding-left: 0;
-			padding-right: 0;
-		}
+        & {
+            padding-left: 0;
+            padding-right: 0;
+        }
 
-		.container {
-			padding: 0;
-		}
+        .container {
+            padding: 0;
+        }
 
-		.tiles > .col-xs-12 {
-			padding: 0;
-		}
+        .tiles > .col-xs-12 {
+            padding: 0;
+        }
 
-	}
-	padding: 20px;
+    }
+    padding: 20px;
 
 }
 
 .bg-primary {
-	background-color: @primary;
+    background-color: @primary;
 }
 
 
