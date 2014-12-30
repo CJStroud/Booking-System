@@ -23,7 +23,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-divider"></li>
           @if (Auth::check())
-          <li><a href="{{URL::action('UserController@login')}}">
+          <li><a href="{{ route('user.show', Auth::id()) }}">
             <i class="svg-icon svg-user fa-spacing-right"></i>{{ Auth::user()->forename }}
           </a></li>
             <li><a href="{{URL::action('UserController@signOut')}}" class="navbar-link">Sign Out<i class="fa fa-sign-out fa-lg fa-spacing-left"></i></a>
