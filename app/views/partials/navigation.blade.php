@@ -23,9 +23,17 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-divider"></li>
           @if (Auth::check())
-          <li><a href="{{ route('user.show', Auth::id()) }}">
-            <i class="svg-icon svg-user fa-spacing-right"></i>{{ Auth::user()->forename }}
-          </a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="svg-icon svg-user fa-spacing-right"></i>{{ Auth::user()->forename }}<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{{ route('user.show', Auth::id()) }}">
+                <i class="fa fa-user fa-spacing-right"></i>Profile
+              </a></li>
+              <li><a href="{{ route('user.edit', Auth::id()) }}">
+                <i class="fa fa-gear fa-spacing-right"></i>Settings
+                </a></li>
+            </ul>
+          </li>
             <li><a href="{{URL::action('UserController@signOut')}}" class="navbar-link">Sign Out<i class="fa fa-sign-out fa-lg fa-spacing-left"></i></a>
               </li>
           @else
