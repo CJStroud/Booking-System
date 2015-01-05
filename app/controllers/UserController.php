@@ -65,14 +65,4 @@ class UserController extends \BaseController {
 
     return View::make('user.show')->with('user', $user);
   }
-
-  public function edit($id)
-  {
-    $user = $this->form->repository->find($id);
-
-    return View::make('user.edit')->with('user', $user);
-  }
-
-
-
 }
