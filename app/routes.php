@@ -11,8 +11,13 @@
 |
 */
 Route::get('/', function() {
-	return View::make('index');
+    return View::make('index');
 });
+
+Route::get('/about', function() {
+    return View::make('info.about');
+});
+
 Route::resource('event', 'RaceEventController');
 Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
 Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);
