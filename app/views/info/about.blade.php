@@ -21,4 +21,6 @@
     </div>
 
 
+    <div id="map-canvas"></div>
+
 </div>
