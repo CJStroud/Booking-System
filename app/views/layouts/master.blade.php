@@ -13,6 +13,7 @@
         <div class="container">
             @yield('content')
             @show
+
         </div>
 
     @section('javascript')
@@ -20,6 +21,8 @@
         {{ HTML::script('js/hmcc-booking-system.js') }}
 
     @show
+
+    @include('partials.footer')
 
     </body>
 </html>
