@@ -1,52 +1,75 @@
-.navbar {
+
+.navbar-hmcc {
   width: 100%;
   background-color: @flat-dark-blue;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0px;
   border: 0;
   margin-bottom: 0;
-}
 
-.navbar-default .navbar-nav>li>a,
-{
-  color: #fff;
-  font-size: 1em;
 
-  &:hover, &:active, &:focus {
+  .navbar-nav > li > a,
+  {
     color: #fff;
-    background-color: darken(@flat-dark-blue, 5%);
+    font-size: 1em;
+
+    &:hover, &:active, &:focus {
+      color: #fff;
+      background-color: darken(@flat-dark-blue, 5%);
+    }
   }
-}
-.navbar-default .navbar-text,
-.navbar-default .navbar-text a {
-  color: #fff;
-  font-size: 1em;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
-}
-
-.navbar p {
-  padding: 0px 15px;
-}
-
-.navbar-brand {
-  padding: 0 15px;
-  display: inline-table;
-  img {
-    height: 50px;
-    display: block;
-    width: 50px;
+  .navbar-text,
+  .navbar-text a {
+    color: #fff;
+    font-size: 1em;
   }
-}
 
-.navbar-nav {
-  @media only screen and (min-width: @screen-sm) {
-    display: inline-flex;
+  .navbar-toggle .icon-bar {
+    background-color: #fff;
+  }
 
-    li {
-      margin: auto 0;
+  p {
+    padding: 0px 15px;
+  }
+
+  .navbar-brand {
+    padding: 0 15px;
+    display: inline-table;
+    img {
+      height: 50px;
+      display: block;
+      width: 50px;
+    }
+  }
+
+  .navbar-nav {
+
+    @media only screen and (min-width: @screen-sm) {
+      display: inline-flex;
+
+      li {
+        margin: auto 0;
+      }
+    }
+
+    & > .open > a,
+    & > .open > a:hover,
+    & > .open > a:focus {
+      background-color: darken(@flat-dark-blue, 10%);
+      color: #fff;
+    }
+  }
+
+
+  @media only screen and (max-width: @screen-sm) {
+    .navbar-nav .open .dropdown-menu > li > a {
+      color: #fff;
+
+      &:hover, &:active, &:focus {
+        background-color: darken(@flat-dark-blue, 5%);
+        color: #fff;
+      }
+
     }
   }
 }
@@ -55,34 +78,3 @@
 //  height: 19px;
 //}
 
-.svg-icon {
-
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  vertical-align: -18%;
-
-  &:before {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    content: " ";
-    width: 19px;
-    height: 19px;
-    position: absolute;
-  }
-
-  &.svg-user:before {
-    background-image: url('/img/profile-icon.svg');
-  }
-}
-
-@spacing: 7px;
-
-.fa-spacing-right {
-  margin-right: @spacing;
-}
-
-.fa-spacing-left {
-  margin-left: @spacing;
-}
