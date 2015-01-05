@@ -11,7 +11,7 @@
     <div class="tile-head">
       <a href="#" class="fold">
         <div class="col-xs-12 col-sm-6">
-          <h1><i class="fa fa-angle-double-up fa-spacing-right"></i>{{ $event->name }}</h1>
+          <h1><i class="fa fa-angle-double-up icon-spacing-right"></i>{{ $event->name }}</h1>
         </div>
         <div class="col-xs-12 col-sm-6">
           <h1 class="date">{{ date('jS F Y', $event->start_time) }}</h1>
@@ -50,7 +50,7 @@
         </div>
         <div class="col-xs-12 col-sm-6">
           <div class="col-xs-12">
-            <a class="btn btn-simple btn-lg" href="{{ route('event.show', ['slug' => $event->slug]) }}">View<i class="fa fa-arrow-right fa-spacing-left"></i></a>
+            <a class="btn btn-simple btn-lg" href="{{ route('event.show', ['slug' => $event->slug]) }}">View<i class="fa fa-arrow-right icon-spacing-left"></i></a>
           </div>
           <div class="col-xs-12">
             <?php
@@ -61,7 +61,7 @@
               }
             ?>
 
-            <a class="btn btn-simple {{ $disable  }} btn-lg" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right fa-spacing-left"></i></a>
+            <a class="btn btn-simple {{ $disable  }} btn-lg" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right icon-spacing-left"></i></a>
           </div>
         </div>
       </div>
