@@ -29,7 +29,7 @@
               <li><a href="{{ route('user.show', Auth::id()) }}">
                 <i class="fa fa-user icon-spacing-right"></i>Profile
               </a></li>
-              <li><a href="{{ route('user.edit', Auth::id()) }}">
+              <li><a href="{{ route('settings.profile') }}">
                 <i class="fa fa-gear icon-spacing-right"></i>Settings
                 </a></li>
             </ul>
