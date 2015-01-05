@@ -29,14 +29,15 @@
             <g fill="none">
               <path stroke="#ededed" stroke-width="30" stroke-linecap="round" d="M15 15 l220 0" />
               <path stroke="rgb(
-              <?php echo round(219 - ((219 - 172) * $scale));?>,
-              <?php echo round(216 - (216 * $scale));?>,
-              0)"
-              stroke-width="25" stroke-linecap="round" d="M15 15 l<?php echo 220 * $scale ?> 0" />
+                            <?php echo round(219 - ((219 - 172) * $scale));?>,
+                            <?php echo round(216 - (216 * $scale));?>,
+                            0)"
+                    stroke-width="25" stroke-linecap="round" d="M15 15 l<?php echo 220 * $scale ?> 0" />
             </g>
             Sorry, your browser does not support inline SVG.
           </svg>
         </p>
       </div>
+    </div>
   </div>
 </div>
