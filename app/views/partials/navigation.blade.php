@@ -24,7 +24,7 @@
           <li class="nav-divider"></li>
           @if (Auth::check())
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="svg-icon svg-user fa-spacing-right"></i>{{ Auth::user()->forename }}<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="svg-icon svg-user fa-spacing-right"></i>{{ Auth::user()->forename }}<span class="caret fa-spacing-left"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="{{ route('user.show', Auth::id()) }}">
                 <i class="fa fa-user fa-spacing-right"></i>Profile
