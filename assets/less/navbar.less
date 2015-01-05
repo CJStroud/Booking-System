@@ -8,16 +8,6 @@
   margin-bottom: 0;
 
 
-  .navbar-nav > li > a,
-  {
-    color: #fff;
-    font-size: 1em;
-
-    &:hover, &:active, &:focus {
-      color: #fff;
-      background-color: darken(@flat-dark-blue, 5%);
-    }
-  }
   .navbar-text,
   .navbar-text a {
     color: #fff;
@@ -58,20 +48,35 @@
       background-color: darken(@flat-dark-blue, 10%);
       color: #fff;
     }
-  }
 
-
-  @media only screen and (max-width: @screen-sm) {
-    .navbar-nav .open .dropdown-menu > li > a {
+    & > li > a {
       color: #fff;
+      font-size: 1em;
 
-      &:hover, &:active, &:focus {
-        background-color: darken(@flat-dark-blue, 5%);
+      &:hover,
+      &:active,
+      &:focus {
         color: #fff;
+        background-color: darken(@flat-dark-blue, 5%);
       }
-
     }
+
+    @media only screen and (max-width: @screen-sm) {
+      & .open .dropdown-menu > li > a {
+        color: #fff;
+
+        &:hover, &:active, &:focus {
+          background-color: darken(@flat-dark-blue, 5%);
+          color: #fff;
+        }
+
+      }
+    }
+
   }
+
+
+
 }
 
 //.navbar .profile-icon {
