@@ -5,7 +5,7 @@
   <div class="panel panel-default panel-settings">
     <div class="panel-heading">Public profile</div>
     <div class="panel-body">
-      {{ Form::model($user, ['route' => ['user.update', $user->id], 'role' => 'form', 'id' => 'form', 'method' => 'PUT' ] ) }}
+      {{ Form::model($user, ['route' => ['settings.profile.update'], 'role' => 'form', 'id' => 'form', 'method' => 'POST' ] ) }}
         <div class="form-group ">
           <div class="col-xs-12">
             <label for="name">Name</label>

@@ -19,4 +19,8 @@ class SettingsController extends \BaseController {
 
     return View::make('settings.profile')->withUser($user)->withActive('profile');
   }
+
+  public function profileUpdate() {
+
+  }
 }
