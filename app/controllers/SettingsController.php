@@ -4,8 +4,6 @@ use HMCC\Form\SettingsForm;
 
 class SettingsController extends \BaseController {
 
-  protected $layout = 'layouts.master';
-
   /**
    * @var SettingsForm
    */
