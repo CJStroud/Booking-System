@@ -17,7 +17,7 @@
 
           <li><a href="{{URL::to('about')}}">About Us</a></li>
           <li><a href="{{URL::to('contact')}}">Contact Us</a></li>
-          <li><a href="{{URL::route('event.index')}}"><i class="fa fa-users fa-lg fa-spacing-right"></i>Events</a></li>
+          <li><a href="{{URL::route('event.index')}}"><i class="fa fa-flag-checkered fa-lg fa-spacing-right"></i>Events</a></li>
           <li><a href="{{URL::action('BookingController@viewAll')}}"><i class="fa fa-calendar fa-lg"></i> My Bookings</a></li>
 
           @if (Auth::check() && Auth::user()->is_admin)
