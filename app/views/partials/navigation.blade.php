@@ -16,6 +16,7 @@
 
             <li><a href="{{URL::to('about')}}"><i class="fa fa-info fa-lg fa-spacing-right"></i>About Us</a></li>
             <li><a href="{{URL::to('contact')}}"><i class="fa fa-phone fa-lg fa-spacing-right"></i>Contact Us</a></li>
+            <li><a href="{{URL::to('gallery')}}"><i class="fa fa-camera fa-lg fa-spacing-right"></i>Gallery</a></li>
 
             <li class="dropdown">
                 <a href="{{URL::route('event.index')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-flag-checkered fa-lg fa-spacing-right"></i>Race Events<span class="caret"></span></a>
