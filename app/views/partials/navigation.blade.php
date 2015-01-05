@@ -25,9 +25,6 @@
                 </ul>
             </li>
 
-
-
-
           @if (Auth::check() && Auth::user()->is_admin)
           <li><a href="{{URL::action('HomeController@AdminHome')}}"><i class="fa fa-gears fa-lg fa-spacing-right"></i>Admin</a></li>
           @endif
