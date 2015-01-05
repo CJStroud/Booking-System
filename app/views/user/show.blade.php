@@ -6,7 +6,7 @@
 
     @include('partials.errors')
     <div class="row">
-      <div class="col-xs-6 col-sm-3">
+      <div class="col-xs-6 col-xs-offset-3  col-sm-3 col-sm-offset-0">
         <img src="/img/profile-image.svg" alt="profile image" class="profile-image img-circle">
 
       </div>
