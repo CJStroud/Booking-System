@@ -1,0 +1,29 @@
+.svg-icon {
+
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: -18%;
+
+  &:before {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    content: " ";
+    width: 19px;
+    height: 19px;
+    position: absolute;
+  }
+
+  &.svg-user:before {
+    background-image: url('/img/profile-icon.svg');
+  }
+}
+
+.fa-spacing-right {
+  margin-right: @icon-spacing;
+}
+
+.fa-spacing-left {
+  margin-left: @icon-spacing;
+}
