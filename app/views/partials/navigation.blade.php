@@ -14,11 +14,19 @@
       <div class="collapse navbar-collapse" id="main-navbar-collapsable">
         <ul class="nav navbar-nav">
 
+            <li><a href="{{URL::to('about')}}"><i class="fa fa-info fa-lg fa-spacing-right"></i>About Us</a></li>
+            <li><a href="{{URL::to('contact')}}"><i class="fa fa-phone fa-lg fa-spacing-right"></i>Contact Us</a></li>
 
-          <li><a href="{{URL::to('about')}}">About Us</a></li>
-          <li><a href="{{URL::to('contact')}}">Contact Us</a></li>
-          <li><a href="{{URL::route('event.index')}}"><i class="fa fa-flag-checkered fa-lg fa-spacing-right"></i>Events</a></li>
-          <li><a href="{{URL::action('BookingController@viewAll')}}"><i class="fa fa-calendar fa-lg"></i> My Bookings</a></li>
+            <li class="dropdown">
+                <a href="{{URL::route('event.index')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-flag-checkered fa-lg fa-spacing-right"></i>Race Events<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{URL::route('event.index')}}"><i class="fa fa-flag-checkered fa-lg fa-spacing-right"></i>View Events</a></li>
+                    <li><a href="{{URL::action('BookingController@viewAll')}}"><i class="fa fa-calendar fa-lg fa-spacing-right"></i> My Bookings</a></li>
+                </ul>
+            </li>
+
+
+
 
           @if (Auth::check() && Auth::user()->is_admin)
           <li><a href="{{URL::action('HomeController@AdminHome')}}"><i class="fa fa-gears fa-lg fa-spacing-right"></i>Admin</a></li>
