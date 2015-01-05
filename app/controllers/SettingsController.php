@@ -17,7 +17,9 @@ class SettingsController extends \BaseController {
   }
 
   public function profile() {
+    $user = $this->form->repository->find(Auth::id());
 
+    return View::make('settings.profile')->withUser($user);
   }
 
 
