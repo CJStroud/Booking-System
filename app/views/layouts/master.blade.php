@@ -12,17 +12,12 @@
 
         <div class="container">
             @yield('content')
-            @show
-
         </div>
 
-    @section('javascript')
         {{ HTML::script('https://maps.googleapis.com/maps/api/js') }}
         {{ HTML::script('js/hmcc-booking-system.js') }}
 
-    @show
-
-    @include('partials.footer')
+        @include('partials.footer')
 
     </body>
 </html>
