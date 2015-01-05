@@ -6,7 +6,7 @@
 
     <div class="list-group">
         <div class="list-group-item list-group-item-info">
-            <h4 class="list-group-item-heading">Club Committee</h4>
+            <h4 class="list-group-item-heading">Club Committee Members</h4>
         </div>
 
         <div class="list-group-item">
