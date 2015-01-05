@@ -30,6 +30,11 @@ Route::post('/class/enable/{id}', 'RaceClassController@enable');
 Route::post('event/unlock/{classId}{eventId}', 'RaceEventController@unlock');
 Route::post('event/lock/{classId}{eventId}', 'RaceEventController@lock');
 
+Route::group(array('before' => 'is.logged.in', 'prefix' => 'settings'), function() {
+  Route::get('profile', [ 'uses' => 'SettingsController@profile', 'as' => 'settings.profile' ]);
+});
+
+
 Route::filter('is.logged.in', function()
 {
   if(!Auth::check())
