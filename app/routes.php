@@ -10,20 +10,37 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
 Route::get('/', function() {
-    return View::make('index');
+
+    $view = View::make('layouts.master');
+    $view->content = View::make('index');
+
+    return $view;
 });
 
 Route::get('/about', function() {
-    return View::make('info.about');
+
+    $view = View::make('layouts.master');
+    $view->content = View::make('info.about');
+
+    return $view;
 });
 
 Route::get('/contact', function() {
-    return View::make('info.contact');
+
+    $view = View::make('layouts.master');
+    $view->content = View::make('info.contact');
+
+    return $view;
 });
 
 Route::get('/gallery', function() {
-    return View::make('info.gallery');
+
+    $view = View::make('layouts.master');
+    $view->content = View::make('info.gallery');
+
+    return $view;
 });
 
 Route::resource('event', 'RaceEventController');

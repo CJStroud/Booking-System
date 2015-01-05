@@ -16,8 +16,6 @@
         <div class="row">Cradley Heath</div>
         <div class="row">B64 7HA</div>
     </div>
-
-
     <div id="map-canvas"></div>
-
 </div>
+@stop

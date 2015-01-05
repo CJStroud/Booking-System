@@ -4,9 +4,9 @@
 <div class="container">
 <h1>Create Event</h1>
 
-@include('partials.errors')
+    @include('partials.errors')
 
-{{ Form::open(array('action' => 'RaceEventController@store', 'id' => 'create-form')) }}
+    {{ Form::open(array('action' => 'RaceEventController@store', 'id' => 'create-form')) }}
 
     <div class="row">
         <div class='col-xs-12'>
@@ -132,3 +132,5 @@
     </div>
 </div>
 {{ Form::close() }}
+
+@stop
