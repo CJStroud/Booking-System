@@ -32,7 +32,7 @@ Route::get('/contact', function() {
     $view = View::make('layouts.master');
     $view->content = View::make('info.contact');
 
-    return $view
+    return $view;
 });
 
 Route::get('/gallery', function() {
@@ -40,7 +40,7 @@ Route::get('/gallery', function() {
     $view = View::make('layouts.master');
     $view->content = View::make('info.gallery');
 
-    return $view
+    return $view;
 });
 
 Route::resource('event', 'RaceEventController');
