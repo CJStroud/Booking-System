@@ -17,12 +17,14 @@ class SettingsController extends \BaseController {
   public function profile() {
     $user = $this->form->repository->find(Auth::id());
 
-    return View::make('settings.profile')->withUser($user)->withActive('profile');
+    $success = Session::get('success');
+
+    return View::make('settings.profile')->withUser($user)->withActive('profile')->withSuccess($success);
   }
 
   public function profileUpdate() {
     $this->form->profileUpdate(Input::all());
 
-    return Redirect::back()->withSuccess('Profile updated successfully');
+    return Redirect::route('settings.profile')->withSuccess('Profile updated successfully');
   }
 }
