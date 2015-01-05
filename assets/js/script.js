@@ -42,7 +42,7 @@ $(document).ready(function(){
         var optionSelected = $("#class-drop-down option:selected");
         var id = $(optionSelected).attr("id");
 
-        if(classes[id] == null){
+        if(classes[id] === null){
             // get selected name
             var name = $(optionSelected).val();
             // generate new class
