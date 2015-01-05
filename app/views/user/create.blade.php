@@ -80,3 +80,5 @@
   {{Form::close()}}
 
 </div>
+
+@stop
