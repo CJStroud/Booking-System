@@ -13,6 +13,9 @@
 
       <div class="collapse navbar-collapse" id="main-navbar-collapsable">
         <ul class="nav navbar-nav">
+
+
+          <li><a href="{{URL::to('about')}}">About Us</a></li>
           <li><a href="{{URL::route('event.index')}}"><i class="fa fa-users fa-lg fa-spacing-right"></i>Events</a></li>
           <li><a href="{{URL::action('BookingController@viewAll')}}"><i class="fa fa-calendar fa-lg"></i> My Bookings</a></li>
 
