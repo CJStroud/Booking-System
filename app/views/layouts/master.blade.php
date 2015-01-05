@@ -10,9 +10,7 @@
     <body>
         @include('partials.navigation')
 
-        <div class="container">
-            @yield('content')
-        </div>
+        @yield('content')
 
         {{ HTML::script('https://maps.googleapis.com/maps/api/js') }}
         {{ HTML::script('js/hmcc-booking-system.js') }}
