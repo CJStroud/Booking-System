@@ -40,7 +40,7 @@
         </div>
 
         <div class="list-group-item">
-            <h4 class="list-group-item-heading">Committee Memebers</h4>
+            <h4 class="list-group-item-heading">Committee Members</h4>
             <p class="list-group-item-text">Ade Malkin</p>
             <p class="list-group-item-text">Mark Beckett</p>
             <p class="list-group-item-text">Jonathan Willey</p>
