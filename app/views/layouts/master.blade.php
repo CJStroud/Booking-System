@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Booking System</title>
+        <title>Halesowen Model Car Club</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {{ HTML::style('css/styles.css') }}
