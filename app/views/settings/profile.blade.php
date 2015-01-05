@@ -8,41 +8,45 @@
       {{ Form::model($user, ['route' => ['settings.profile.update'], 'role' => 'form', 'id' => 'form', 'method' => 'POST' ] ) }}
         <div class="form-group ">
           <div class="col-xs-12">
-            <label for="name">Name</label>
+            {{ Form::label('forename', 'Name') }}
           </div>
           <div class="col-xs-12 col-sm-6">
-            <input type="text" class="form-control" id="forename" placeholder="Forename">
+            {{ Form::text('forename', Input::old('forename'), ['class' => 'form-control']) }}
           </div>
           <div class="col-xs-12 col-sm-6">
-            <input type="text" class="form-control" id="surname" placeholder="Surname">
+            {{ Form::text('surname', Input::old('surname'), ['class' => 'form-control']) }}
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-xs-12">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="Email">
+            {{ Form::label('email', 'Email') }}
+
+            {{ Form::text('email', Input::old('email'), ['class' => 'form-control']) }}
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-xs-12">
-            <label for="brca">BRCA Number</label>
-            <input type="text" class="form-control" id="brca" placeholder="BRCA">
+            {{ Form::label('brca', 'BRCA Number') }}
+
+            {{ Form::text('brca', Input::old('brca'), ['class' => 'form-control']) }}
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-xs-12">
-            <label for="transponder">Transponder Number</label>
-            <input type="text" class="form-control" id="transponder" placeholder="Transponder">
+            {{ Form::label('transponder', 'Transponder Number') }}
+
+            {{ Form::text('transponder', Input::old('transponder'), ['class' => 'form-control']) }}
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-xs-12">
-            <label for="skill">Skill Level</label>
-            <input type="number" class="form-control" id="skill" placeholder="Skill">
+            {{ Form::label('skill', 'Skill Level') }}
+
+            {{ Form::number('skill', Input::old('skill'), ['class' => 'form-control']) }}
           </div>
         </div>
         <div class="form-group">
