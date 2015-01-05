@@ -36,13 +36,27 @@ Route::group(array('before' => 'is.logged.in', 'prefix' => 'settings'), function
 
   Route::post('profile', [ 'uses' => 'SettingsController@profileUpdate', 'as' => 'settings.profile.update' ]);
 
+  Route::get('account', [ 'uses' => 'SettingsController@account', 'as' => 'settings.account' ]);
+
+  Route::post('account/password', [ 'uses' => 'SettingsController@accountPassword', 'as' => 'settings.account.password.update' ]);
+
+  Route::post('account', [ 'uses' => 'SettingsController@accountDelete', 'as' => 'settings.account.delete' ]);
+
 });
 
 
 Route::filter('is.logged.in', function()
 {
-  if(!Auth::check())
+  if (!Auth::check())
   {
     return Redirect::route('user.login');
+  }
+});
+
+Route::filter('force.ssl', function()
+{
+  if (!Request::secure())
+  {
+    return Redirect::secure(Request::path());
   }
 });

@@ -27,4 +27,8 @@ class SettingsController extends \BaseController {
 
     return Redirect::route('settings.profile')->withSuccess('Profile updated successfully');
   }
+
+  public function account() {
+    return View::make('settings.account')->withActive('account');
+  }
 }
