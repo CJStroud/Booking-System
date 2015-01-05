@@ -21,6 +21,8 @@ class SettingsController extends \BaseController {
   }
 
   public function profileUpdate() {
+    $this->form->profileUpdate(Input::all());
 
+    return Redirect::back()->withSuccess('Profile updated successfully');
   }
 }
