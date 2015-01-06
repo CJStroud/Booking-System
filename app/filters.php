@@ -99,7 +99,7 @@ Route::filter('is.logged.in', function()
 
 Route::filter('is.admin', function()
 {
-  if (!Auth::user()->isAdmin)
+  if (!Auth::user()->is_admin)
   {
     return Redirect::route('home');
   }
