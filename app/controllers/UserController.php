@@ -27,13 +27,13 @@ class UserController extends \BaseController {
   public function signUp()
   {
     // return user sign up page
-    return $this->layout->content = View::make('user.create');
+    return View::make('user.create');
   }
 
   public function login()
   {
     // return user login page
-    return $this->layout->content = View::make('user.login');
+    return View::make('user.login');
   }
 
   public function attemptLogin()

@@ -13,7 +13,7 @@
                   <h1><i class="fa fa-angle-double-up icon-spacing-right"></i>{{ $event->name }}</h1>
               </div>
               <div class="col-xs-12 col-sm-6">
-                  <h1 class="date">{{ date('dS F Y', $event->start_time) }}</h1>
+                  <h1 class="date">{{ date('jS F Y', $event->start_time) }}</h1>
               </div>
           </a>
       </div>
