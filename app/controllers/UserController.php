@@ -49,7 +49,7 @@ class UserController extends \BaseController {
     return Redirect::back()->withInput()->withErrors("The details you entered where incorrect");
   }
 
-  public function signOut()
+  public function logOut()
   {
     Auth::logout();
 

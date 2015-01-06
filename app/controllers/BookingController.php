@@ -72,12 +72,12 @@ class BookingController extends \BaseController {
         return Redirect::back();
     }
 
-    public function viewAll()
+  public function showUserBookings()
     {
         if (Auth::check())
         {
             $bookings = $this->form->repository->getAllUser(Auth::id());
-            return View::make('booking.viewAll')->with('bookings', $bookings);
+            return View::make('booking.showUserBookings')->with('bookings', $bookings);
         }
     }
 }
