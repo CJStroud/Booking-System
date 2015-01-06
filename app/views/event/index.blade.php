@@ -3,7 +3,7 @@
 @section('content')
 <div class="tiles-container">
     <div class="container">
-        @if (Auth::user()->isAdmin)
+        @if (Auth::check() && Auth::user()->is_admin)
           <div>{{ link_to_route('event.create', 'Create New Event', null, ['class="btn btn-primary create-class"']) }}</div>
         @endif
 
