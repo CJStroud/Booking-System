@@ -1,9 +1,11 @@
 <?php namespace HMCC\Form;
 
+use Illuminate\Support\MessageBag;
 use HMCC\Validation\Settings\ProfileValidator;
 use HMCC\Validation\Settings\PasswordValidator;
 use HMCC\Repository\UserRepository;
 use Auth;
+use Hash;
 
 class SettingsForm extends Form
 {
@@ -64,5 +66,20 @@ class SettingsForm extends Form
     $this->validate($data);
 
     return $this->repository->passwordUpdate(Auth::id(), $data['new-password']);
+  }
+
+  public function deleteAccount($data)
+  {
+    $password = $data['delete-password'] . Auth::user()->secret;
+
+    $errors = new MessageBag();
+
+    if (!Hash::check($password, Auth::user()->password))
+    {
+      $errors->add('delete-password', 'Account delete unsuccessful. Password did not match');
+      throw new FormException($errors);
+    }
+
+    $this->repository->delete(Auth::id());
   }
 }
