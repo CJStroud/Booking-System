@@ -2,6 +2,7 @@
 
 use HMCC\Validation\Validator;
 use Hash;
+use Auth;
 
 class PasswordValidator extends Validator
 {
