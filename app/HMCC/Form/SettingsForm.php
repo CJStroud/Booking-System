@@ -63,6 +63,6 @@ class SettingsForm extends Form
 
     $this->validate($data);
 
-    return $this->repository->passwordUpdate($data);
+    return $this->repository->passwordUpdate(Auth::id(), $data['new-password']);
   }
 }
