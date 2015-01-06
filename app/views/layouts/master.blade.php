@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Booking System</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Halesowen Model Car Club</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 
-    {{ HTML::style('css/styles.css') }}
+      {{ HTML::style('css/styles.css') }}
 
   </head>
   <body>
-    @include('partials.navigation')
+      @include('partials.navigation')
 
-    @yield('content')
+      @yield('content')
 
-    @section('javascript')
+      {{ HTML::script('https://maps.googleapis.com/maps/api/js') }}
       {{ HTML::script('js/hmcc-booking-system.js') }}
-    @show
+
+      @include('partials.footer')
 
   </body>
 </html>

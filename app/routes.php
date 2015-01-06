@@ -10,9 +10,23 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
 Route::get('/', function() {
-  return View::make('index');
+    return View::make('index');
 });
+
+Route::get('/about', function() {
+    return View::make('info.about');
+});
+
+Route::get('/contact', function() {
+    return View::make('info.contact');
+});
+
+Route::get('/gallery', function() {
+    return View::make('info.gallery');
+});
+
 Route::resource('event', 'RaceEventController');
 Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
 Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);

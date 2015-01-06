@@ -4,8 +4,6 @@ use HMCC\Form\UserForm;
 
 class UserController extends \BaseController {
 
-  protected $layout = 'layouts.master';
-
   /**
    * @var UserForm
    */
