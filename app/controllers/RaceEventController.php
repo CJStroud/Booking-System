@@ -7,8 +7,6 @@ use HMCC\Repository\BookingRepository;
 
 class RaceEventController extends \BaseController {
 
-    protected $layout = 'layouts.master';
-
     /**
      * @var RaceEventForm
      */
@@ -68,10 +66,7 @@ class RaceEventController extends \BaseController {
 
             $events[] = $event;
         }
-
-
-        $this->layout->content = View::make('event.index')->with('events', $events);
-        return $this->layout;
+        return View::make('event.index')->with('events', $events);
     }
 
 
@@ -83,9 +78,7 @@ class RaceEventController extends \BaseController {
     {
         $classes = $this->raceClassRepository->getAllActive();
 
-        $this->layout->content = View::make('event.create')->withOptions($classes);
-
-        return $this->layout;
+        return View::make('event.create')->withOptions($classes);
     }
 
     /**
@@ -115,9 +108,7 @@ class RaceEventController extends \BaseController {
 
         }
 
-        $this->layout->content = View::make('event.view')->with('classes', $classes)->with('event', $event);
-
-        return $this->layout;
+        return View::make('event.view')->with('classes', $classes)->with('event', $event);
     }
 
     /**
