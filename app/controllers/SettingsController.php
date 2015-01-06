@@ -39,4 +39,13 @@ class SettingsController extends \BaseController {
 
     return Redirect::route('settings.account')->withSuccess('Password successfully changed');
   }
+
+  public function accountDelete()
+  {
+    $this->form->deleteAccount(Input::all());
+
+    Auth::logout();
+
+    return Redirect::route('user.login');
+  }
 }
