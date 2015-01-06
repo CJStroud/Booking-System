@@ -54,8 +54,8 @@ class SettingsForm extends Form
 
   /**
    * Validates and updates the password for the user
-   * @param   Array    $data An array of all the inputs for the password update. old-password, new-password, new-password-confirmation
-   * @returns [[Type]] [[Description]]
+   * @param   Array $data An array of all the inputs for the password update. old-password, new-password, new-password-confirmation
+   * @returns Array An array of all the inputs from the form
    */
   public function passwordUpdate($data)
   {
