@@ -8,5 +8,5 @@ class ProfileValidator extends Validator
                       'surname'  => 'sometimes|required',
                       'email'    => 'sometimes|required|email|unique:users',
                       'brca'     => 'sometimes|required|numeric',
-                      'skill'    => 'sometimes|required|numeric|between:0,10'];
+                      'skill'    => 'sometimes|required|numeric|between:1,10'];
 }
