@@ -11,9 +11,9 @@ class PasswordValidator extends Validator
   public function passes(Array $inputs)
   {
     $passed = parent::passes($inputs);
-    $newPassword = $inputs['old-password'] . Auth::user()->secret;
+    $oldPassword = $inputs['old-password'] . Auth::user()->secret;
 
-    if (!Hash::check($newPassword, Auth::user()->password))
+    if (!Hash::check($oldPassword, Auth::user()->password))
     {
       $this->errors->add('old-password', 'Old password is incorrect');
       $passed = false;
