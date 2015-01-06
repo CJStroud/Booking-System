@@ -1,4 +1,4 @@
-@include('layouts.master')
+@extends('layouts.master')
 
 <div class="container">
     <h1>My Bookings</h1>

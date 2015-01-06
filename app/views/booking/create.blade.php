@@ -1,4 +1,4 @@
-@include('layouts.master')
+@extends('layouts.master')
 
 <div class="container">
     <h2>{{$event->name}}</h2>
