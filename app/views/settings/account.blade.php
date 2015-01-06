@@ -24,9 +24,9 @@
 
     <div class="form-group">
       <div class="col-xs-12">
-        {{ Form::label('new-password-confirmation', 'Repeat Password') }}
+        {{ Form::label('new-password_confirmation', 'Repeat Password') }}
 
-        {{ Form::password($name = 'new-password-confirmation', $attributes = ['class' => 'form-control']) }}
+        {{ Form::password($name = 'new-password_confirmation', $attributes = ['class' => 'form-control']) }}
       </div>
     </div>
 
