@@ -97,11 +97,11 @@ Route::filter('is.logged.in', function()
   }
 });
 
-Route::filter('is.logged.in', function()
+Route::filter('is.admin', function()
 {
   if (!Auth::user()->isAdmin)
   {
-    return Redirect::route('user.login');
+    return Redirect::route('home');
   }
 });
 
