@@ -15,11 +15,6 @@ class RaceEventValidator extends Validator
     {
         $passes = parent::passes($input);
 
-        if ($this->errors == null)
-        {
-            $this->errors = new MessageBag();
-        }
-
         if ($input['event_datetime'] < time())
         {
             $this->errors->add('event_date', 'The event date and time cannot in the past');
