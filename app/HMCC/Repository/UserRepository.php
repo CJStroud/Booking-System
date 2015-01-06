@@ -5,31 +5,40 @@ use Hash;
 
 class UserRepository extends Repository
 {
-	public function __construct(User $user)
-	{
-		$this->model = $user;
-	}
+  public function __construct(User $user)
+  {
+    $this->model = $user;
+  }
 
-	public function store($data)
-	{
-		$record = new $this->model;
-		$record->forename = $data['forename'];
-		$record->surname = $data['surname'];
-		$record->email = $data['email'];
-		$record->password = Hash::make($data['password'] . $data['secret']);
-		$record->secret = $data['secret'];
-		$record->brca = $data['brca'];
+  public function store($data)
+  {
+    $record = new $this->model;
+    $record->forename = $data['forename'];
+    $record->surname = $data['surname'];
+    $record->email = $data['email'];
+    $record->password = Hash::make($data['password'] . $data['secret']);
+    $record->secret = $data['secret'];
+    $record->brca = $data['brca'];
 
-		return $record->save();
-	}
+    return $record->save();
+  }
 
-	public function getSecret($email)
-	{
-		$user =  $this->model->where('email', '=', $email)->first();
+  public function getSecret($email)
+  {
+    $user =  $this->model->where('email', '=', $email)->first();
 
-		if($user == null)
-			return '';
+    if($user == null)
+      return '';
 
-		return $user->secret;
-	}
+    return $user->secret;
+  }
+
+  public function passwordUpdate($id, $newPassword)
+  {
+    $user = $this->model->findOrFail($id);
+
+    $user->password = $newPassword;
+
+    return $user->save();
+  }
 }
