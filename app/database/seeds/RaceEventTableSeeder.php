@@ -1,6 +1,6 @@
 <?php
 
-use HMCC\Repository\RaceEventRepository;
+use HMCC\Repository\RaceEvent\RaceEventRepository;
 
 class RaceEventTableSeeder extends seeder {
 

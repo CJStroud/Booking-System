@@ -1,6 +1,7 @@
-<?php namespace HMCC\Validation;
+<?php namespace HMCC\Validation\RaceEvent;
 
 use Illuminate\Support\MessageBag;
+use HMCC\Validation\Validator;
 
 class RaceEventValidator extends Validator
 {

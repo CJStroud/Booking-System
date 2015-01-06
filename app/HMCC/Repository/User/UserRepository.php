@@ -1,5 +1,6 @@
-<?php namespace HMCC\Repository;
+<?php namespace HMCC\Repository\User;
 
+use HMCC\Repository\Repository;
 use User;
 use Hash;
 use Auth;

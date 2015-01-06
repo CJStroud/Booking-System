@@ -1,9 +1,9 @@
 <?php
 
-use HMCC\Form\RaceEventForm;
-use HMCC\Repository\RaceClassRepository;
-use HMCC\Repository\RaceEventClassRepository;
-use HMCC\Repository\BookingRepository;
+use HMCC\Form\RaceEvent\RaceEventForm;
+use HMCC\Repository\RaceEvent\RaceClassRepository;
+use HMCC\Repository\RaceEvent\RaceEventClassRepository;
+use HMCC\Repository\Booking\BookingRepository;
 
 class RaceEventController extends \BaseController {
 

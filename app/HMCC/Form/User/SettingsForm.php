@@ -1,9 +1,10 @@
-<?php namespace HMCC\Form;
+<?php namespace HMCC\Form\User;
 
 use Illuminate\Support\MessageBag;
-use HMCC\Validation\Settings\ProfileValidator;
-use HMCC\Validation\Settings\PasswordValidator;
-use HMCC\Repository\UserRepository;
+use HMCC\Validation\User\Setting\ProfileValidator;
+use HMCC\Validation\User\Setting\PasswordValidator;
+use HMCC\Repository\User\UserRepository;
+use HMCC\Form\Form;
 use Auth;
 use Hash;
 

@@ -1,5 +1,6 @@
-<?php namespace HMCC\Repository;
+<?php namespace HMCC\Repository\RaceEvent;
 
+use HMCC\Repository\Repository;
 use RaceEvent;
 
 class RaceEventRepository extends Repository

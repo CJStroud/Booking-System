@@ -1,10 +1,11 @@
-<?php namespace HMCC\Validation;
+<?php namespace HMCC\Validation\Booking;
 
 use App;
 use Auth;
 use Illuminate\Support\MessageBag;
-use HMCC\Repository\BookingRepository;
-use HMCC\Repository\RaceEventClassRepository;
+use HMCC\Repository\Booking\BookingRepository;
+use HMCC\Repository\RaceEvent\RaceEventClassRepository;
+use HMCC\Validation\Validator;
 
 class BookingValidator extends Validator
 {

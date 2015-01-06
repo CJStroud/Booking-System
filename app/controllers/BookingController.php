@@ -1,8 +1,8 @@
 <?php
 
-use HMCC\Form\BookingForm;
-use HMCC\Repository\FrequencyRepository;
-use HMCC\Repository\RaceEventRepository;
+use HMCC\Form\Booking\BookingForm;
+use HMCC\Repository\Booking\FrequencyRepository;
+use HMCC\Repository\RaceEvent\RaceEventRepository;
 
 class BookingController extends \BaseController {
 

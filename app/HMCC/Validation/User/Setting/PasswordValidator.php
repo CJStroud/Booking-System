@@ -1,4 +1,4 @@
-<?php namespace HMCC\Validation\Settings;
+<?php namespace HMCC\Validation\User\Setting;
 
 use HMCC\Validation\Validator;
 use Hash;

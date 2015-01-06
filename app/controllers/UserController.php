@@ -1,6 +1,6 @@
 <?php
 
-use HMCC\Form\UserForm;
+use HMCC\Form\User\UserForm;
 
 class UserController extends \BaseController {
 

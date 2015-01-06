@@ -1,7 +1,8 @@
-<?php namespace HMCC\Form;
+<?php namespace HMCC\Form\RaceEvent;
 
-use HMCC\Validation\RaceEventValidator;
-use HMCC\Repository\RaceEventRepository;
+use HMCC\Validation\RaceEvent\RaceEventValidator;
+use HMCC\Repository\RaceEvent\RaceEventRepository;
+use HMCC\Form\Form;
 
 class RaceEventForm extends Form
 {

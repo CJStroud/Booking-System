@@ -1,6 +1,6 @@
 <?php
 
-use HMCC\Form\SettingsForm;
+use HMCC\Form\User\SettingsForm;
 
 class SettingsController extends \BaseController {
 
