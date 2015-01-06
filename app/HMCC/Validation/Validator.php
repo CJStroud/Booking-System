@@ -1,42 +1,45 @@
 <?php namespace HMCC\Validation;
 
 use Illuminate\Validation\Factory;
+use Illuminate\Support\MessageBag;
 
 abstract class Validator implements ValidatorInterface {
 
-	protected $rules = array();
+  protected $rules = array();
 
-	protected $messages = array();
+  protected $messages = array();
 
-	public $errors;
+  public $errors;
 
-	/**
-	 * Contructor for the validator
-	 * @param Factory $factory This is used to create the laravel validator object
-	 */
-	public function __construct(Factory $factory)
-	{
-		$this->factory = $factory;
-	}
+  /**
+   * Contructor for the validator
+   * @param Factory $factory This is used to create the laravel validator object
+   */
+  public function __construct(Factory $factory)
+  {
+    $this->factory = $factory;
 
-	/**
-	 * Checks to see if the inputs pass the validation
-	 * @param   Array   $input An array of all the inputs to be validated
-	 * @returns Boolean Returns TRUE or FALSE depending on if it has passed.
-	 */
-	public function passes(Array $input)
-	{
-		$validator = $this->factory->make($input, $this->rules, $this->messages);
+    $this->errors = new MessageBag();
+  }
 
-		if($validator->fails($input)) {
+  /**
+   * Checks to see if the inputs pass the validation
+   * @param   Array   $input An array of all the inputs to be validated
+   * @returns Boolean Returns TRUE or FALSE depending on if it has passed.
+   */
+  public function passes(Array $input)
+  {
+    $validator = $this->factory->make($input, $this->rules, $this->messages);
 
-			$this->errors = $validator->messages();
+    if($validator->fails($input)) {
 
-			return false;
+      $this->errors = $validator->messages();
 
-		}
+      return false;
 
-		return true;
-	}
+    }
+
+    return true;
+  }
 
 }
