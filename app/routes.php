@@ -43,8 +43,8 @@ Route::resource('class', 'RaceClassController');
 Route::post('/class/disable/{id}', ['uses' => 'RaceClassController@disable', 'as' => 'class.disable' ]);
 Route::post('/class/enable/{id}', ['uses' => 'RaceClassController@enable', 'as' => 'class.enable']);
 
-Route::post('event/unlock/{classId}{eventId}', ['uses' => 'RaceEventController@unlock', 'as' => 'event.unlock']);
-Route::post('event/lock/{classId}{eventId}', ['uses' => 'RaceEventController@lock', 'as' => 'event.lock']);
+Route::post('event/unlock/{event_id}/{class_id}', ['uses' => 'RaceEventController@unlock', 'as' => 'event.unlock']);
+Route::post('event/lock/{event_id}/{class_id}', ['uses' => 'RaceEventController@lock', 'as' => 'event.lock']);
 
 Route::group(array('before' => 'is.logged.in', 'prefix' => 'settings'), function() {
 
