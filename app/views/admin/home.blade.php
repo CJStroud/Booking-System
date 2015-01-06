@@ -31,7 +31,7 @@
                     <div class="table-element">{{ $class->name }}</div>
                 </div>
 
-                {{ Form::open(array('action' => ['ClassController@disable', $class->id], 'method' => 'post')) }}
+                {{ Form::open(array('route' => ['class.disable', $class->id], 'method' => 'post')) }}
                 <div class="col-sm-2 col-xs-12">
                     <div class="table-element"><button class="btn btn-warning">Disable</button></div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="col-sm-6 col-xs-12">
                     {{ $class->name }}
                 </div>
-                {{ Form::open(array('action' => ['ClassController@enable', $class->id], 'method' => 'post')) }}
+                {{ Form::open(array('route' => ['class.enable', $class->id], 'method' => 'post')) }}
                 <div class="col-sm-2 col-xs-6">
                     <button class="btn btn-primary">Re-enable</button>
                 </div>

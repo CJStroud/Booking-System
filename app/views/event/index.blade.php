@@ -1,10 +1,10 @@
-@include('layouts.master')
+@extends('layouts.master')
 
 @section('content')
 <div class="tiles-container">
     <div class="container">
-        @if (Session::get('user') != null && Session::get('user')->isAdmin)
-        <div>{{ link_to_route('event.create', 'Create New Event', null, ['class="btn btn-primary create-class"']) }}</div>
+        @if (Auth::user()->isAdmin)
+          <div>{{ link_to_route('event.create', 'Create New Event', null, ['class="btn btn-primary create-class"']) }}</div>
         @endif
 
         <h2>Available to book</h2>

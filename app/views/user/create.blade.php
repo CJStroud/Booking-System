@@ -10,12 +10,12 @@
     <div class="col-xs-12">
       <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        Already have an account? <a href="login" class="alert-link">Login here</a>!
+        Already have an account? <a href="{{ route('user.login') }}" class="alert-link">Login here</a>!
       </div>
     </div>
   </div>
 
-  {{ Form::open(array('action' => 'UserController@store', 'id' => 'create-form')) }}
+  {{ Form::open(array('route' => 'user.store', 'id' => 'create-form')) }}
 
   <div class="row">
     <div class='col-xs-12'>

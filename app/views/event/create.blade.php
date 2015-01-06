@@ -1,4 +1,4 @@
-@include('layouts.master')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -6,7 +6,7 @@
 
     @include('partials.errors')
 
-    {{ Form::open(array('action' => 'RaceEventController@store', 'id' => 'create-form')) }}
+    {{ Form::open(array('route' => 'event.store', 'id' => 'create-form')) }}
 
     <div class="row">
         <div class='col-xs-12'>

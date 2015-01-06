@@ -8,7 +8,7 @@
 
     @include('partials.errors')
 
-    {{ Form::open(array('action' => 'BookingController@store', 'id' => 'create-form')) }}
+    {{ Form::open(array('route' => 'booking.store', 'id' => 'create-form')) }}
 
     <input type="hidden" value="{{$event->id}}" name="event_id">
     <input type="hidden" value="{{Auth::id()}}" name="user_id">

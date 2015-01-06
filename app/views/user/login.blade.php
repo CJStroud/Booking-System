@@ -8,7 +8,7 @@
   <div class="row">
 
   </div>
-  {{ Form::open(array('action' => 'UserController@attemptLogin', 'id' => 'create-form')) }}
+  {{ Form::open(array('route' => 'user.login.attempt', 'id' => 'create-form')) }}
 
   <div class="row">
     <div class='col-xs-12'>
