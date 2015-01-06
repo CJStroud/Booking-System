@@ -2,6 +2,7 @@
 
 use User;
 use Hash;
+use Auth;
 
 class UserRepository extends Repository
 {
@@ -37,7 +38,7 @@ class UserRepository extends Repository
   {
     $user = $this->model->findOrFail($id);
 
-    $user->password = $newPassword;
+    $user->password = Hash::make($newPassword . Auth::user()->secret);
 
     return $user->save();
   }
