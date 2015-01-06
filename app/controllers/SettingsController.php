@@ -31,4 +31,11 @@ class SettingsController extends \BaseController {
   public function account() {
     return View::make('settings.account')->withActive('account');
   }
+
+  public function accountPassword()
+  {
+    $this->form->passwordUpdate(Input::all());
+
+    return Redirect::route('settings.account')->withSuccess('Password successfully changed');
+  }
 }
