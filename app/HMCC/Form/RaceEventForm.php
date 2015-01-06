@@ -15,8 +15,8 @@ class RaceEventForm extends Form
     {
         $inputs['classes'] = json_decode($inputs['classes']);
 
-        $inputs['event_datetime'] = $this::DateTimeToTimestamp($inputs['event-date'], $inputs['event-time']);
-        $inputs['close_datetime'] = $this::DateTimeToTimestamp($inputs['close-date'], $inputs['close-time']);
+        $inputs['start_time'] = $this::DateTimeToTimestamp($inputs['event-date'], $inputs['event-time']);
+        $inputs['close_time'] = $this::DateTimeToTimestamp($inputs['close-date'], $inputs['close-time']);
 
         return parent::store($inputs);
     }

@@ -19,8 +19,8 @@ class RaceEventRepository extends Repository
 
         $event->name = $data['name'];
         $event->slug = $data['slug'];
-        $event->start_time = $data['event_datetime'];
-        $event->close_time = $data['close_datetime'];
+        $event->start_time = $data['start_time'];
+        $event->close_time = $data['close_time'];
 
         $event->save();
 
