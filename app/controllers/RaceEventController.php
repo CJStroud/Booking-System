@@ -129,7 +129,7 @@ class RaceEventController extends \BaseController {
    */
   public function lock($event_id, $class_id)
   {
-    $this->eventClassRepository->lock($event_id, $class_id);
+    $this->raceEventClassRepository->lock($event_id, $class_id);
 
     return Redirect::back();
   }
@@ -142,7 +142,7 @@ class RaceEventController extends \BaseController {
    */
   public function unlock($event_id, $class_id)
   {
-    $this->eventClassRepository->unlock($event_id, $class_id);
+    $this->raceEventClassRepository->unlock($event_id, $class_id);
 
     return Redirect::back();
   }
