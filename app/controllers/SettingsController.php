@@ -29,7 +29,8 @@ class SettingsController extends \BaseController {
   }
 
   public function account() {
-    return View::make('settings.account')->withActive('account');
+    $success = Session::get('success');
+    return View::make('settings.account')->withActive('account')->withSuccess($success);
   }
 
   public function accountPassword()
