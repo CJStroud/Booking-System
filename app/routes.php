@@ -11,21 +11,21 @@
 |
 */
 
-Route::get('/', ['as' => 'home'], function() {
+Route::get('/', ['as' => 'home', function() {
     return View::make('index');
-});
+}]);
 
-Route::get('/about', ['as' => 'about'], function() {
+Route::get('/about', ['as' => 'about', function() {
     return View::make('info.about');
-});
+}]);
 
-Route::get('/contact', ['as' => 'contact'], function() {
+Route::get('/contact', ['as' => 'contact', function() {
     return View::make('info.contact');
-});
+}]);
 
-Route::get('/gallery', ['as' => 'gallery'], function() {
+Route::get('/gallery', ['as' => 'gallery', function() {
     return View::make('info.gallery');
-});
+}]);
 
 Route::resource('event', 'RaceEventController');
 Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
@@ -37,7 +37,7 @@ Route::get('/login', [ 'uses' => 'UserController@login', 'as' => 'user.login' ])
 Route::post('/login', [ 'uses' => 'UserController@attemptLogin', 'as' => 'user.login.attempt' ]);
 Route::get('/logout', ['uses' => 'UserController@logOut', 'as' => 'user.logout']);
 Route::get('/signup', ['uses' => 'UserController@signUp', 'as' => 'user.signup']);
-Route::resource('user', 'UserController', [ 'only' => 'show|store']);
+Route::resource('user', 'UserController', [ 'only' => array('show', 'store') ]);
 
 Route::resource('class', 'RaceClassController');
 Route::post('/class/disable/{id}', ['uses' => 'RaceClassController@disable', 'as' => 'class.disable' ]);
