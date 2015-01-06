@@ -48,7 +48,7 @@ class SettingsForm extends Form
       }
     }
 
-    parent::update(Auth::id(), $data);
+    return parent::update(Auth::id(), $data);
   }
 
   /**
