@@ -13,16 +13,27 @@
     <div class="tile-body">
       <div class="tile-body-content bookings">
         <div class="col-xs-12 col-sm-3 col-sm-offset-9 booking-controls">
-          <a href="{{ route('booking.create.class', [ 'slug' => $slug, 'class_id' => $class->id ]) }}" class="btn btn-simple btn-lg">Book<i class="fa fa-arrow-right icon-spacing-left"></i></a>
 
-          @if ($class->locked)
-            {{ Form::open(['route' => ['event.unlock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'form', 'method' => 'POST' ] ) }}
-              <button type="submit" class="btn btn-simple btn-lg">Unlock<i class="fa fa-unlock-alt icon-spacing-left"></i></button>
-            {{ Form::close() }}
-          @else
-            {{ Form::open(['route' => ['event.lock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'form', 'method' => 'POST' ] ) }}
-              <button type="submit" class="btn btn-simple btn-lg">Lock<i class="fa fa-lock icon-spacing-left"></i></button>
-            {{ Form::close() }}
+
+          <?php
+            $disable = "";
+            if ($class->locked)
+            {
+              $disable = "disabled";
+            }
+          ?>
+          <a href="{{ route('booking.create.class', [ 'slug' => $slug, 'class_id' => $class->id ]) }}" class="btn btn-simple btn-lg {{ $disable }}">Book<i class="fa fa-arrow-right icon-spacing-left"></i></a>
+
+          @if (Auth::check() && Auth::user()->is_admin)
+            @if ($class->locked)
+              {{ Form::open(['route' => ['event.unlock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'form', 'method' => 'POST' ] ) }}
+                <button type="submit" class="btn btn-simple btn-lg">Unlock<i class="fa fa-unlock-alt icon-spacing-left"></i></button>
+              {{ Form::close() }}
+            @else
+              {{ Form::open(['route' => ['event.lock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'form', 'method' => 'POST' ] ) }}
+                <button type="submit" class="btn btn-simple btn-lg">Lock<i class="fa fa-lock icon-spacing-left"></i></button>
+              {{ Form::close() }}
+            @endif
           @endif
 
           </div>
