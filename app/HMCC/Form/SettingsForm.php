@@ -1,6 +1,7 @@
 <?php namespace HMCC\Form;
 
 use HMCC\Validation\Settings\ProfileValidator;
+use HMCC\Validation\Settings\PasswordValidator;
 use HMCC\Repository\UserRepository;
 use Auth;
 
