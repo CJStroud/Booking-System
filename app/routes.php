@@ -12,35 +12,19 @@
 */
 
 Route::get('/', function() {
-
-    $view = View::make('layouts.master');
-    $view->content = View::make('index');
-
-    return $view;
+    return View::make('index');
 });
 
 Route::get('/about', function() {
-
-    $view = View::make('layouts.master');
-    $view->content = View::make('info.about');
-
-    return $view;
+    return View::make('info.about');
 });
 
 Route::get('/contact', function() {
-
-    $view = View::make('layouts.master');
-    $view->content = View::make('info.contact');
-
-    return $view;
+    return View::make('info.contact');
 });
 
 Route::get('/gallery', function() {
-
-    $view = View::make('layouts.master');
-    $view->content = View::make('info.gallery');
-
-    return $view;
+    return View::make('info.gallery');
 });
 
 Route::resource('event', 'RaceEventController');
