@@ -1,23 +1,47 @@
 <?php namespace HMCC\Validation;
 
+use Illuminate\Support\MessageBag;
+
 class RaceEventValidator extends Validator
 {
-	protected $rules = ['name' => 'required',
-						'slug' => 'required|alpha_dash',
-						'event-datetime' => 'required|date_format:"d/m/Y H:i"',
-						'close-datetime' => 'required|date_format:"d/m/Y H:i"'];
+    protected $rules = ['name' => 'required',
+                        'slug' => 'required|alpha_dash',
+                        'event-date' => 'required',
+                        'event-time' => 'required',
+                        'close-time' => 'required',
+                        'close-date' => 'required'];
 
-	public function passes(Array $input)
-	{
-		$passes = parent::passes($input);
+    public function passes(Array $input)
+    {
+        $passes = parent::passes($input);
 
-		if (empty($classes))
-		{
-			$this->errors->add('classes', 'An event requires at least one class');
+        if ($input['event_datetime'] < time())
+        {
+            $this->errors->add('event_date', 'The event date and time cannot in the past');
+            $passes = false;
+        }
 
-			return false;
-		}
+        if ($input['close_datetime'] < time())
+        {
+            $this->errors->add('close_date', 'The close date and time cannot in the past');
+            $passes = false;
+        }
+        else if($input['close_datetime'] > $input['event_datetime'])
+        {
+            $this->errors->add('close_date', 'The close date and time cannot be after the event');
+            $passes = false;
+        }
 
-		return $passes;
-	}
+
+        if (empty($input['classes']))
+        {
+            $this->errors->add('classes', 'An event requires at least one class');
+
+            $passes = false;
+        }
+
+
+
+        return $passes;
+    }
 }

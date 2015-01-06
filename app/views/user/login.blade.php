@@ -1,4 +1,4 @@
-@include('layouts.master')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -36,3 +36,5 @@
   {{ Form::close() }}
 
 </div>
+
+@stop
