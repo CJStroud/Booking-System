@@ -8,19 +8,18 @@
             <li><a href='#'>events</a></li>
 
             @if (Auth::check())
+            <li><a href='#'>sign out</a></li>
+            <li><a href='#'>my profile</a></li>
+            @else
             <li><a href='#'>login</a></li>
             <li><a href='#'>sign up</a></li>
-            @else
-            <li><a href='#'>sign out</a></li>
             @endif
-
         </ul>
     </div>
 </div>
 
 
 <div class="footer-copyright">
-    <p><i class="fa fa-copyright fa-spacing-left"></i> 2015 Halesowen Model Car Club</p>
-    <p>Created by Chris Stroud and Chris Normansell</p>
+    <p><i class="fa fa-copyright"></i> 2015 Halesowen Model Car Club | Created by Chris Stroud and Chris Normansell</p>
 </div>
 
