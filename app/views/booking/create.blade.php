@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('content')
+
 <div class="container">
     <h2>{{$event->name}}</h2>
     <h3>{{date('d/m/Y H:i', $event->event_datetime)}}</h3>
