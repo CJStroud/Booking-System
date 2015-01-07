@@ -20,11 +20,7 @@
               <select id="class_id" class="drop-down-holder selectpicker id-select form-control">
                 @foreach ($classes as $class)
 
-                @if ($class->locked)
-                <option id="{{$class->id}}">&#xf023; {{$class->name}}</option>
-                @else
-                <option id="{{$class->id}}">{{$class->name}}</option>
-                @endif
+                <option id="{{$class->id}}">@if ($class->locked)&#xf023; @endif{{$class->name}}</option>
 
                 @endforeach
               </select>
