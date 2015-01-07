@@ -29,11 +29,15 @@ class RaceEventRepository extends Repository
         {
             $event_class = [];
 
+            if (is_object($class))
+            {
+              $class = json_decode(json_encode($class), true);
+            }
+
             $event_class['class_id'] = $class['id'];
             $event_class['event_id'] = $event->id;
             $event_class['limit'] = $class['limit'];
             $event_class['locked'] = false;
-
 
             $this->raceEventClassRepository->store($event_class);
         }
