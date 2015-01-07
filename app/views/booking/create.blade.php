@@ -16,18 +16,19 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="form-group">
-                {{ Form::label('class_id', 'Class', ['class' => '']) }}
+              {{ Form::label('class_id', 'Class', ['class' => '']) }}
               <select id="class_id" class="drop-down-holder selectpicker id-select form-control">
-                    @foreach ($classes as $class)
-                  <option id="{{$class->id}}">
-                  @if ($class->locked)
-                &#xf023;
-                    @endif
-                    {{$class->name}}</option>
+                @foreach ($classes as $class)
 
-                    @endforeach
-                </select>
-                <input name="class_id" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
+                @if ($class->locked)
+                <option id="{{$class->id}}">&#xf023; {{$class->name}}</option>
+                @else
+                <option id="{{$class->id}}">{{$class->name}}</option>
+                @endif
+
+                @endforeach
+              </select>
+              <input name="class_id" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
             </div>
         </div>
     </div>
