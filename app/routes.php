@@ -64,4 +64,6 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 
   Route::get('/', ['uses' => 'AdminController@home', 'as' => 'admin.home']);
 
+  Route::get('users', ['uses' => 'AdminController@users', 'as' => 'admin.users']);
+
 });
