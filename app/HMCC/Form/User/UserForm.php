@@ -1,8 +1,10 @@
 <?php namespace HMCC\Form\User;
 
+use Illuminate\Support\MessageBag;
 use HMCC\Validation\User\UserValidator;
 use HMCC\Repository\User\UserRepository;
 use HMCC\Form\Form;
+use HMCC\Fomr\FormException;
 use Hash;
 use Auth;
 
@@ -36,5 +38,24 @@ class UserForm extends Form
     }
 
     return false;
+  }
+
+  public function banUser($id, $data)
+  {
+    $errors = new MessageBag();
+
+    if (!isset($data['reason']))
+    {
+      $errors->add('reason', 'Reason is required');
+
+      throw new FormException($errors);
+    }
+
+    $this->repository->banUser($id, $data['reason']);
+  }
+
+  public function unbanUser($id)
+  {
+    $this->repository->unbanUser($id);
   }
 }
