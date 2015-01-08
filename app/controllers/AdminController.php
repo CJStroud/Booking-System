@@ -24,6 +24,21 @@ class AdminController extends BaseController {
   {
     $users = $this->form->repository->all();
 
-    return View::make('admin.users')->withUsers($users)->withBanned($bannedUsers)->withActive('users');
+    return View::make('admin.users')->withUsers($users)->withActive('users');
+  }
+
+  public function banUser($id)
+  {
+    $this->form->banUser($id, Input::all());
+
+    return Redirect::route('admin.users')->withSuccess('User banned successfully');
+  }
+
+  public function unbanUser($id)
+  {
+    $this->form->unbanUser($id);
+
+    return Redirect::route('admin.users')->withSuccess('User unbanned successfully');
+
   }
 }
