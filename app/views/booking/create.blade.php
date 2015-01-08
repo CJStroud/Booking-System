@@ -72,33 +72,7 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class='col-xs-12'>
-      <div class="form-group">
-        {{ Form::label('frequency2-drop-down', 'Frequency 2', ['class' => '']) }}
-        <select id="frequency2-drop-down" class="selectpicker value-select form-control">
-          @foreach($frequencies as $frequency)
-            <option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
-          @endforeach
-        </select>
-        <input name="frequency2-drop-down" type="hidden" class="hidden-text" id="frequency2-input" value="{{$frequencies[0]->name}}">
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class='col-xs-12'>
-      <div class="form-group">
-        {{ Form::label('frequency3-drop-down', 'Frequency 3', ['class' => '']) }}
-      <select name="frequency3-drop-down" class="selectpicker value-select form-control">
-        @foreach($frequencies as $frequency)
-          <option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
-        @endforeach
-      </select>
-      <input name="frequency3-drop-down" type="hidden" class="hidden-text" id="frequency3-input" value="{{$frequencies[0]->name}}">
-      </div>
-    </div>
-  </div>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setFrequencies">Choose Frequencies</button>
 
   <div class="row">
     <div class="form-group">
@@ -108,6 +82,34 @@
     </div>
   </div>
   {{ Form::close() }}
+</div>
+
+<div class="modal fade" id="setFrequencies" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Choose 1 - 3 frequencies</h4>
+      </div>
+      <div class="modal-body">
+
+        @foreach($frequencies as $frequency)
+          <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="frequency-option"><p>{{ $frequency->name }}</p></div>
+          </div>
+        @endforeach
+
+      </div>
+      <div class="modal-footer">
+        <div class="col-xs-6 col-sm-3 col-sm-offset-6">
+          <button type="button" class="btn btn-primary">Save</button>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal"><span class="btn-text">Cancel</span><span class="btn-addon btn-addon-primary"><i class="fa fa-close"></i></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 @stop
