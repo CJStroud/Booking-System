@@ -17,7 +17,7 @@
         @if ($user->banned)
           <h4><span class="user-label">Banned</span>{{ date('jS M Y H:i', $user->banned) }}</h4>
           <h4><span class="user-label">Reason</span>{{ $user->banned_reason }}</h4>
-          {{ Form::open(array('route' => 'admin.user.unban', 'id' => 'create-form')) }}
+          {{ Form::open(array('route' => [ 'admin.user.unban', $user->id ], 'id' => 'create-form')) }}
             <div class="row">
               <div class="col-xs-12 col-sm-3">
                 <button class="btn btn-secondary" type="submit">Unban</button>
@@ -26,7 +26,7 @@
           {{ Form::close() }}
         @else
 
-          {{ Form::open(array('route' => 'admin.user.ban', 'id' => 'create-form')) }}
+          {{ Form::open(array('route' => [ 'admin.user.ban', $user->id ], 'id' => 'create-form')) }}
 
             <div class="row">
               <div class="col-xs-12">
