@@ -43,4 +43,24 @@ class UserRepository extends Repository
 
     return $user->save();
   }
+
+  public function banUser($id, $reason)
+  {
+    $user = $this->model->findOrFail($id);
+
+    $user->banned_reason = $reason;
+    $user->banned = time();
+
+    return $user->save();
+  }
+
+  public function unbanUser($id)
+  {
+    $user = $this->model->findOrFail($id);
+
+    $user->banned_reason = '';
+    $user->banned = 0;
+
+    return $user->save();
+  }
 }
