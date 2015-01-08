@@ -22,7 +22,7 @@ class AdminController extends BaseController {
 
   public function users()
   {
-    $users = $this->form->repository->GetUnbannedUsers();
+    $users = $this->form->repository->all();
 
     $bannedUsers = $this->form->repository->GetBannedUsers();
 
