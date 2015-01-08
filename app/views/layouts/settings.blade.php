@@ -16,7 +16,7 @@
     <div class="list-group col-sm-3 col-md-2 sidebar">
       @yield('sidebar')
     </div>
-    <div class="col-xs-10 col-sm-9 col-md-10">
+    <div class="col-xs-12 col-sm-9 col-md-10">
       @yield('settings-content')
     </div>
   </div>
