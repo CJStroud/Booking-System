@@ -31,13 +31,27 @@ class UserForm extends Form
     // append secret to password
     $password =  $password . $secret;
 
+    $errors = new MessageBag();
 
-    if (Auth::attempt(array('email' => $email, 'password' => $password)))
+    if (!Auth::attempt(array('email' => $email, 'password' => $password)))
     {
-      return true;
+      $errors->add('incorrect details', 'The details you entered where incorrect');
+
+      throw new FormException($errors);
     }
 
-    return false;
+    if (Auth::user()->banned > 0)
+    {
+      $banned_message = 'You have been banned by the administrator because "'. Auth::user()->banned_reason . '"';
+
+      $errors->add('banned user', $banned_message);
+
+      Auth::logout();
+
+      throw new FormException($errors);
+    }
+
+    return true;
   }
 
   public function banUser($id, $data)

@@ -41,12 +41,9 @@ class UserController extends \BaseController {
     $email = Input::get('email');
     $password = Input::get('password');
 
-    if($this->form->checkLogin($email, $password))
-    {
-      return Redirect::route('event.index');
-    }
+    $this->form->checkLogin($email, $password);
 
-    return Redirect::back()->withInput()->withErrors("The details you entered where incorrect");
+    return Redirect::route('event.index');
   }
 
   public function logOut()
