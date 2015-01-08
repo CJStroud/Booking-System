@@ -19,9 +19,9 @@
 </a>
 
 @if ($active == 'users')
-  <a href="{{ route('settings.account') }}" class="list-group-item active">
+  <a href="{{ route('admin.users') }}" class="list-group-item active">
 @else
-  <a href="{{ route('settings.account') }}" class="list-group-item">
+  <a href="{{ route('admin.users') }}" class="list-group-item">
 @endif
   <i class="fa fa-users fa-lg"></i><span class="icon-spacing-left">Users</span>
 </a>
