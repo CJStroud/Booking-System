@@ -43,4 +43,14 @@ class UserRepository extends Repository
 
     return $user->save();
   }
+
+  public function GetUnbannedUsers()
+  {
+    return $this->model->where('banned', '=', '0')->get();
+  }
+
+  public function GetBannedUsers()
+  {
+    return $this->model->where('banned', '>', '0')->get();
+  }
 }
