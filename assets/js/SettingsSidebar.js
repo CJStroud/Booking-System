@@ -6,7 +6,9 @@ Sidebar moving when in mobile view
 
 $(function Load() {
   if ($(window).width() < 768) {
+
     var sidebarWidth = ( 100 * parseFloat($('.settings .sidebar').css('width')) / parseFloat($('.settings .sidebar').parent().css('width')) );
+
     $('#expand-sidebar').click(function NavigateSidebarClick() {
       var active = $(this).data('active');
 
@@ -26,6 +28,7 @@ $(function Load() {
         });
 
         $('#expand-sidebar').data('active', false);
+        $('#expand-sidebar').html('Navigate<i class="fa fa-navicon icon-spacing-left"></i>');
 
       } else {
         $('.settings .sidebar').animate({
@@ -43,7 +46,7 @@ $(function Load() {
         });
 
         $('#expand-sidebar').data('active', true);
-
+        $('#expand-sidebar').html('<i class="fa fa-arrow-left icon-spacing-right"></i>Close');
       }
 
 
