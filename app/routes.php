@@ -68,4 +68,6 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 
   Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
 
+  Route::post('users/{id}/unban', ['uses' => 'AdminController@unbanUser', 'as' => 'admin.user.unban']);
+
 });
