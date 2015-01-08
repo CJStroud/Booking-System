@@ -13,24 +13,8 @@
       </div>
     @endif
 
-
-
     <div class="list-group col-xs-2 col-sm-3 col-md-2">
-      @if ($active == 'profile')
-        <a href="{{ route('settings.profile') }}" class="list-group-item active">
-      @else
-        <a href="{{ route('settings.profile') }}" class="list-group-item">
-      @endif
-        <i class="fa fa-newspaper-o fa-lg"></i><span class="hidden-xs icon-spacing-left">Profile</span>
-      </a>
-
-      @if ($active == 'account')
-        <a href="{{ route('settings.account') }}" class="list-group-item active">
-      @else
-        <a href="{{ route('settings.account') }}" class="list-group-item">
-      @endif
-        <i class="fa fa-user fa-lg"></i><span class="hidden-xs icon-spacing-left">Account</span>
-      </a>
+      @yield('sidebar')
     </div>
     <div class="col-xs-10 col-sm-9 col-md-10">
       @yield('settings-content')

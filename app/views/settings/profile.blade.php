@@ -1,4 +1,4 @@
-@extends('layouts.settings')
+@extends('layouts.user-settings')
 
 
 @section('settings-content')
