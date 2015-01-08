@@ -24,9 +24,6 @@ class AdminController extends BaseController {
   {
     $users = $this->form->repository->all();
 
-    $bannedUsers = $this->form->repository->GetBannedUsers();
-
-
     return View::make('admin.users')->withUsers($users)->withBanned($bannedUsers)->withActive('users');
   }
 }
