@@ -63,9 +63,7 @@
           <h4 class="modal-title">Delete Account</h4>
         </div>
         <div class="modal-body">
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-warning">Warning! This will remove you from all events that you are booked on.</li>
-          </ul>
+          <div class="alert alert-warning">Warning! This will remove you from all events that you are booked on.</div>
           <div class="form-group">
             <div class="col-xs-12">
               <p>Please type in your account password to confirm you definitely want to delete this account.</p>
