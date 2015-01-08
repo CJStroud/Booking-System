@@ -58,6 +58,7 @@ $(function Load() {
       $('#settings-content').removeAttr('style');
       $('.settings .sidebar').removeAttr('style');
       $('#expand-sidebar').data('active', false);
+      $('#expand-sidebar').html('Navigate<i class="fa fa-navicon icon-spacing-left"></i>');
     }
   });
 
