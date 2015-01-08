@@ -33,7 +33,7 @@
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Reason" name="reason">
                   <span class="input-group-btn">
-                    <button class="btn btn-delete" type="button">Ban!</button>
+                    <button class="btn btn-delete" type="submit">Ban!</button>
                   </span>
                 </div>
               </div>
