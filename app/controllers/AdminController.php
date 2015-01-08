@@ -11,7 +11,7 @@ class AdminController extends BaseController {
 
   public function __construct(UserForm $form)
   {
-    $this->userForm = $form;
+    $this->form = $form;
   }
 
 
