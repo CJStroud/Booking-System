@@ -4,7 +4,7 @@
 
 <div class="container">
   <h2>{{$event->name}}</h2>
-  <h3>{{date('d/m/Y H:i', $event->event_datetime)}}</h3>
+  <h3>{{date('d/m/Y H:i', $event->start_time)}}</h3>
 
   @include('partials.errors')
 
