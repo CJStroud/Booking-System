@@ -4,6 +4,6 @@ class AdminController extends BaseController {
 
   public function home()
   {
-      return View::make('admin.home');
+      return View::make('admin.home')->withActive('home');
   }
 }
