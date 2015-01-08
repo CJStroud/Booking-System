@@ -31,7 +31,7 @@ class CreateUserTable extends Migration {
       $table->boolean('is_admin');
 
       $table->integer('banned');
-      $table->boolean('banned_reason');
+      $table->string('banned_reason');
 
       $table->timestamps();
       $table->softDeletes();
