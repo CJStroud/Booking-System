@@ -4,7 +4,7 @@ use Illuminate\Support\MessageBag;
 use HMCC\Validation\User\UserValidator;
 use HMCC\Repository\User\UserRepository;
 use HMCC\Form\Form;
-use HMCC\Fomr\FormException;
+use HMCC\Form\FormException;
 use Hash;
 use Auth;
 
@@ -44,7 +44,7 @@ class UserForm extends Form
   {
     $errors = new MessageBag();
 
-    if (!isset($data['reason']))
+    if (!isset($data['reason']) || $data['reason'] == '')
     {
       $errors->add('reason', 'Reason is required');
 
