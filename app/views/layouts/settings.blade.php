@@ -13,7 +13,7 @@
       </div>
     @endif
 
-    <div class="list-group col-xs-2 col-sm-3 col-md-2">
+    <div class="list-group col-xs-2 col-sm-3 col-md-2 sidebar">
       @yield('sidebar')
     </div>
     <div class="col-xs-10 col-sm-9 col-md-10">
