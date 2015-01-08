@@ -12,11 +12,12 @@
         <p>{{ $success }}</p>
       </div>
     @endif
+      <button id="expand-sidebar" class="visible-xs btn btn-default">Navigate<i class="fa fa-navicon icon-spacing-left"></i></button>
 
-    <div class="list-group col-xs-2 col-sm-3 col-md-2 sidebar">
+    <div class="list-group col-sm-3 col-md-2 sidebar">
       @yield('sidebar')
     </div>
-    <div class="col-xs-10 col-sm-9 col-md-10">
+    <div class="col-xs-12 col-sm-9 col-md-10" id="settings-content">
       @yield('settings-content')
     </div>
   </div>

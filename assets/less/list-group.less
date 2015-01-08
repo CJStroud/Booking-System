@@ -1,11 +1,12 @@
 .settings .sidebar.list-group{
 
+  @media only screen and (max-width: @screen-sm) {
+    position: absolute;
+    left: -(percentage((5 / @grid-columns)));
+    width: percentage((5 / @grid-columns));
+  }
   .list-group-item {
     text-align: center;
-    @media only screen and (max-width: @screen-sm) {
-      width: 45px;
-      padding: 10px;
-    }
 
     &.active {
       background-color: lighten(@flat-dark-blue, 20%);

@@ -7,7 +7,7 @@
 @else
   <a href="{{ route('admin.home') }}" class="list-group-item">
 @endif
-  <i class="fa fa-home fa-lg"></i><span class="hidden-xs icon-spacing-left">Home</span>
+  <i class="fa fa-home fa-lg"></i><span class="icon-spacing-left">Home</span>
 </a>
 
 @if ($active == 'classes')
@@ -15,7 +15,7 @@
 @else
   <a href="{{ route('settings.account') }}" class="list-group-item">
 @endif
-  <i class="fa fa-car fa-lg"></i><span class="hidden-xs icon-spacing-left">Classes</span>
+  <i class="fa fa-car fa-lg"></i><span class="icon-spacing-left">Classes</span>
 </a>
 
 @if ($active == 'users')
@@ -23,7 +23,7 @@
 @else
   <a href="{{ route('settings.account') }}" class="list-group-item">
 @endif
-  <i class="fa fa-users fa-lg"></i><span class="hidden-xs icon-spacing-left">Users</span>
+  <i class="fa fa-users fa-lg"></i><span class="icon-spacing-left">Users</span>
 </a>
 
 @if ($active == 'gallery')
@@ -31,7 +31,7 @@
 @else
   <a href="{{ route('settings.account') }}" class="list-group-item">
 @endif
-  <i class="fa fa-photo fa-lg"></i><span class="hidden-xs icon-spacing-left">Gallery</span>
+  <i class="fa fa-photo fa-lg"></i><span class="icon-spacing-left">Gallery</span>
 </a>
 
 @if ($active == 'events')
@@ -39,7 +39,7 @@
 @else
   <a href="{{ route('settings.account') }}" class="list-group-item">
 @endif
-  <i class="fa fa-flag fa-lg"></i><span class="hidden-xs icon-spacing-left">Events</span>
+  <i class="fa fa-flag fa-lg"></i><span class="icon-spacing-left">Events</span>
 </a>
 
 @stop
