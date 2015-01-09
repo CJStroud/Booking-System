@@ -62,12 +62,8 @@
     <div class='col-xs-12'>
       <div class="form-group">
         {{ Form::label('frequency1-drop-down', 'Frequency 1', ['class' => '']) }}
-        <select id="frequency1-drop-down" class="selectpicker value-select form-control">
-          @foreach($frequencies as $frequency)
-            <option id="{{$frequency->id}}" value="{{$frequency->name}}">{{$frequency->name}}</option>
-          @endforeach
-        </select>
-        <input name="frequency1-drop-down" type="hidden" class="hidden-text" id="frequency1-input" value="{{$frequencies[0]->name}}">
+        <input name="frequency-names" type="text" class="form-control" id="frequencies-shown">
+        <input name="frequency-ids-hidden" type="text" class="hidden-text" id="frequency-input">
       </div>
     </div>
   </div>
@@ -89,11 +85,19 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Choose 1 - 3 frequencies</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Choose Frequencies</h4>
       </div>
 
       <div class="modal-body">
-        <div class="col-xs-6 col-sm-3 col-sm-offset-6">
+        <div class="col-xs-12">
+          <div class="alert alert-warning">Select up to three frequencies and select save</div>
+        </div>
+        <div class='col-xs-12 col-sm-6'>
+          <div class="form-group">
+            <input class="form-control disabled" id="selected-frequencies-text" placeholder="Selected frequencies">
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
           <button type="button" class="btn btn-primary">Save</button>
         </div>
         <div class="col-xs-6 col-sm-3">
@@ -102,7 +106,7 @@
 
         @foreach($frequencies as $frequency)
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="frequency-option"><p>{{ $frequency->name }}</p></div>
+            <div class="frequency-option" data-id="{{$frequency->id}}"><p>{{ $frequency->name }}</p></div>
           </div>
         @endforeach
 

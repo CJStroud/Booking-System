@@ -5,18 +5,27 @@ $(document).ready(function(){
       $('.event-slug input').val(value);
   });
 
-  var frequenciesSelected = 0;
+  var frequencyCount = 0;
   var maxFrequencies = 3;
+  var selectedFrequencies;
 
   $( ".frequency-option" ).click(function() {
 
+    console.log($(this).attr('data-id'));
+
+    var id = $(this).attr('data-id');
+
+
     if ($(this).hasClass('frequency-selected')) {
-      frequenciesSelected--;
+      frequencyCount--;
+      selectedFrequencies.remove(id);
       $(this).toggleClass('frequency-selected');
     }
-    else if (frequenciesSelected < maxFrequencies) {
-      frequenciesSelected++;
+    else if (frequencyCount < maxFrequencies) {
+      frequencyCount++;
+      selectedFrequencies.push(id);
       $(this).toggleClass('frequency-selected');
+      $('#selected-frequencies-text').val();
     }
 
   });
