@@ -10,8 +10,11 @@ $(document).ready(function(){
   var frequencyIds = [];
   var frequencyNames = [];
 
-  $( ".frequency-option" ).click(function() {
+  $(".frequency-save").click(function() {
 
+  });
+
+  $( ".frequency-option" ).click(function() {
 
     var id = $(this).attr('data-id');
     var name = $(this).attr('value');

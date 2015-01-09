@@ -98,7 +98,7 @@
           </div>
         </div>
         <div class="col-xs-6 col-sm-3">
-          <button type="button" class="btn btn-primary">Save</button>
+          <button type="button" id="frenquency-save" class="btn btn-primary">Save</button>
         </div>
         <div class="col-xs-6 col-sm-3">
           <button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal"><span class="btn-text">Cancel</span><span class="btn-addon btn-addon-primary"><i class="fa fa-close"></i></span></button>
@@ -113,7 +113,7 @@
       </div>
       <div class="modal-footer">
         <div class="col-xs-6 col-sm-3 col-sm-offset-6">
-          <button type="button" class="btn btn-primary">Save</button>
+          <button type="button" id="frenquency-save" class="btn btn-primary">Save</button>
         </div>
         <div class="col-xs-6 col-sm-3">
           <button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal"><span class="btn-text">Cancel</span><span class="btn-addon btn-addon-primary"><i class="fa fa-close"></i></span></button>
