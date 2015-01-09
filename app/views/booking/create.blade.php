@@ -91,10 +91,17 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">Choose 1 - 3 frequencies</h4>
       </div>
+
       <div class="modal-body">
+        <div class="col-xs-6 col-sm-3 col-sm-offset-6">
+          <button type="button" class="btn btn-primary">Save</button>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+          <button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal"><span class="btn-text">Cancel</span><span class="btn-addon btn-addon-primary"><i class="fa fa-close"></i></span></button>
+        </div>
 
         @foreach($frequencies as $frequency)
-          <div class="col-xs-6 col-sm-4 col-md-3">
+          <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="frequency-option"><p>{{ $frequency->name }}</p></div>
           </div>
         @endforeach
