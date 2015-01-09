@@ -7,27 +7,41 @@ $(document).ready(function(){
 
   var frequencyCount = 0;
   var maxFrequencies = 3;
-  var selectedFrequencies;
+  var frequencyIds = [];
+  var frequencyNames = [];
 
   $( ".frequency-option" ).click(function() {
 
-    console.log($(this).attr('data-id'));
 
     var id = $(this).attr('data-id');
-
+    var name = $(this).attr('value');
 
     if ($(this).hasClass('frequency-selected')) {
       frequencyCount--;
-      selectedFrequencies.remove(id);
+      var index = frequencyIds.indexOf(id);
+      frequencyIds.splice(index, 1);
+      frequencyNames.splice(index, 1);
       $(this).toggleClass('frequency-selected');
     }
     else if (frequencyCount < maxFrequencies) {
       frequencyCount++;
-      selectedFrequencies.push(id);
+      frequencyIds.push(id);
+      frequencyNames.push(name);
       $(this).toggleClass('frequency-selected');
-      $('#selected-frequencies-text').val();
     }
 
+    var frequencyInputValue = "";
+    var loopIndex;
+
+    for (loopIndex = 0; loopIndex < frequencyNames.length; loopIndex++) {
+      if(loopIndex != 0)
+      {
+        frequencyInputValue += ", ";
+      }
+      frequencyInputValue += frequencyNames[loopIndex];
+    }
+
+    $('#selected-frequencies-text').val(frequencyInputValue);
   });
 
 });

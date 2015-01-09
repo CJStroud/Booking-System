@@ -106,7 +106,7 @@
 
         @foreach($frequencies as $frequency)
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="frequency-option" data-id="{{$frequency->id}}"><p>{{ $frequency->name }}</p></div>
+            <div class="frequency-option" data-id="{{$frequency->id}}" value="{{ $frequency->name }}"><p>{{ $frequency->name }}</p></div>
           </div>
         @endforeach
 
