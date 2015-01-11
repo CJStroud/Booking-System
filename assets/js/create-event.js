@@ -37,7 +37,7 @@ $(document).ready(function(){
     var loopIndex;
 
     for (loopIndex = 0; loopIndex < frequencyNames.length; loopIndex++) {
-      if(loopIndex != 0)
+      if(loopIndex !== 0)
       {
         frequencyInputValue += ", ";
       }
