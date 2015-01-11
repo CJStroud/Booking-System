@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 
 	$('#frequencies-input').click(function() {
-		$("#frequency-save").click(function() {
+		$(".frequency-save-btn").click(function() {
 			$('#frequencies-input').val(frequencyInputValue);
 			$('#frequencies-input-hidden').val(frequencyIds);
 		});
