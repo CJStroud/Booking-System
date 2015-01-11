@@ -49,7 +49,7 @@ $(document).ready(function(){
 			frequencyInputValue += frequencyNames[loopIndex];
 		}
 
-		$('#selected-frequencies-text').val(frequencyInputValue);
+		$('#selected-frequencies-text').html(frequencyInputValue);
 	});
 
 });
