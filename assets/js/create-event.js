@@ -19,6 +19,11 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#frequencies-input').keydown(function(e) {
+		e.preventDefault();
+		return false;
+	});
+
 	$( ".frequency-option" ).click(function() {
 
 		var id = $(this).attr('data-id');
