@@ -63,7 +63,7 @@
 			<div class="form-group">
 				{{ Form::label('frequencies-input', 'Frequencies', ['class' => '']) }}
 				<input name="frequency-names" type="text" class="form-control" id="frequencies-input" data-toggle="modal" data-target="#setFrequencies">
-				<input name="frequency-ids" type="text" class="hidden-text" id="frequencies-input-hidden">
+				<input name="frequency-ids" type="hidden" class="hidden-text" id="frequencies-input-hidden">
 			</div>
 		</div>
 	</div>
