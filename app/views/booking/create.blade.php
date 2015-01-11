@@ -62,7 +62,7 @@
 		<div class='col-xs-12'>
 			<div class="form-group">
 				{{ Form::label('frequencies-input', 'Frequencies', ['class' => '']) }}
-				<input name="frequency-names" type="text" class="form-control" id="frequencies-input" data-toggle="modal" data-target="#setFrequencies">
+				<input name="frequency-names" type="text" placeholder="Select frequencies" class="form-control" id="frequencies-input" data-toggle="modal" data-target="#setFrequencies">
 				<input name="frequency-ids" type="hidden" class="hidden-text" id="frequencies-input-hidden">
 			</div>
 		</div>
@@ -90,16 +90,19 @@
 				<div class="col-xs-12">
 					<div class="alert alert-warning">Select up to three frequencies and select save</div>
 				</div>
-				<div class='col-xs-12 col-sm-6'>
-					<div class="form-group">
-						<input class="form-control disabled" id="selected-frequencies-text" placeholder="Selected frequencies">
+				<div class="col-xs-12">
+					<div class='col-xs-12 col-sm-6'>
+
+						<div class="form-group">
+							<div class="form-control disabled" id="selected-frequencies-text"></div>
+						</div>
 					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3">
-					<button type="button" id="frequency-save" class="btn btn-primary btn-with-addon" data-dismiss="modal"><span class="btn-text">Save</span><span class="btn-addon btn-addon-primary"><i class="fa fa-check"></i></span></button>
-				</div>
-				<div class="col-xs-6 col-sm-3">
-					<button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal"><span class="btn-text">Cancel</span><span class="btn-addon btn-addon-primary"><i class="fa fa-close"></i></span></button>
+					<div class="col-xs-6 col-sm-3">
+						<button type="button" id="frequency-save" class="btn btn-primary btn-with-addon" data-dismiss="modal"><span class="btn-text">Save</span><span class="btn-addon btn-addon-primary"><i class="fa fa-check"></i></span></button>
+					</div>
+					<div class="col-xs-6 col-sm-3">
+						<button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal"><span class="btn-text">Cancel</span><span class="btn-addon btn-addon-primary"><i class="fa fa-close"></i></span></button>
+					</div>
 				</div>
 
 				@foreach($frequencies as $frequency)
