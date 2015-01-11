@@ -32,7 +32,7 @@
 			<div class="col-xs-12">
 					<div class="form-group">
 							{{ Form::label('transponder', 'Transponder Number', ['class' => '']) }}
-					<input type="text" class="form-control" placeholder="E.g 12345678" name='transponder' value="{{ Input::old('trans') }}">
+					<input type="text" class="form-control" placeholder="E.g 12345678" name='transponder' value="{{ Input::old('transponder') }}">
 					</div>
 			</div>
 	</div>
