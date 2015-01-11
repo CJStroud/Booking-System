@@ -64,4 +64,10 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 
   Route::get('/', ['uses' => 'AdminController@home', 'as' => 'admin.home']);
 
+  Route::get('users', ['uses' => 'AdminController@users', 'as' => 'admin.users']);
+
+  Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
+
+  Route::post('users/{id}/unban', ['uses' => 'AdminController@unbanUser', 'as' => 'admin.user.unban']);
+
 });
