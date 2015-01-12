@@ -84,4 +84,31 @@ class BookingRepository extends Repository
 
 		return $result;
 	}
+
+	public function store($data)
+	{
+		$booking = new Booking;
+
+		$booking->fill($data);
+
+		$success = $booking->save();
+
+		$bookingId = $booking->id;
+
+		if ($success)
+		{
+			foreach ($data['frequencies'] as $frequencyId)
+			{
+				$bookingFrequency = [];
+				$bookingFrequency['frequency_id'] = $frequencyId;
+				$bookingFrequency['booking_id'] = $bookingId;
+
+				$this->bookingFrequencyRepository->store($bookingFrequency);
+			}
+		}
+
+		return $success;
+
+	}
+
 }
