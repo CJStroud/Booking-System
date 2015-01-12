@@ -70,8 +70,8 @@
 
 	<div class="row">
 		<div class="form-group">
-			<div class='col-xs-12'>
-				<button type="submit" class="btn btn-primary">Confirm</button>
+			<div class="col-xs-12 col-sm-2 col-sm-offset-10">
+				<button type="submit" class="btn btn-primary btn-with-addon"><span class="btn-text">Book</span><span class="btn-addon btn-addon-primary"><i class="fa fa-arrow-right"></i></span></button>
 			</div>
 		</div>
 	</div>
