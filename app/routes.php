@@ -29,7 +29,6 @@ Route::get('/gallery', ['as' => 'gallery', function() {
 
 Route::resource('event', 'RaceEventController');
 Route::resource('booking', 'BookingController', ['except' => 'create']);
-Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'show.user.bookings' ]);
 
 Route::get('/login', [ 'uses' => 'UserController@login', 'as' => 'user.login' ]);
 Route::post('/login', [ 'uses' => 'UserController@attemptLogin', 'as' => 'user.login.attempt' ]);
@@ -62,6 +61,8 @@ Route::group(array('before' => 'is.logged.in'), function() {
 	Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
 
 	Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);
+
+	Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'show.user.bookings' ]);
 
 	Route::group(array('prefix' => 'settings'), function() {
 
