@@ -6,7 +6,6 @@
 
 	<div class="panel panel-default panel-settings">
 		<div class="panel-heading"><h4>Club Committee Members</h4></div>
-		<div class="panel-body">
 			<div class="list-group">
 
 				<div class="list-group-item">
@@ -42,7 +41,6 @@
 					<p class="list-group-item-text">Kirk Beasley</p>
 				</div>
 
-			</div>
 		</div>
 
 	</div>
