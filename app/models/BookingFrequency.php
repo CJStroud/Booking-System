@@ -11,4 +11,6 @@ class BookingFrequency extends Eloquent {
 
 	public $timestamps = false;
 
+	protected $fillable = ['booking_id', 'frequency_id'];
+
 }

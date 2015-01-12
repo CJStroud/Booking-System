@@ -9,79 +9,106 @@ use HMCC\Repository\Repository;
 
 class BookingRepository extends Repository
 {
-  protected $userRepository;
+	protected $userRepository;
 
-  protected $raceClassRepository;
+	protected $raceClassRepository;
 
-  protected $raceEventRepository;
+	protected $raceEventRepository;
 
-  protected $bookingFrequencyRepository;
+	protected $bookingFrequencyRepository;
 
-  public function __construct(
-    Booking $booking,
-    UserRepository $userRepository,
-    RaceClassRepository $raceClassRepository,
-    RaceEventRepository $raceEventRepository,
-    BookingFrequencyRepository $bookingFrequencyRepository
-  )
-  {
-    $this->model = $booking;
-    $this->userRepository = $userRepository;
-    $this->raceClassRepository = $raceClassRepository;
-    $this->raceEventRepository = $raceEventRepository;
-    $this->bookingFrequencyRepository = $bookingFrequencyRepository;
-  }
+	public function __construct(
+		Booking $booking,
+		UserRepository $userRepository,
+		RaceClassRepository $raceClassRepository,
+		RaceEventRepository $raceEventRepository,
+		BookingFrequencyRepository $bookingFrequencyRepository
+	)
+	{
+		$this->model = $booking;
+		$this->userRepository = $userRepository;
+		$this->raceClassRepository = $raceClassRepository;
+		$this->raceEventRepository = $raceEventRepository;
+		$this->bookingFrequencyRepository = $bookingFrequencyRepository;
+	}
 
-  public function unique($eventId, $classId, $userId)
-  {
-    $count = $this->model
-      ->where('event_id',  '=', $eventId)
-      ->where('class_id', '=', $classId)
-      ->where('user_id', '=', $userId)->count();
+	public function unique($eventId, $classId, $userId)
+	{
+		$count = $this->model
+			->where('event_id',  '=', $eventId)
+			->where('class_id', '=', $classId)
+			->where('user_id', '=', $userId)->count();
 
-    return $count == 0;
-  }
+		return $count == 0;
+	}
 
-  public function getBookingsByEventIdAndClassId($eventId, $classId)
-  {
-    $bookings = $this->model
-      ->where('event_id',  '=', $eventId)
-      ->where('class_id', '=', $classId)->get();
+	public function getBookingsByEventIdAndClassId($eventId, $classId)
+	{
+		$bookings = $this->model
+			->where('event_id',  '=', $eventId)
+			->where('class_id', '=', $classId)->get();
 
-    $result = [];
+		$result = [];
 
-    foreach($bookings as $booking)
-    {
-      $user = $this->userRepository->find($booking->user_id);
-      $frequencies = $this->bookingFrequencyRepository->getFrequenciesByBookingId($booking->id);
-      $booking->user = $user;
-      $booking->frequencies = $frequencies;
+		foreach($bookings as $booking)
+		{
+			$user = $this->userRepository->find($booking->user_id);
+			$frequencies = $this->bookingFrequencyRepository->getFrequenciesByBookingId($booking->id);
+			$booking->user = $user;
+			$booking->frequencies = $frequencies;
 
-      $result[] = $booking;
-    }
+			$result[] = $booking;
+		}
 
-    return $result;
-  }
+		return $result;
+	}
 
-  public function getAllUser($userId)
-  {
-    $bookings = $this->model->where('user_id',  '=', $userId)->orderBy('event_id')->get();
+	public function getAllUser($userId)
+	{
+		$bookings = $this->model->where('user_id',  '=', $userId)->orderBy('event_id')->get();
 
-    $result = [];
+		$result = [];
 
-    foreach($bookings as $booking)
-    {
-      $class = $this->raceClassRepository->find($booking->class_id);
-      $event = $this->raceEventRepository->find($booking->event_id);
-      $frequencies = $this->bookingFrequencyRepository->getFrequenciesByBookingId($booking->id);
+		foreach($bookings as $booking)
+		{
+			$class = $this->raceClassRepository->find($booking->class_id);
+			$event = $this->raceEventRepository->find($booking->event_id);
+			$frequencies = $this->bookingFrequencyRepository->getFrequenciesByBookingId($booking->id);
 
-      $booking->raceClass = $class->name;
-      $booking->raceEvent = $event->name;
-      $booking->startTime = $event->start_time;
-      $booking->frequencies = $frequencies;
-      $result[] = $booking;
-    }
+			$booking->raceClass = $class->name;
+			$booking->raceEvent = $event->name;
+			$booking->startTime = $event->start_time;
+			$booking->frequencies = $frequencies;
+			$result[] = $booking;
+		}
 
-    return $result;
-  }
+		return $result;
+	}
+
+	public function store($data)
+	{
+		$booking = new Booking;
+
+		$booking->fill($data);
+
+		$success = $booking->save();
+
+		$bookingId = $booking->id;
+
+		if ($success)
+		{
+			foreach ($data['frequencies'] as $frequencyId)
+			{
+				$bookingFrequency = [];
+				$bookingFrequency['frequency_id'] = $frequencyId;
+				$bookingFrequency['booking_id'] = $bookingId;
+
+				$this->bookingFrequencyRepository->store($bookingFrequency);
+			}
+		}
+
+		return $success;
+
+	}
+
 }
