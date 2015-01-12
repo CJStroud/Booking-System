@@ -35,12 +35,6 @@ class BookingController extends \BaseController {
 
 	public function createWithClassId($slug, $class_id)
 	{
-		if (!Auth::check())
-		{
-			$message = "You must be logged in to place a booking";
-			return Redirect::to('login')->withErrors([$message]);
-		}
-
 		$event = $this->raceEventRepository->getEventBySlug($slug);
 		$classes = $event->classes;
 		$frequencies = $this->frequencyRepository->all();
