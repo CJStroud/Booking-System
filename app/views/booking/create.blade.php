@@ -32,7 +32,7 @@
 			<div class="col-xs-12">
 					<div class="form-group">
 							{{ Form::label('transponder', 'Transponder Number', ['class' => '']) }}
-					<input type="text" class="form-control" placeholder="E.g 12345678" name='transponder' value="{{ Input::old('transponder') }}">
+						<input type="text" class="form-control" placeholder="E.g 12345678" name='transponder' value="{{ Input::old('transponder') ?: Auth::user()->transponder }}">
 					</div>
 			</div>
 	</div>
@@ -42,7 +42,7 @@
 			<div class="form-group">
 				{{ Form::label('skill_level', 'Skill Level', ['class' => '']) }}
 				<select id="skill_level" class="selectpicker id-select form-control">
-					<option selected id="1">1 - Low</option>
+					<option id="1">1 - Low</option>
 					<option id="2">2</option>
 					<option id="3">3</option>
 					<option id="4">4</option>
@@ -53,7 +53,7 @@
 					<option id="9">9</option>
 					<option id="10">10 - High</option>
 				</select>
-				<input name="skill_level" type="hidden" class="hidden-text" id="skill-input" value="1">
+				<input name="skill_level" type="hidden" class="hidden-text" id="skill-input" value="{{ Input::old('skill_level') ?: Auth::user()->skill ?: 1}}">
 			</div>
 		</div>
 	</div>
@@ -62,8 +62,8 @@
 		<div class='col-xs-12'>
 			<div class="form-group">
 				{{ Form::label('frequencies-input', 'Frequencies', ['class' => '']) }}
-				<input name="frequency-names" type="text" placeholder="Select frequencies" class="form-control" id="frequencies-input" data-toggle="modal" data-target="#setFrequencies">
-				<input name="frequency-ids" type="hidden" class="hidden-text" id="frequencies-input-hidden">
+				<input name="frequency-names" type="text" placeholder="Select frequencies" class="form-control" id="frequencies-input" data-toggle="modal" data-target="#setFrequencies" value="{{ Input::old('frequency-names') }}">
+				<input name="frequency-ids" type="hidden" class="hidden-text" id="frequencies-input-hidden" value="{{ Input::old('frequency-ids') }}">
 			</div>
 		</div>
 	</div>
