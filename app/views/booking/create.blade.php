@@ -17,13 +17,14 @@
 		<div class="col-xs-12">
 			<div class="form-group">
 				{{ Form::label('class_id', 'Class', ['class' => '']) }}
-					<select id="class_id" class="drop-down-holder selectpicker id-select form-control">
+					<select id="class-dropdown" class="drop-down-holder selectpicker id-select form-control">
 
 						@foreach ($classes as $class)
 							<option id="{{$class->id}}">@if ($class->locked)&#xf023; @endif{{$class->name}}</option>
 						@endforeach
+
 					</select>
-					<input name="class_id" type="hidden" class="hidden-text" id="hidden-text" value="{{$classes[0]->id}}">
+				<input name="class_id" type="hidden" class="hidden-text" id="class-hidden-input" value="{{ Input::old('class_id') ?: $selected ?: $classes[0]->id}}">
 				</div>
 		</div>
 	</div>
@@ -41,7 +42,7 @@
 		<div class='col-xs-12'>
 			<div class="form-group">
 				{{ Form::label('skill_level', 'Skill Level', ['class' => '']) }}
-				<select id="skill_level" class="selectpicker id-select form-control">
+				<select id="skill-dropdown" class="selectpicker id-select form-control">
 					<option id="1">1 - Low</option>
 					<option id="2">2</option>
 					<option id="3">3</option>
