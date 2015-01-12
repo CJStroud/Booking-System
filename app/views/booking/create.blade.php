@@ -42,7 +42,7 @@
 			<div class="form-group">
 				{{ Form::label('skill_level', 'Skill Level', ['class' => '']) }}
 				<select id="skill_level" class="selectpicker id-select form-control">
-					<option selected id="1">1 - Low</option>
+					<option id="1">1 - Low</option>
 					<option id="2">2</option>
 					<option id="3">3</option>
 					<option id="4">4</option>
@@ -53,7 +53,7 @@
 					<option id="9">9</option>
 					<option id="10">10 - High</option>
 				</select>
-				<input name="skill_level" type="hidden" class="hidden-text" id="skill-input" value="1">
+				<input name="skill_level" type="hidden" class="hidden-text" id="skill-input" value="{{ Input::old('skill_level') ?: Auth::user()->skill ?: 1}}">
 			</div>
 		</div>
 	</div>
