@@ -62,8 +62,8 @@
 		<div class='col-xs-12'>
 			<div class="form-group">
 				{{ Form::label('frequencies-input', 'Frequencies', ['class' => '']) }}
-				<input name="frequency-names" type="text" placeholder="Select frequencies" class="form-control" id="frequencies-input" data-toggle="modal" data-target="#setFrequencies">
-				<input name="frequency-ids" type="hidden" class="hidden-text" id="frequencies-input-hidden">
+				<input name="frequency-names" type="text" placeholder="Select frequencies" class="form-control" id="frequencies-input" data-toggle="modal" data-target="#setFrequencies" value="{{ Input::old('frequency-names') }}">
+				<input name="frequency-ids" type="hidden" class="hidden-text" id="frequencies-input-hidden" value="{{ Input::old('frequency-ids') }}">
 			</div>
 		</div>
 	</div>
