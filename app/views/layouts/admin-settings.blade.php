@@ -11,9 +11,9 @@
 </a>
 
 @if ($active == 'classes')
-  <a href="{{ route('settings.account') }}" class="list-group-item active">
+  <a href="{{ route('admin.classes') }}" class="list-group-item active">
 @else
-  <a href="{{ route('settings.account') }}" class="list-group-item">
+  <a href="{{ route('admin.classes') }}" class="list-group-item">
 @endif
   <i class="fa fa-car fa-lg"></i><span class="icon-spacing-left">Classes</span>
 </a>

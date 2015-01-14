@@ -41,4 +41,9 @@ class AdminController extends BaseController {
     return Redirect::route('admin.users')->withSuccess('User unbanned successfully');
 
   }
+
+  public function classes()
+  {
+    return View::make('admin.classes')->withActive('classes');
+  }
 }
