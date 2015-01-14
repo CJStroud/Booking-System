@@ -88,9 +88,9 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-4 col-md-2">
             <div class="form-group">
-                <button id='btn-add' type='button' class='btn btn-primary'>Add Class</button>
+                <button id='btn-add' type='button' class="btn btn-primary btn-with-addon"><span class="btn-text">Add Class</span><span class="btn-addon btn-addon-primary"><i class="fa fa-plus"></i></span></button>
             </div>
         </div>
     </div>
@@ -123,10 +123,10 @@
 
 <div class="container">
     <div class="row">
-        <div class='col-sm-12'>
+        <div class='col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-10 col-md-2'>
             <div class="form-group">
             <input type='hidden' name='classes' id='json-class' value='{{ Input::old("classes") }}'>
-            <button type="submit" class="btn btn-primary btn-submit">Create</button>
+            <button type="submit" class="btn btn-primary btn-with-addon"><span class="btn-text">Submit</span><span class="btn-addon btn-addon-primary"><i class="fa fa-arrow-right"></i></span></button>
             </div>
         </div>
     </div>
