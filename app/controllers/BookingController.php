@@ -2,6 +2,7 @@
 
 use HMCC\Form\Booking\BookingForm;
 use HMCC\Repository\Booking\FrequencyRepository;
+use HMCC\Repository\Booking\BookingFrequencyRepository;
 use HMCC\Repository\RaceEvent\RaceEventRepository;
 
 class BookingController extends \BaseController {
@@ -21,11 +22,17 @@ class BookingController extends \BaseController {
 		*/
 	protected $frequencyRepository;
 
-	public function __construct(BookingForm $form, RaceEventRepository $raceEventRepository, FrequencyRepository $frequencyRepository)
+	/**
+		* @var BookingFrequencyRepository
+		*/
+	protected $bookingFrequencyRepository;
+
+	public function __construct(BookingForm $form, RaceEventRepository $raceEventRepository, FrequencyRepository $frequencyRepository, BookingFrequencyRepository $bookingFrequencyRepository)
 	{
 		$this->form = $form;
 		$this->raceEventRepository = $raceEventRepository;
 		$this->frequencyRepository = $frequencyRepository;
+		$this->bookingFrequencyRepository = $bookingFrequencyRepository;
 	}
 
 	public function create($slug)
@@ -61,6 +68,9 @@ class BookingController extends \BaseController {
 	public function destroy($id)
 	{
 		$booking = Booking::find($id);
+
+		$this->bookingFrequencyRepository->deleteByBookingId($id);
+
 		$booking->delete();
 
 		return Redirect::back();
