@@ -1,6 +1,7 @@
 <?php
 
 use HMCC\Form\User\UserForm;
+use HMCC\Form\RaceEvent\RaceClassForm;
 
 class AdminController extends BaseController {
 
@@ -9,9 +10,15 @@ class AdminController extends BaseController {
    */
   protected $form;
 
-  public function __construct(UserForm $form)
+  /**
+   * @var RaceClassForm
+   */
+  protected $raceClassForm;
+
+  public function __construct(UserForm $form, RaceClassForm $raceClassForm)
   {
     $this->form = $form;
+    $this->raceClassForm = $raceClassForm;
   }
 
 
@@ -44,6 +51,8 @@ class AdminController extends BaseController {
 
   public function classes()
   {
-    return View::make('admin.classes')->withActive('classes');
+    $classes = $this->raceClassForm->repository->all();
+
+    return View::make('admin.classes')->withActive('classes')->withClasses($classes);
   }
 }
