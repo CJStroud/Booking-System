@@ -4,20 +4,20 @@
   <div class="users">
     @foreach ($users as $user)
       <div class="col-xs-12 col-md-6">
-        <div class="user">
+        <div class="card">
           <h3>
-            <span class="user-label">#{{ $user->id }}</span>
+            <span class="card-label">#{{ $user->id }}</span>
             <span>{{ $user->forename }} {{ $user->surname }}</span>
           </h3>
 
-          <h4><span class="user-label">Email</span>{{ $user->email }}</h4>
-          <h4><span class="user-label">BRCA</span>#{{ $user->brca }}</h4>
-          <h4><span class="user-label">Transponder</span>#{{ $user->transponder }}</h4>
-          <h4><span class="user-label">Skill</span>{{ $user->skill }} / 10</h4>
+          <h4><span class="card-label">Email</span>{{ $user->email }}</h4>
+          <h4><span class="card-label">BRCA</span>#{{ $user->brca }}</h4>
+          <h4><span class="card-label">Transponder</span>#{{ $user->transponder }}</h4>
+          <h4><span class="card-label">Skill</span>{{ $user->skill }} / 10</h4>
 
           @if ($user->banned)
-            <h4><span class="user-label">Banned</span>{{ date('jS M Y H:i', $user->banned) }}</h4>
-            <h4><span class="user-label">Reason</span>{{ $user->banned_reason }}</h4>
+            <h4><span class="card-label">Banned</span>{{ date('jS M Y H:i', $user->banned) }}</h4>
+            <h4><span class="card-label">Reason</span>{{ $user->banned_reason }}</h4>
             {{ Form::open(array('route' => [ 'admin.user.unban', $user->id ], 'id' => 'create-form')) }}
               <div class="row">
                 <div class="col-xs-12 col-sm-3">
