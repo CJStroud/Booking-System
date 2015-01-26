@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class='col-xs-12'>
 			<div class="form-group">
-				{{ Form::label('password', 'Password', ['class' => '']) }} ({{ link_to_route('password.send.reminder', 'forgot password?') }})
+				{{ Form::label('password', 'Password', ['class' => '']) }} ({{ link_to_route('password.send.reminder', 'password recovery') }})
 				<input type="password" class="form-control" name="password" placeholder="password">
 			</div>
 		</div>

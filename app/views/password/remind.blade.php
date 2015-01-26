@@ -5,6 +5,7 @@
 		<h1>Password Recovery</h1>
 		{{ Form::open(array('route' => ['password.send.reminder'])) }}
 
+		<div></div>
 
 		<div class="row">
 			<div class='col-xs-12'>
