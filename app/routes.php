@@ -83,9 +83,9 @@ Route::group(array('before' => 'is.logged.in'), function() {
 
 Route::group(array('prefix' => 'password'), function() {
 
-	Route::get('reminder', [ 'uses' => 'RemindersController@getRemind', 'as' => 'password.get.reminder' ]);
+	Route::get('recover', [ 'uses' => 'RemindersController@getRemind', 'as' => 'password.get.reminder' ]);
 
-	Route::post('reminder', [ 'uses' => 'RemindersController@postRemind', 'as' => 'password.send.reminder' ]);
+	Route::post('recover', [ 'uses' => 'RemindersController@postRemind', 'as' => 'password.send.reminder' ]);
 
 	Route::get('reset/{token}', [ 'uses' => 'RemindersController@getReset', 'as' => 'password.get.reset' ]);
 
