@@ -4,7 +4,7 @@
 <div class="container">
   <h1>Contact Us</h1>
 
-  <h4>Get in touch with us on our {{ link_to('https://www.facebook.com/groups/117590764955050/', 'Facebook') }} page</h4>
+  <h4>Get in touch with us on our {{ link_to('https://www.facebook.com/groups/117590764955050/', 'Facebook', array('target'=>'_blank')) }} page</h4>
 
   <div class="panel panel-default panel-settings">
     <div class="panel-heading"><h4>Club Committee Members</h4></div>
