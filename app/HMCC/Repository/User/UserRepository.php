@@ -21,6 +21,7 @@ class UserRepository extends Repository
     $record->password = Hash::make($data['password'] . $data['secret']);
     $record->secret = $data['secret'];
     $record->brca = $data['brca'];
+    $record->is_old_pass = isset($data['is_old_pass']) ? $data['is_old_pass'] : false;
 
     return $record->save();
   }
@@ -38,6 +39,12 @@ class UserRepository extends Repository
   public function passwordUpdate($id, $newPassword)
   {
     $user = $this->model->findOrFail($id);
+
+    if (Auth::user()->secret == "")
+    {
+      Auth::user()->secret = str_random(15);
+      Auth::user()->save();
+    }
 
     $user->password = Hash::make($newPassword . Auth::user()->secret);
 
@@ -63,4 +70,34 @@ class UserRepository extends Repository
 
     return $user->save();
   }
+
+  public function userHasOldPassword($email)
+  {
+    $user = $this->model->where('email', '=', $email)->first();
+
+    if($user == null)
+      return '';
+
+    return $user->is_old_pass == 1;
+  }
+
+  public function checkOldPassword($email, $password)
+  {
+    $user = $this->model->where('email', '=', $email)
+                        ->where('password', '=', Hash::make($password . $email))
+                        ->first();
+
+    return $user != null;
+  }
+
+  public function getIdByEmail($email)
+  {
+    $user = $this->model->where('email', '=', $email)->first();
+
+    if($user == null)
+      return -1;
+
+    return $user->id;
+  }
+
 }
