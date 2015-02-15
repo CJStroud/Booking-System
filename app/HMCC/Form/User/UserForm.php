@@ -26,6 +26,21 @@ class UserForm extends Form
 
   public function checkLogin($email, $password)
   {
+    $isUsingOldPassword = $this->repository->userHasOldPassword($email);
+
+    if ($isUsingOldPassword)
+    {
+      if(Auth::attempt(array('email' => $email, 'password' => $password . $email)))
+       {
+        $id = $this->repository->getIdByEmail($email);
+        $this->repository->passwordUpdate($id, $password);
+        Auth::user()->is_old_pass = false;
+        Auth::user()->save();
+       }
+    }
+
+    //dd(Auth::user());
+
     $secret = $this->repository->getSecret($email);
 
     // append secret to password

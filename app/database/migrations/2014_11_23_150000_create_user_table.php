@@ -29,6 +29,7 @@ class CreateUserTable extends Migration {
       $table->integer('skill');
 
       $table->boolean('is_admin');
+      $table->boolean('is_old_pass');
 
       $table->integer('banned');
       $table->string('banned_reason');
