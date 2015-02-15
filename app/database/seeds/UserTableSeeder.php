@@ -19,7 +19,7 @@ class UserTableSeeder extends seeder {
     $user = array(
       'forename' => 'Chris',
       'surname' => 'Stroud',
-      'email' => 'chris.stroud@gmail.com',
+      'email' => 'chris.stroud00@gmail.com',
       'password' => 'password',
       'secret' => $secret,
       'brca' => '213048',
@@ -34,13 +34,30 @@ class UserTableSeeder extends seeder {
       'forename' => 'Andy',
       'surname' => 'Bird',
       'email' => 'andy.bird@gmail.com',
-      'password' => Hash::make('password' . $secret),
+      'password' => 'password',
       'secret' => $secret,
       'brca' => '9382372',
       'transponder' => '93047563',
       'skill' => 8,
       'is_admin' => false,
     );
+    $this->repository->store($user);
+
+
+    $email = 'chris.stroud@gmail.com';
+    $user = array(
+      'forename' => 'Test',
+      'surname' => 'test',
+      'email' => $email,
+      'password' => 'password' . $email,
+      'secret' => '',
+      'brca' => '9382372',
+      'transponder' => '93047563',
+      'skill' => 8,
+      'is_admin' => false,
+      'is_old_pass' => true,
+    );
+
     $this->repository->store($user);
 
   }
