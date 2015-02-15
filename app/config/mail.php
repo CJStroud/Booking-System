@@ -28,7 +28,7 @@ return array(
     |
     */
 
-    'host' => 'smtp.mandrillapp.com',
+    'host' => $_ENV['EMAIL_HOST'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
     |
     */
 
-    'username' => 'chris.stroud00@gmail.com',
+    'username' => $_ENV['EMAIL_USER'],
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
     |
     */
 
-    'password' => 'MfAtTwxw9HW67-WHYNfy6w',
+    'password' => $_ENV['EMAIL_PASS'],
 
     /*
     |--------------------------------------------------------------------------
