@@ -76,7 +76,7 @@ class UserRepository extends Repository
     $user = $this->model->where('email', '=', $email)->first();
 
     if($user == null)
-      return '';
+      return false;
 
     return $user->is_old_pass == 1;
   }
