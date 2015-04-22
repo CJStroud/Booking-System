@@ -1,7 +1,5 @@
 <?php
 
-namespace HMCC\Controllers;
-
 use HMCC\Form\RaceEvent\RaceEventForm;
 use HMCC\Repository\RaceEvent\RaceClassRepository;
 use HMCC\Repository\RaceEvent\RaceEventClassRepository;

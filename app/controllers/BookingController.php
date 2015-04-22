@@ -1,7 +1,5 @@
 <?php
 
-namespace app\controllers;
-
 use HMCC\Form\Booking\BookingForm;
 use HMCC\Repository\Booking\FrequencyRepository;
 use HMCC\Repository\RaceEvent\RaceEventRepository;
