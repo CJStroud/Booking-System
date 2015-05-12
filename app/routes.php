@@ -57,9 +57,19 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
         'as' => 'admin.classes.edit'
     ]);
 
+    Route::get('classes/create', [
+        'uses' => 'AdminController@createClass',
+        'as' => 'admin.classes.create'
+    ]);
+
     Route::post('classes/{id}/update', [
         'uses' => 'AdminController@updateClass',
         'as' => 'admin.classes.update'
+    ]);
+
+    Route::post('classes/store', [
+        'uses' => 'AdminController@storeClass',
+        'as' => 'admin.classes.store'
     ]);
 
     Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
