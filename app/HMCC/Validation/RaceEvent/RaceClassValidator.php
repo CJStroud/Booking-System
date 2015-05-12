@@ -8,7 +8,14 @@ class RaceClassValidator extends Validator
 
     public function passes(Array $input)
     {
-        $this->rules['name'] .= ',name,' . $input['id'];
+        $newRules = ',name';
+
+        if ( isset( $input['id'] ) ) {
+            $newRules .= ',' . $input['id'];
+        }
+
+        $this->rules['name'] .= $newRules;
+
         parent::passes($input);
     }
 }
