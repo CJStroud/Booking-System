@@ -9,7 +9,7 @@
             <h2>Class Management</h2>
         </div>
         <div class="col-xs-12 col-sm-3">
-            <a href="" class="btn btn-info">Create</a>
+            <a href="{{ route('admin.classes.create') }}" class="btn btn-info">Create</a>
         </div>
         </div>
     </div>
