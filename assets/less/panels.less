@@ -8,3 +8,16 @@
     margin-bottom: 8px;
   }
 }
+
+.panel-disabled {
+    background-color: #eee;
+    
+    .btn, .btn-simple {
+        background-color: #eee;
+        border-bottom-color: #ddd;
+        
+        &:hover {
+            border-bottom-color: @secondary;
+        }
+    }
+}

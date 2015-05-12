@@ -107,7 +107,15 @@ class AdminController extends BaseController {
 
     public function updateClass($id)
     {
-        $this->raceClassForm->update($id, Input::all());
+        $input = Input::all();
+
+        if (Input::exists('active') && $input['active'] == "on") {
+            $input['active'] = 1;
+        } else {
+            $input['active'] = 0;
+        }
+
+        $this->raceClassForm->update($id, $input);
 
         return Redirect::route('admin.classes')
                 ->withSuccess('Successfully updated class');

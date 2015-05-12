@@ -17,10 +17,10 @@
 
     <div class="col-xs-12">
     @foreach ( $classes as $class )
-        <div class="panel panel-default">
+        <div class="panel panel-default @if($class->active == 0) panel-disabled @endif">
         <div class="panel-body">
             <div class="col-xs-12 col-sm-6 col-md-8">
-            <h4>{{ $class->name }}</h4>
+                <h4>@if($class->active == 0) <span class="fa fa-lock icon-spacing-right"></span> @endif {{ $class->name }}</h4>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-2">
                 <a href="{{ route('admin.classes.edit', $class->id) }}" type="submit" class="btn btn-simple">
