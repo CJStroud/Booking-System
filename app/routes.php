@@ -72,6 +72,11 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
         'as' => 'admin.classes.store'
     ]);
 
+    Route::post('classes/delete', [
+        'uses' => 'AdminController@deleteClass',
+        'as' => 'admin.classes.delete'
+    ]);
+
     Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
 
     Route::post('users/{id}/unban', ['uses' => 'AdminController@unbanUser', 'as' => 'admin.user.unban']);
