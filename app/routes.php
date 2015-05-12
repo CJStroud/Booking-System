@@ -87,27 +87,24 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 
 Route::group(array('before' => 'is.logged.in'), function() {
 
-<<<<<<< HEAD
     Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
-=======
-	Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'show.user.bookings' ]);
-
-	Route::group(array('prefix' => 'settings'), function() {
->>>>>>> master
-
-    Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);
+    Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'show.user.bookings' ]);
 
     Route::group(array('prefix' => 'settings'), function() {
 
-        Route::get('profile', [ 'uses' => 'SettingsController@profile', 'as' => 'settings.profile']);
+        Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);
 
-        Route::post('profile', [ 'uses' => 'SettingsController@profileUpdate', 'as' => 'settings.profile.update']);
+        Route::group(array('prefix' => 'settings'), function() {
 
-        Route::get('account', [ 'uses' => 'SettingsController@account', 'as' => 'settings.account']);
+            Route::get('profile', [ 'uses' => 'SettingsController@profile', 'as' => 'settings.profile']);
 
-        Route::post('account/password', [ 'uses' => 'SettingsController@accountPassword', 'as' => 'settings.account.password.update']);
+            Route::post('profile', [ 'uses' => 'SettingsController@profileUpdate', 'as' => 'settings.profile.update']);
 
-        Route::post('account', [ 'uses' => 'SettingsController@accountDelete', 'as' => 'settings.account.delete']);
+            Route::get('account', [ 'uses' => 'SettingsController@account', 'as' => 'settings.account']);
+
+            Route::post('account/password', [ 'uses' => 'SettingsController@accountPassword', 'as' => 'settings.account.password.update']);
+
+            Route::post('account', [ 'uses' => 'SettingsController@accountDelete', 'as' => 'settings.account.delete']);
     });
 });
 
