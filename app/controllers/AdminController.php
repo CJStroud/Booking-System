@@ -31,21 +31,24 @@ class AdminController extends BaseController {
     {
         $users = $this->form->repository->all();
 
-        return View::make('admin.users')->withUsers($users)->withActive('users');
+        return View::make('admin.users')
+                ->withUsers($users)->withActive('users');
     }
 
     public function banUser($id)
     {
         $this->form->banUser($id, Input::all());
 
-        return Redirect::route('admin.users')->withSuccess('User banned successfully');
+        return Redirect::route('admin.users')
+                ->withSuccess('User banned successfully');
     }
 
     public function unbanUser($id)
     {
         $this->form->unbanUser($id);
 
-        return Redirect::route('admin.users')->withSuccess('User unbanned successfully');
+        return Redirect::route('admin.users')
+                ->withSuccess('User unbanned successfully');
 
     }
 
@@ -53,14 +56,17 @@ class AdminController extends BaseController {
     {
         $classes = $this->raceClassForm->repository->all();
 
-        return View::make('admin.classes')->withActive('classes')->withClasses($classes);
+        return View::make('admin.classes')
+                ->withActive('classes')
+                ->withClasses($classes);
     }
 
     public function storeClass()
     {
         $this->raceClassForm->store(Input::all());
 
-        return Redirect::route('admin.classes')->withSuccess('Successfully created class');
+        return Redirect::route('admin.classes')
+                ->withSuccess('Successfully created class');
     }
 
     public function createClass()
@@ -80,13 +86,15 @@ class AdminController extends BaseController {
     {
         $class = $this->raceClassForm->repository->find($id);
 
-        return View::make('admin.edit-class')->withActive('classes')->withClass($class);
+        return View::make('admin.edit-class')
+                ->withActive('classes')->withClass($class);
     }
 
     public function updateClass($id)
     {
         $this->raceClassForm->update($id, Input::all());
 
-        return Redirect::route('admin.classes')->withSuccess('Successfully updated class');
+        return Redirect::route('admin.classes')
+                ->withSuccess('Successfully updated class');
     }
 }
