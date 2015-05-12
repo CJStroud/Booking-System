@@ -35,7 +35,7 @@ class AdminController extends BaseController {
     }
 
     public function banUser($id)
-    {        
+    {
         $this->form->banUser($id, Input::all());
 
         return Redirect::route('admin.users')->withSuccess('User banned successfully');
@@ -54,6 +54,26 @@ class AdminController extends BaseController {
         $classes = $this->raceClassForm->repository->all();
 
         return View::make('admin.classes')->withActive('classes')->withClasses($classes);
+    }
+
+    public function storeClass()
+    {
+        $this->raceClassForm->store(Input::all());
+
+        return Redirect::route('admin.classes')->withSuccess('Successfully created class');
+    }
+
+    public function createClass()
+    {
+        $errors = Session::get('errors');
+        $messages = [];
+        if ($errors != null) {
+            $messages = $errors->all();
+        }
+
+        return View::make('admin.create-class')
+                ->withErrors($messages)
+                ->withActive('classes');
     }
 
     public function editClass($id)
