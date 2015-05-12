@@ -28,6 +28,7 @@ Route::get('/gallery', ['as' => 'gallery', function() {
 
 Route::resource('event', 'RaceEventController');
 Route::resource('booking', 'BookingController', ['except' => 'create']);
+
 Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'booking.show.user']);
 
 Route::get('/login', [ 'uses' => 'UserController@login', 'as' => 'user.login']);
@@ -86,7 +87,13 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 
 Route::group(array('before' => 'is.logged.in'), function() {
 
+<<<<<<< HEAD
     Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
+=======
+	Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'show.user.bookings' ]);
+
+	Route::group(array('prefix' => 'settings'), function() {
+>>>>>>> master
 
     Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);
 
@@ -102,4 +109,17 @@ Route::group(array('before' => 'is.logged.in'), function() {
 
         Route::post('account', [ 'uses' => 'SettingsController@accountDelete', 'as' => 'settings.account.delete']);
     });
+});
+
+
+Route::group(array('prefix' => 'password'), function() {
+
+	Route::get('recover', [ 'uses' => 'RemindersController@getRemind', 'as' => 'password.get.reminder' ]);
+
+	Route::post('recover', [ 'uses' => 'RemindersController@postRemind', 'as' => 'password.send.reminder' ]);
+
+	Route::get('reset/{token}', [ 'uses' => 'RemindersController@getReset', 'as' => 'password.get.reset' ]);
+
+	Route::post('reset', [ 'uses' => 'RemindersController@postReset', 'as' => 'password.send.reset' ]);
+
 });

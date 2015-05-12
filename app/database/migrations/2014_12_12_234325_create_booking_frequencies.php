@@ -16,6 +16,8 @@ class CreateBookingFrequencies extends Migration {
 
 			$table->engine = 'InnoDB';
 
+			$table->increments('id');
+
 			$table->integer('booking_id')->unsigned();
 			$table->integer('frequency_id')->unsigned();
 
