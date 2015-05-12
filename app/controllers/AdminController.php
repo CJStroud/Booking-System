@@ -54,11 +54,26 @@ class AdminController extends BaseController {
 
     public function classes()
     {
+        $errors = Session::get('errors');
+        $errorMessages = [];
+        if ($errors != null) {
+            $errorMessages = $errors->all();
+        }
+
+        $success = Session::get('success');
+        $successMessage = '';
+
+        if ($success != null) {
+            $successMessage = $success;
+        }
+
         $classes = $this->raceClassForm->repository->all();
 
         return View::make('admin.classes')
                 ->withActive('classes')
-                ->withClasses($classes);
+                ->withClasses($classes)
+                ->withErrors($errorMessages)
+                ->withSuccess($successMessage);
     }
 
     public function storeClass()
@@ -96,5 +111,17 @@ class AdminController extends BaseController {
 
         return Redirect::route('admin.classes')
                 ->withSuccess('Successfully updated class');
+    }
+
+    public function deleteClass()
+    {
+        if (!Input::exists('class-id')) {
+            return Redirect::back()->withErrors(['Missing class id']);
+        }
+
+        $this->raceClassForm->delete(Input::get('class-id'));
+
+        return Redirect::route('admin.classes')
+                ->withSuccess('Successfully deleted class');
     }
 }
