@@ -16,6 +16,6 @@ class RaceClassValidator extends Validator
 
         $this->rules['name'] .= $newRules;
 
-        parent::passes($input);
+        return parent::passes($input);
     }
 }
