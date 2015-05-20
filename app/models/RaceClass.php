@@ -11,4 +11,6 @@ class RaceClass extends Eloquent {
 
 	public $timestamps = false;
 
+        protected $fillable = array('name', 'active');
+
 }

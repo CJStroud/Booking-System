@@ -5,86 +5,82 @@ use HMCC\Validation\User\UserValidator;
 use HMCC\Repository\User\UserRepository;
 use HMCC\Form\Form;
 use HMCC\Form\FormException;
-use Hash;
 use Auth;
 
-class UserForm extends Form
-{
-  public function __construct(UserRepository $repository, UserValidator $validator)
-  {
-    $this->repository = $repository;
-    $this->validator = $validator;
-  }
+class UserForm extends Form {
 
-  public function store(Array $inputs)
-  {
-    $secret = str_random(15);
-    $inputs['secret'] = $secret;
-
-    return parent::store($inputs);
-  }
-
-  public function checkLogin($email, $password)
-  {
-    $isUsingOldPassword = $this->repository->userHasOldPassword($email);
-
-    if ($isUsingOldPassword)
+    public function __construct(UserRepository $repository, UserValidator $validator)
     {
-      if(Auth::attempt(array('email' => $email, 'password' => $password . $email)))
-       {
-        $id = $this->repository->getIdByEmail($email);
-        $this->repository->passwordUpdate($id, $password);
-        Auth::user()->is_old_pass = false;
-        Auth::user()->save();
-       }
+        parent::__construct($repository, $validator);
     }
 
-    //dd(Auth::user());
-
-    $secret = $this->repository->getSecret($email);
-
-    // append secret to password
-    $password =  $password . $secret;
-
-    $errors = new MessageBag();
-
-    if (!Auth::attempt(array('email' => $email, 'password' => $password)))
+    public function store(Array $inputs)
     {
-      $errors->add('incorrect details', 'The details you entered where incorrect');
+        $secret = str_random(15);
+        $inputs['secret'] = $secret;
 
-      throw new FormException($errors);
+        return parent::store($inputs);
     }
 
-    if (Auth::user()->banned > 0)
-    {
-      $banned_message = 'You have been banned by the administrator because "'. Auth::user()->banned_reason . '"';
+    public function checkLogin($email, $password) {
+        $isUsingOldPassword = $this->repository->userHasOldPassword($email);
 
-      $errors->add('banned user', $banned_message);
+        if ($isUsingOldPassword) {
+            if (Auth::attempt(array('email' => $email, 'password' => $password . $email))) {
+                $id = $this->repository->getIdByEmail($email);
+                $this->repository->passwordUpdate($id, $password);
+                Auth::user()->is_old_pass = false;
+                Auth::user()->save();
+            }
+        }
 
-      Auth::logout();
+        //dd(Auth::user());
 
-      throw new FormException($errors);
+        $secret = $this->repository->getSecret($email);
+
+        // append secret to password
+        $password = $password . $secret;
+
+        $errors = new MessageBag();
+
+        if (!Auth::attempt(array('email' => $email, 'password' => $password)))
+        {
+            $errors->add('incorrect details', 'The details you entered where incorrect');
+
+            throw new FormException($errors);
+        }
+
+        if (Auth::user()->banned > 0)
+        {
+            $banned_message = 'You have been banned by the administrator because "' . Auth::user()->banned_reason . '"';
+
+            $errors->add('banned user', $banned_message);
+
+            Auth::logout();
+
+            throw new FormException($errors);
+        }
+
+        return true;
     }
 
-    return true;
-  }
-
-  public function banUser($id, $data)
-  {
-    $errors = new MessageBag();
-
-    if (!isset($data['reason']) || $data['reason'] == '')
+    public function banUser($id, $data)
     {
-      $errors->add('reason', 'Reason is required');
+        $errors = new MessageBag();
 
-      throw new FormException($errors);
+        if (!isset($data['reason']) || $data['reason'] == '')
+        {
+            $errors->add('reason', 'Reason is required');
+
+            throw new FormException($errors);
+        }
+
+        $this->repository->banUser($id, $data['reason']);
     }
 
-    $this->repository->banUser($id, $data['reason']);
-  }
+    public function unbanUser($id)
+    {
+        $this->repository->unbanUser($id);
+    }
 
-  public function unbanUser($id)
-  {
-    $this->repository->unbanUser($id);
-  }
 }

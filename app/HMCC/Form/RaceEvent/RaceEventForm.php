@@ -8,8 +8,7 @@ class RaceEventForm extends Form
 {
     public function __construct(RaceEventRepository $repository, RaceEventValidator $validator)
     {
-        $this->repository = $repository;
-        $this->validator = $validator;
+        parent::__construct($repository, $validator);
     }
 
     public function store(Array $inputs)
@@ -22,7 +21,7 @@ class RaceEventForm extends Form
         return parent::store($inputs);
     }
 
-    public function DateTimeToTimestamp($strDate, $strTime)
+    public function dateTimeToTimestamp($strDate, $strTime)
     {
         $date = date_create($strDate);
         $time = date_create($strTime);

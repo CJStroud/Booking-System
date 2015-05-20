@@ -92,4 +92,9 @@ $(document).ready(function(){
 
   }
   $('.btn-remove').click(removeFunction);
+  
+  $('.btn-delete-class').click(function () {
+      $('#class-id').val($(this).data('class-id'));
+  });
+  
 });

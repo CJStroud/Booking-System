@@ -78,7 +78,7 @@ module.exports = function(grunt) {
                 },
                 src: 'public/css/styles.css',
                 dest: 'public/css/styles.css'
-            },
+            }
         },
         copy: {
             main: {
@@ -87,8 +87,8 @@ module.exports = function(grunt) {
                     {expand: true, src: ['assets/components/font-awesome/fonts/*'], dest: 'public/fonts/', flatten: true, filter: 'isFile' }
 
                 ]
-            },
-        },
+            }
+        }
 
 
     });

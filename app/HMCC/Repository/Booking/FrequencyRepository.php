@@ -7,6 +7,6 @@ class FrequencyRepository extends Repository
 {
   public function __construct(Frequency $frequency)
   {
-    $this->model = $frequency;
+    parent::__construct($frequency);
   }
 }
