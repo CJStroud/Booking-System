@@ -77,6 +77,16 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
         'uses' => 'AdminController@deleteClass',
         'as' => 'admin.classes.delete'
     ]);
+    
+    Route::post('event/{id}/cancel', [
+        'uses' => 'RaceEventController@cancel',
+        'as' => 'admin.event.cancel'
+    ]);
+    
+    Route::post('event/{id}/delete', [
+        'uses' => 'RaceEventController@destroy',
+        'as' => 'admin.event.delete'
+    ]);
 
     Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
 

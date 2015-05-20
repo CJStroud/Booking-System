@@ -25,7 +25,7 @@
 
           <?php
             $disable = "";
-            if ($class->locked)
+            if ($class->locked || $event->cancelled)
             {
               $disable = "disabled";
             }
@@ -37,11 +37,11 @@
           @if (Auth::check() && Auth::user()->is_admin)
             @if ($class->locked)
               {{ Form::open(['route' => ['event.unlock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'unlock', 'method' => 'POST' ] ) }}
-                <button type="submit" class="btn btn-simple btn-lg">Unlock<i class="fa fa-unlock-alt icon-spacing-left"></i></button>
+                <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Unlock<i class="fa fa-unlock-alt icon-spacing-left"></i></button>
               {{ Form::close() }}
             @else
               {{ Form::open(['route' => ['event.lock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'lock', 'method' => 'POST' ] ) }}
-                <button type="submit" class="btn btn-simple btn-lg">Lock<i class="fa fa-lock icon-spacing-left"></i></button>
+                <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Lock<i class="fa fa-lock icon-spacing-left"></i></button>
               {{ Form::close() }}
             @endif
           @endif

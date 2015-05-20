@@ -23,6 +23,8 @@ class CreateEventTable extends Migration {
 
 			$table->integer('start_time');
 			$table->integer('close_time');
+                        
+                        $table->boolean('cancelled');
 
 			$table->timestamps();
 		});

@@ -55,5 +55,14 @@ class RaceEventRepository extends Repository
         $events = $this->model->orderBy('start_time', 'desc')->get();
         return $events;
     }
+    
+    public function delete($id) {
+        $classes = $this->raceEventClassRepository->getEventClassesByEventId($id);
+        foreach($classes as $class)
+        {
+            $this->raceEventClassRepository->delete($class->id);
+        }
+        $this->model->find($id)->delete();
+    }
 
 }

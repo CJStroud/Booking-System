@@ -29,4 +29,10 @@ class RaceEventForm extends Form
 
         return strtotime($datetime);
     }
+    
+    public function cancel($event_id)
+    {
+        $input = ['cancelled' => '1'];
+        $this->repository->update($event_id, $input);
+    }
 }
