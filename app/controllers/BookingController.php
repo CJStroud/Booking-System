@@ -58,29 +58,18 @@ class BookingController extends \BaseController {
         return Redirect::route('event.index');
     }
 
-<<<<<<< HEAD
     /**
-     * Deletes a booking record using the id given
-     * @param   integer       $id The id of the booking to delete
-     * @returns Redirect.Back redirects the user back to the previous page
-     */
-    public function destroy($id) {
+    * Deletes a booking record using the id given
+    * @param   integer       $id The id of the booking to delete
+    * @returns Redirect.Back redirects the user back to the previous page
+    */
+    public function destroy($id)
+    {
         $booking = Booking::find($id);
+
+        $this->bookingFrequencyRepository->deleteByBookingId($id);
+
         $booking->delete();
-=======
-	/**
-		* Deletes a booking record using the id given
-		* @param   integer       $id The id of the booking to delete
-		* @returns Redirect.Back redirects the user back to the previous page
-		*/
-	public function destroy($id)
-	{
-		$booking = Booking::find($id);
-
-		$this->bookingFrequencyRepository->deleteByBookingId($id);
-
-		$booking->delete();
->>>>>>> master
 
         return Redirect::back();
     }
