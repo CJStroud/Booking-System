@@ -101,8 +101,9 @@ class RaceEventController extends \BaseController {
      * @param integer $id The id of the evnt to delete
      */
     public function destroy($id) {
-        $event = RaceEvent::find($id);
-        $event->delete();
+        $this->form->delete($id);
+        
+        return Redirect::back();
     }
 
     /**
@@ -128,5 +129,17 @@ class RaceEventController extends \BaseController {
 
         return Redirect::back();
     }
-
+    
+    /**
+     * Cancels the event.
+     * 
+     * @param integer $event_id
+     * @return Redirect
+     */
+    public function cancel($event_id) {
+        $this->form->cancel($event_id);
+        
+        return Redirect::back();
+    }
+    
 }

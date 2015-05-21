@@ -9,6 +9,6 @@ class RaceEvent extends Eloquent {
 	 */
 	protected $table = 'events';
 
-	protected $fillable = array('name', 'slug', 'start_time', 'close_time');
+	protected $fillable = array('name', 'slug', 'start_time', 'close_time', 'cancelled');
 }
 
