@@ -13,12 +13,27 @@ class RaceEventForm extends Form
 
     public function store(Array $inputs)
     {
+        $inputs = $this->formatData($inputs);
+
+        return parent::store($inputs);
+    }
+    
+    public function update($id, Array $inputs)
+    {
+        $inputs = $this->formatData($inputs);
+        
+        return parent::update($id, $inputs);
+    }
+    
+    
+    private function formatData(Array $inputs)
+    {
         $inputs['classes'] = json_decode($inputs['classes']);
 
         $inputs['start_time'] = $this::DateTimeToTimestamp($inputs['event-date'], $inputs['event-time']);
         $inputs['close_time'] = $this::DateTimeToTimestamp($inputs['close-date'], $inputs['close-time']);
-
-        return parent::store($inputs);
+        
+        return $inputs;
     }
 
     public function dateTimeToTimestamp($strDate, $strTime)

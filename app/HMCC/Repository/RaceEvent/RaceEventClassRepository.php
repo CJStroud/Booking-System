@@ -39,7 +39,7 @@ class RaceEventClassRepository extends Repository {
             $storedClass->name = $class->name;
             $storedClass->active = $class->active;
             $storedClass->locked = $eventClass->locked;
-
+            $storedClass->limit = $eventClass->limit;
             $storedClass->maxEntrants = $eventClass->limit;
 
             $array[] = $storedClass;
@@ -47,6 +47,18 @@ class RaceEventClassRepository extends Repository {
 
         return $array;
 
+    }
+    
+    public function deleteEventClassesByEventId($id)
+    {
+        $eventClasses = $this->model->where('event_id', '=', $id)->get();
+        
+        foreach ($eventClasses as $eventClass)
+        {
+            $eventClass->delete();
+        }
+        
+        return true;
     }
 
     /**
