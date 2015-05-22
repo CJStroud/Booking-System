@@ -25,14 +25,14 @@
 
           <?php
             $disable = "";
-            if ($class->locked || $event->cancelled)
+            if ($event->cancelled)
             {
               $disable = "disabled";
             }
           ?>
 
         <div class="col-xs-12 col-sm-3 col-sm-offset-9 booking-controls">
-          <a href="{{ route('booking.create.class', [ 'slug' => $slug, 'class_id' => $class->id ]) }}" class="btn btn-simple btn-lg {{ $disable }}">Book<i class="fa fa-arrow-right icon-spacing-left"></i></a>
+          <a href="{{ route('booking.create.class', [ 'slug' => $slug, 'class_id' => $class->id ]) }}" class="btn btn-simple btn-lg @if ($class->locked) disabled @endif {{ $disable }}">Book<i class="fa fa-arrow-right icon-spacing-left"></i></a>
 
           @if (Auth::check() && Auth::user()->is_admin)
             @if ($class->locked)
