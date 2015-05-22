@@ -3,7 +3,7 @@ $(function () {
 		e.preventDefault();
 		var tile = $(this).parents('.tile'),
 		    tileBody = $(tile).children('.tile-body'),
-			foldIcon = $(this).find('i'),
+			foldIcon = $(this).find('.fa-angle-double-down, .fa-angle-double-up'),
 			tileBodyContentHeight = $(tileBody).children('.tile-body-content').height() + (parseInt($('.tile-body-content').css('padding-top').substring(0, 2)) * 2),
 		    duration = 300;
 
