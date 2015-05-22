@@ -2,8 +2,10 @@
 
 use HMCC\Form\Booking\BookingForm;
 use HMCC\Repository\Booking\FrequencyRepository;
+use HMCC\Repository\Booking\BookingRepository;
 use HMCC\Repository\Booking\BookingFrequencyRepository;
 use HMCC\Repository\RaceEvent\RaceEventRepository;
+use HMCC\Repository\RaceEvent\RaceClassRepository;
 
 class BookingController extends \BaseController {
 
@@ -28,12 +30,14 @@ class BookingController extends \BaseController {
 	*/
 	protected $bookingFrequencyRepository;
 
-	public function __construct(BookingForm $form, RaceEventRepository $raceEventRepository, FrequencyRepository $frequencyRepository, BookingFrequencyRepository $bookingFrequencyRepository)
+	public function __construct(BookingForm $form, RaceEventRepository $raceEventRepository, FrequencyRepository $frequencyRepository, BookingFrequencyRepository $bookingFrequencyRepository, BookingRepository $bookingRepository, RaceClassRepository $raceClassRepository)
 	{
 		$this->form = $form;
 		$this->raceEventRepository = $raceEventRepository;
 		$this->frequencyRepository = $frequencyRepository;
 		$this->bookingFrequencyRepository = $bookingFrequencyRepository;
+		$this->bookingRepository = $bookingRepository;
+		$this->raceClassRepository = $raceClassRepository;
 	}
 
 	public function create($slug) {
@@ -54,7 +58,9 @@ class BookingController extends \BaseController {
 	 */
 	public function store() {
 		$this->form->store(Input::all());
-		return Redirect::route('event.index');
+		$bookings = $this->bookingRepository->getAllUser(Auth::id());
+		$bookingId = end($bookings)->id;
+		return Redirect::route('booking.confirmation', ['booking' => $bookingId]);
 	}
 
 	/**
@@ -78,6 +84,18 @@ class BookingController extends \BaseController {
 			$bookings = $this->form->repository->getAllUser(Auth::id());
 			return View::make('booking.showUserBookings')->with('bookings', $bookings);
 		}
+	}
+
+	public function confirmation($bookingId) {
+		$booking = $this->bookingRepository->find($bookingId);
+		$event = $this->raceEventRepository->find($booking->event_id);
+		$class = $this->raceClassRepository->find($booking->class_id);
+
+		$timestamp = $event->start_time;
+		$event->date = date('j F Y', $timestamp);
+		$event->time = date('G:i', $timestamp);
+
+		return View::make('booking.confirmation')->withBooking($booking)->withEvent($event)->withClass($class);
 	}
 
 }
