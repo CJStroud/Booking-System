@@ -17,9 +17,11 @@ class RaceEventTableSeeder extends seeder {
 
     $hour = 60*60;
 
-    $classes = array(
-      [ 'id' => 1, 'limit' => 20 ]);
-
+    $classes = [new stdClass()];
+    
+    $classes[0]->id = 1;
+    $classes[0]->limit = 20;
+    
     $event = array(
       'name' => 'Test Event 1',
       'slug' => 'test-event-1',
@@ -30,8 +32,10 @@ class RaceEventTableSeeder extends seeder {
 
     $this->repository->store($event);
 
-    $classes = array(
-      [ 'id' => 2, 'limit' => 20 ]);
+    $classes = [new stdClass()];
+    
+    $classes[0]->id = 2;
+    $classes[0]->limit = 20;
 
     $event = array(
       'name' => 'Test Event 2',

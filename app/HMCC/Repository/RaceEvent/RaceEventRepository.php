@@ -50,9 +50,9 @@ class RaceEventRepository extends Repository
         {
             $event_class = [];
 
-            $event_class['class_id'] = $class['id'];
+            $event_class['class_id'] = $class->id;
             $event_class['event_id'] = $eventId;
-            $event_class['limit'] = $class['limit'];
+            $event_class['limit'] = $class->limit;
             $event_class['locked'] = false;
 
             $this->raceEventClassRepository->store($event_class);
