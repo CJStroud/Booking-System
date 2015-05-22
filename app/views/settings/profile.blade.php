@@ -42,12 +42,23 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="col-xs-12">
-            {{ Form::label('skill', 'Skill Level') }}
-
-            {{ Form::number('skill', Input::old('skill'), ['class' => 'form-control']) }}
-          </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ Form::label('skill', 'Skill Level', ['class' => '']) }}
+                <select id="skill-dropdown" class="selectpicker id-select form-control">
+                    <option id="1">1 - Low</option>
+                    <option id="2">2</option>
+                    <option id="3">3</option>
+                    <option id="4">4</option>
+                    <option id="5">5</option>
+                    <option id="6">6</option>
+                    <option id="7">7</option>
+                    <option id="8">8</option>
+                    <option id="9">9</option>
+                    <option id="10">10 - High</option>
+                </select>
+                <input name="skill" type="hidden" class="hidden-text" id="skill-input" value="{{ Input::old('skill') ?: Auth::user()->skill ?: 1}}">
+            </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12 col-sm-4 col-md-2">
