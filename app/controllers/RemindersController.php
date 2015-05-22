@@ -1,7 +1,15 @@
 <?php
 
+use HMCC\Repository\User\UserRepository;
+
 class RemindersController extends Controller {
 
+    protected $repository;
+    
+    public function __construct(UserRepository $repository) {
+        $this->repository = $repository;
+    }
+    
     /**
      * Display the password reminder view.
      *
@@ -60,9 +68,7 @@ class RemindersController extends Controller {
 
         $response = Password::reset($credentials, function($user, $password)
         {
-            $user->password = Hash::make($password);
-
-            $user->save();
+            $this->repository->passwordUpdate($user->id, $password);
         });
 
         switch ($response)
