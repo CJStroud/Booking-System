@@ -5,6 +5,10 @@ use RaceEvent;
 
 class RaceEventRepository extends Repository
 {
+    /**
+     *
+     * @var RaceEventClassRepository
+     */
     protected $raceEventClassRepository;
 
     public function __construct(RaceEvent $raceEvent, RaceEventClassRepository $raceEventClassRepository)
@@ -25,18 +29,28 @@ class RaceEventRepository extends Repository
 
         $event->save();
 
-        foreach($data['classes'] as $class)
+        $this->storeClasses($data['classes'], $event->id);
+    }
+    
+    public function update($id, $data)
+    {
+        parent::update($id, $data);
+        
+        if (isset($data['classes'])) {
+            $this->raceEventClassRepository->deleteEventClassesByEventId($id);
+            $this->storeClasses($data['classes'], $id);
+        }
+    }
+    
+    private function storeClasses($classes, $eventId)
+    {
+        foreach($classes as $class)
         {
             $event_class = [];
 
-            if (is_object($class))
-            {
-              $class = json_decode(json_encode($class), true);
-            }
-
-            $event_class['class_id'] = $class['id'];
-            $event_class['event_id'] = $event->id;
-            $event_class['limit'] = $class['limit'];
+            $event_class['class_id'] = $class->id;
+            $event_class['event_id'] = $eventId;
+            $event_class['limit'] = $class->limit;
             $event_class['locked'] = false;
 
             $this->raceEventClassRepository->store($event_class);

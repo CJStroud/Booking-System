@@ -14,6 +14,11 @@ class UserForm extends Form {
         parent::__construct($repository, $validator);
     }
 
+    /**
+     * Summary of store
+     * @param array $inputs 
+     * @return bool
+     */
     public function store(Array $inputs)
     {
         $secret = str_random(15);
@@ -24,7 +29,7 @@ class UserForm extends Form {
 
     public function checkLogin($email, $password) {
         $isUsingOldPassword = $this->repository->userHasOldPassword($email);
-
+        
         if ($isUsingOldPassword) {
             if (Auth::attempt(array('email' => $email, 'password' => $password . $email))) {
                 $id = $this->repository->getIdByEmail($email);
