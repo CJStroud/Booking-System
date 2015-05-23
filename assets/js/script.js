@@ -4,7 +4,7 @@ var classes = {};
 function removeFunction() {
   var id = $(this).attr('id');
   delete classes[id];
-  $(this).parent().parent().remove();
+	$(this).parent().parent().parent().remove();
 }
 
 
