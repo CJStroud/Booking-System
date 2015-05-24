@@ -5,6 +5,7 @@ use HMCC\Validation\User\Setting\ProfileValidator;
 use HMCC\Validation\User\Setting\PasswordValidator;
 use HMCC\Repository\User\UserRepository;
 use HMCC\Form\Form;
+use HMCC\Form\FormException;
 use Auth;
 use Hash;
 
