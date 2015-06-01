@@ -5,7 +5,7 @@
 				<h3>{{ $booking->raceEvent }}</h3>
 				<h4>{{ $booking->raceClass }}</h4>
 			</div>
-			<div class="col-xs-12 col-md-6">
+			<div class="col-xs-12 col-md-6 text-right booking-info">
 				<h5>Date: <span>{{ date('d/m/Y', $booking->startTime) }}</span></h5>
 				<h5>Start Time: <span>{{ date('H:i', $booking->startTime) }}</span></h5>
 				<h5>Transponder: #{{ $booking->transponder }}</h5>
