@@ -81,7 +81,8 @@ class BookingController extends \BaseController {
 
 	public function showUserBookings() {
 		if (Auth::check()) {
-			$bookings = $this->form->repository->getAllUser(Auth::id());
+			$date = new DateTime();
+			$bookings = $this->form->repository->getAllUserAfterDate(Auth::id(), $date);
 			return View::make('booking.showUserBookings')->with('bookings', $bookings);
 		}
 	}
