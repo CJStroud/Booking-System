@@ -46,6 +46,11 @@ Route::post('/class/enable/{id}', ['uses' => 'RaceClassController@enable', 'as' 
 Route::post('event/unlock/{event_id}/{class_id}', ['uses' => 'RaceEventController@unlock', 'as' => 'event.unlock']);
 Route::post('event/lock/{event_id}/{class_id}', ['uses' => 'RaceEventController@lock', 'as' => 'event.lock']);
 
+Route::get('/image/{id}', [
+    'uses' => 'UploadController@inlineImage',
+    'as' => 'image.inline'
+]);
+
 
 Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 
@@ -99,6 +104,16 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 				'uses' => 'RaceEventController@update',
 				'as' => 'admin.event.update'
 		]);
+                
+                Route::get('gallery', [
+                    'uses' => 'AdminGalleryController@index',
+                    'as' => 'admin.gallery.index'
+                ]);
+                
+                Route::post('gallery/new-folder', [
+                    'uses' => 'AdminGalleryController@newFolder',
+                    'as' => 'admin.gallery.new-folder'
+                ]);
 
 		Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
 
