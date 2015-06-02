@@ -42,6 +42,7 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     'assets/components/jquery/dist/jquery.min.js',
+                    'assets/components/jquery-ui/jquery-ui.min.js',
                     'assets/components/bootstrap/dist/js/bootstrap.min.js',
                     'assets/components/bootstrap-select/dist/js/bootstrap-select.min.js',
                     'assets/components/Flowtype.js/flowtype.js',
