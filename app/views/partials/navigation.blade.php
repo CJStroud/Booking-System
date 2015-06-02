@@ -13,7 +13,15 @@
 
 			<div class="collapse navbar-collapse" id="main-navbar-collapsable">
 				<ul class="nav navbar-nav">
-						<li><a href="{{ route('about') }}"><i class="fa fa-info fa-lg icon-spacing-right"></i>About Us</a></li>
+
+					<li class="dropdown">
+							<a href="{{ route('about') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-info fa-lg icon-spacing-right"></i>About<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+									<li><a href="{{ route('about') }}"><i class="fa fa-info fa-lg icon-spacing-right"></i>About Us</a></li>
+									<li><a href="{{ route('rules') }}"><i class="fa fa-book fa-lg icon-spacing-right"></i>Rules</a></li>
+							</ul>
+					</li>
+
 						<li><a href="{{ route('contact') }}"><i class="fa fa-phone fa-lg icon-spacing-right"></i>Contact Us</a></li>
 						<li><a href="{{ route('gallery') }}"><i class="fa fa-camera fa-lg icon-spacing-right"></i>Gallery</a></li>
 
