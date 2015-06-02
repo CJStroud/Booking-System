@@ -15,6 +15,8 @@
 
       {{ HTML::script('https://maps.googleapis.com/maps/api/js') }}
       {{ HTML::script('js/hmcc-booking-system.js') }}
+      
+      @yield('javascript')
 
       @include('partials.footer')
 
