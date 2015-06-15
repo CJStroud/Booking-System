@@ -2,42 +2,39 @@
 
 use HMCC\Repository\Gallery\UploadRepository;
 
-class UploadController extends BaseController {
-    
+class UploadController extends BaseController
+{
     /**
      * @var UploadRepository
      */
     protected $repository;
-    
+
     public function __construct(UploadRepository $repository)
     {
         $this->repository = $repository;
     }
-    
-    public function inlineImage($id)
+
+    public function inlineImage($imageId)
     {
-        $upload = $this->repository->find($id);
-        
-        $path = $this->upload_path() . '/' . $upload->location;
-        
-        if (file_exists($path))
-        {
-            $name = basename($path);
-            
+        $upload = $this->repository->find($imageId);
+
+        $path = $this->uploadPath() . '/' . $upload->location;
+
+        if (file_exists($path)) {
             $image = File::get($path);
-            
+
             $response = Response::make($image);
-            
+
             $response->header('Content-Type', $upload->file_type);
-            
+
             return $response;
-        } else{
+        } else {
             App::abort(404);
         }
-        
+
     }
-    
-    private function upload_path()
+
+    private function uploadPath()
     {
         return app_path() . '/storage/uploads';
     }
