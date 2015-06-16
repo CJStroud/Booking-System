@@ -118,7 +118,7 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
         Route::get('gallery/{folder?}', [
             'uses' => 'AdminGalleryController@folder',
             'as'   => 'admin.gallery.folder'
-        ]);
+        ])->where('folder', '(.*)');
 
         Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
 
