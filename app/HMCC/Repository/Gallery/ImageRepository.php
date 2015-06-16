@@ -18,7 +18,8 @@ class ImageRepository extends Repository {
         parent::store($data);
     }
 
-    public function toSlug($string) {
+    public function toSlug($string)
+    {
         return rtrim(strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string))), '-');
     }
 
@@ -26,5 +27,4 @@ class ImageRepository extends Repository {
     {
         return $this->model->whereNull('collection_id')->get();
     }
-
 }
