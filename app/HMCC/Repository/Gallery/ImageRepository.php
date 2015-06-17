@@ -18,7 +18,7 @@ class ImageRepository extends Repository
 
     public function store($data)
     {
-        $data['slug'] = $this->toSlug($data['name']);
+        $data['slug'] = $this->getUniqueSlug($this->toSlug($data['name']));
 
         parent::store($data);
     }
