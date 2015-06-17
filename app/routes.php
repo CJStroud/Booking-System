@@ -115,10 +115,26 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
             'as' => 'admin.gallery.new-folder'
         ]);
 
+        Route::post('gallery/upload', [
+            'uses' => 'AdminGalleryController@uploadImage',
+            'as' => 'admin.gallery.upload'
+        ]);
+
+        Route::post('gallery/move-image', [
+            'uses' => 'AdminGalleryController@moveImage',
+            'as' => 'admin.gallery.move-image.ajax'
+        ]);
+
+        Route::post('gallery/move-folder', [
+            'uses' => 'AdminGalleryController@moveFolder',
+            'as' => 'admin.gallery.move-folder.ajax'
+        ]);
+
         Route::get('gallery/{folder?}', [
             'uses' => 'AdminGalleryController@folder',
             'as'   => 'admin.gallery.folder'
         ])->where('folder', '(.*)');
+
 
         Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
 
