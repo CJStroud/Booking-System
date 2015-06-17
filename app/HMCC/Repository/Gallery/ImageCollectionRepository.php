@@ -21,16 +21,17 @@ class ImageCollectionRepository extends Repository
         if ($data['path'] != '') {
             try {
                 $collection = $this->collectionByPath($data['path']);
+                $data['path'] = $collection->path . '/';
                 $data['collection_id'] = $collection->id;
             } catch (\Exception $e) {
+                $data['path'] = '';
             }
         }
         $data['slug'] = $this->toSlug($data['name']);
+        $slug = $this->getUniqueSlug($data['slug']);
 
-        $calculated = $this->findSuitableSlug($data['path'], $data['slug']);
-
-        $data['path'] = $calculated['path'];
-        $data['slug'] = $calculated['slug'];
+        $data['path'] = $data['path'] . $slug;
+        $data['slug'] = $slug;
 
         parent::store($data);
     }
