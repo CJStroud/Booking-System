@@ -23,6 +23,6 @@ trait FindBestSlugTrait
                 $found = true;
             }
         }
-        return ['slug' => $proposedSlug];
+        return $proposedSlug;
     }
 }
