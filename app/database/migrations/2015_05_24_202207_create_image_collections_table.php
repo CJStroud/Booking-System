@@ -14,9 +14,10 @@ class CreateImageCollectionsTable extends Migration {
         Schema::create('image_collections', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments("id")->unsigned();
-            
+
             $table->string("name");
             $table->string("slug");
+            $table->string("path");
             $table->string("description");
             $table->integer("collection_id")->unsigned()->nullable();
         });
