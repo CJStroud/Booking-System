@@ -4,7 +4,7 @@ class ImageCollection extends Eloquent {
 
     protected $table = 'image_collections';
     public $timestamps = false;
-    protected $fillable = ['name', 'description', 'slug', 'collection_id'];
+    protected $fillable = ['name', 'description', 'slug', 'path', 'collection_id'];
 
     public function parentCollection()
     {
@@ -13,11 +13,11 @@ class ImageCollection extends Eloquent {
 
     public function images()
     {
-        return $this->hasMany('Image');
+        return $this->hasMany('Image', 'collection_id', 'id');
     }
 
     public function children()
     {
-        return $this->hasMany('ImageCollection', 'id', 'collection_id');
+        return $this->hasMany('ImageCollection', 'collection_id', 'id');
     }
 }
