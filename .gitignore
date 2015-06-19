@@ -5,6 +5,7 @@ node_modules/
 public/css
 public/js
 public/fonts
+public/results
 composer.phar
 composer.lock
 .env.*.php
