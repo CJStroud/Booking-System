@@ -23,6 +23,13 @@ class ImageRepository extends Repository
         parent::store($data);
     }
 
+    public function update($imageId, $data)
+    {
+        $data['slug'] = $this->getUniqueSlug($this->toSlug($data['name']));
+
+        parent::update($imageId, $data);
+    }
+
     public function toSlug($string)
     {
         return rtrim(strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string))), '-');
