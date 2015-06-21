@@ -130,6 +130,11 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
             'as' => 'admin.gallery.move-folder.ajax'
         ]);
 
+        Route::post('gallery/delete', [
+            'uses' => 'AdminGalleryController@delete',
+            'as' => 'admin.gallery.delete.ajax'
+        ]);
+
         Route::get('gallery/{folder?}', [
             'uses' => 'AdminGalleryController@folder',
             'as'   => 'admin.gallery.folder'
