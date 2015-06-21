@@ -29,6 +29,7 @@
         float:left;
         cursor: default;
         color: #333;
+        position: relative;
 
         @media (max-width: 979px) {
             width: 100%;
@@ -71,5 +72,10 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+    }
+
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+        background-color: @secondary;
+        color: #fff;
     }
 }
