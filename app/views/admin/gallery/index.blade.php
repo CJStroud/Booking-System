@@ -96,13 +96,13 @@
     </div>
     <div id="context-menu">
         <ul class="dropdown-menu" role="menu">
-            <li><a href="#" data-id="#edit-modal"><span class="fa fa-pencil icon-spacing-right"></span>Edit</a></li>
+            <li><a href="#" data-action="edit"><span class="fa fa-pencil icon-spacing-right"></span>Edit</a></li>
             <li><a href="#" data-action="delete"><span class="fa fa-trash icon-spacing-right"></span>Delete</a></li>
         </ul>
     </div>
 </div>
 
-
+{{-- New Folder Modal --}}
 <div class="modal fade modal-new-folder" id="newFolder" tabindex="-1" role="dialog" aria-labelledby="New Folder" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -136,6 +136,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+{{-- New Image Modal --}}
 <div class="modal fade modal-upload-image" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="Upload Image" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -180,6 +181,78 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+{{-- Edit Folder Modal --}}
+<div class="modal fade modal-edit-folder" id="editFolder" tabindex="-1" role="dialog" aria-labelledby="Edit Folder" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {{ Form::open(['route' => ['admin.gallery.folder.edit'], 'role' => 'form', 'id' => 'form', 'method' => 'POST' ] ) }}
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Edit Folder</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Folder name</label>
+                <input type="text" class="form-control" placeholder="Enter folder name" name="name">
+            </div>
+            {{ Form::hidden('folder-id', null) }}
+        </div>
+        <div class="modal-footer">
+          <div class="col-xs-6 col-sm-3 col-sm-offset-6">
+              <button type="submit" class="btn btn-secondary">Edit</button>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal">
+                <span class="btn-text">Close</span>
+                <span class="btn-addon btn-addon-primary">
+                    <i class="fa fa-close"></i>
+                </span>
+            </button>
+          </div>
+        </div>
+      {{ Form::close() }}
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{{-- Edit Image Modal --}}
+<div class="modal fade modal-edit-image" id="editImage" tabindex="-1" role="dialog" aria-labelledby="Edit Image" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {{ Form::open(['route' => ['admin.gallery.image.edit'], 'role' => 'form', 'id' => 'form', 'method' => 'POST'] ) }}
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Edit Image</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Image name</label>
+                <input type="text" class="form-control" id="imageName" placeholder="Enter image name" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Image description</label>
+                <textarea class="form-control" placeholder="Enter image description" name="description"></textarea>
+            </div>
+            {{ Form::hidden('image-id', null) }}
+        </div>
+        <div class="modal-footer">
+          <div class="col-xs-6 col-sm-3 col-sm-offset-6">
+              <button type="submit" class="btn btn-secondary">Edit</button>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <button type="button" class="btn btn-default btn-with-addon" data-dismiss="modal">
+                <span class="btn-text">Close</span>
+                <span class="btn-addon btn-addon-primary">
+                    <i class="fa fa-close"></i>
+                </span>
+            </button>
+          </div>
+        </div>
+      {{ Form::close() }}
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @stop
 
@@ -278,6 +351,18 @@
                                 });
                             }
                         });
+                        break;
+                    case 'edit':
+                        if ($(context).data('type') == 'image') {
+                            $('#editImage [name="name"]').val($(context).find('.name').text().trim());
+                            $('#editImage [name="description"]').val($(context).find('.media-body').clone().children().remove().end().text().trim());
+                            $('#editImage [name="image-id"]').val($(context).data('id'));
+                            $('#editImage').modal('show');
+                        } else {
+                            $('#editFolder [name="name"]').val($(context).text().trim());
+                            $('#editFolder [name="folder-id"]').val($(context).data('id'));
+                            $('#editFolder').modal('show');
+                        }
                         break;
                 }
 
