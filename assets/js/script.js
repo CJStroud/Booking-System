@@ -117,6 +117,11 @@ $(document).ready(function(){
   $('.btn-delete-class').click(function () {
 	  $('#class-id').val($(this).data('class-id'));
   });
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+        }
+    });
 
   $('.btn-delete-series').click(function () {
 	  $('#series-folder').val($(this).data('series-folder'));

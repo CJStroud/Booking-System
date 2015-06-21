@@ -27,9 +27,9 @@
 </a>
 
 @if ($active == 'gallery')
-  <a href="{{ route('settings.account') }}" class="list-group-item active">
+  <a href="{{ route('admin.gallery.index') }}" class="list-group-item active">
 @else
-  <a href="{{ route('settings.account') }}" class="list-group-item">
+  <a href="{{ route('admin.gallery.index') }}" class="list-group-item">
 @endif
   <i class="fa fa-photo fa-lg"></i><span class="icon-spacing-left">Gallery</span>
 </a>

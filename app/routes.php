@@ -10,25 +10,25 @@
   |
  */
 
-Route::get('/', ['as' => 'home', function() {
-        return View::make('index');
-    }]);
+Route::get('/', ['as' => 'home', function () {
+                return View::make('index');
+}]);
 
-Route::get('/about', ['as' => 'about', function() {
-        return View::make('info.about');
-    }]);
+Route::get('/about', ['as' => 'about', function () {
+                return View::make('info.about');
+}]);
 
-Route::get('/rules', ['as' => 'rules', function() {
+Route::get('/rules', ['as' => 'rules', function () {
         return View::make('info.rules');
-    }]);
+}]);
 
-Route::get('/contact', ['as' => 'contact', function() {
+Route::get('/contact', ['as' => 'contact', function () {
         return View::make('info.contact');
-    }]);
+}]);
 
-Route::get('/gallery', ['as' => 'gallery', function() {
+Route::get('/gallery', ['as' => 'gallery', function () {
         return View::make('info.gallery');
-    }]);
+}]);
 
 Route::get('/results', ['uses' => 'ResultsController@view', 'as' => 'results.view']);
 
@@ -52,89 +52,138 @@ Route::post('/class/enable/{id}', ['uses' => 'RaceClassController@enable', 'as' 
 Route::post('event/unlock/{event_id}/{class_id}', ['uses' => 'RaceEventController@unlock', 'as' => 'event.unlock']);
 Route::post('event/lock/{event_id}/{class_id}', ['uses' => 'RaceEventController@lock', 'as' => 'event.lock']);
 
+Route::get('/image/{id}', [
+    'uses' => 'UploadController@inlineImage',
+    'as' => 'image.inline'
+]);
 
-Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
+Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function () {
 
-    Route::get('/', ['uses' => 'AdminController@home', 'as' => 'admin.home']);
+        Route::get('/', ['uses' => 'AdminController@home', 'as' => 'admin.home']);
 
-    Route::get('users', ['uses' => 'AdminController@users', 'as' => 'admin.users']);
+        Route::get('users', ['uses' => 'AdminController@users', 'as' => 'admin.users']);
 
-    Route::get('classes', ['uses' => 'AdminController@classes', 'as' => 'admin.classes']);
+        Route::get('classes', ['uses' => 'AdminController@classes', 'as' => 'admin.classes']);
 
-    Route::get('classes/{id}/edit', [
-        'uses' => 'AdminController@editClass',
-        'as' => 'admin.classes.edit'
-    ]);
+        Route::get('classes/{id}/edit', [
+                'uses' => 'AdminController@editClass',
+                'as' => 'admin.classes.edit'
+        ]);
 
-    Route::get('classes/create', [
-        'uses' => 'AdminController@createClass',
-        'as' => 'admin.classes.create'
-    ]);
+        Route::get('classes/create', [
+                'uses' => 'AdminController@createClass',
+                'as' => 'admin.classes.create'
+        ]);
 
-    Route::post('classes/{id}/update', [
-        'uses' => 'AdminController@updateClass',
-        'as' => 'admin.classes.update'
-    ]);
+        Route::post('classes/{id}/update', [
+                'uses' => 'AdminController@updateClass',
+                'as' => 'admin.classes.update'
+        ]);
 
-    Route::post('classes/store', [
-        'uses' => 'AdminController@storeClass',
-        'as' => 'admin.classes.store'
-    ]);
+        Route::post('classes/store', [
+                'uses' => 'AdminController@storeClass',
+                'as' => 'admin.classes.store'
+        ]);
 
-    Route::post('classes/delete', [
-        'uses' => 'AdminController@deleteClass',
-        'as' => 'admin.classes.delete'
-    ]);
+        Route::post('classes/delete', [
+                'uses' => 'AdminController@deleteClass',
+                'as' => 'admin.classes.delete'
+        ]);
 
-    Route::post('event/{id}/cancel', [
-        'uses' => 'RaceEventController@cancel',
-        'as' => 'admin.event.cancel'
-    ]);
+        Route::post('event/{id}/cancel', [
+                'uses' => 'RaceEventController@cancel',
+                'as' => 'admin.event.cancel'
+        ]);
 
-    Route::post('event/{id}/delete', [
-        'uses' => 'RaceEventController@destroy',
-        'as' => 'admin.event.delete'
-    ]);
+        Route::post('event/{id}/delete', [
+                'uses' => 'RaceEventController@destroy',
+                'as' => 'admin.event.delete'
+        ]);
 
-    Route::get('event/{id}/edit', [
-        'uses' => 'RaceEventController@edit',
-        'as' => 'admin.event.edit'
-    ]);
+        Route::get('event/{id}/edit', [
+                'uses' => 'RaceEventController@edit',
+                'as' => 'admin.event.edit'
+        ]);
 
-    Route::post('event/{id}/update', [
-        'uses' => 'RaceEventController@update',
-        'as' => 'admin.event.update'
-    ]);
+        Route::post('event/{id}/update', [
+                'uses' => 'RaceEventController@update',
+                'as' => 'admin.event.update'
+        ]);
 
-    Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
+        Route::get('gallery', [
+            'uses' => 'AdminGalleryController@index',
+            'as' => 'admin.gallery.index'
+        ]);
 
-    Route::post('users/{id}/unban', ['uses' => 'AdminController@unbanUser', 'as' => 'admin.user.unban']);
+        Route::post('gallery/new-folder', [
+            'uses' => 'AdminGalleryController@newFolder',
+            'as' => 'admin.gallery.new-folder'
+        ]);
 
-    Route::get('results', ['uses' => 'ResultsController@home', 'as' => 'admin.results']);
+        Route::post('gallery/upload', [
+            'uses' => 'AdminGalleryController@uploadImage',
+            'as' => 'admin.gallery.upload'
+        ]);
 
-    Route::get('meetings/{series}', ['uses' => 'ResultsController@meetings', 'as' => 'admin.series.meetings']);
+        Route::post('gallery/move-image', [
+            'uses' => 'AdminGalleryController@moveImage',
+            'as' => 'admin.gallery.move-image.ajax'
+        ]);
 
-    Route::get('results/meeting/create/{series}', ['uses' => 'ResultsController@createMeeting', 'as' => 'admin.create.meeting']);
+        Route::post('gallery/move-folder', [
+            'uses' => 'AdminGalleryController@moveFolder',
+            'as' => 'admin.gallery.move-folder.ajax'
+        ]);
 
-    Route::post('results/meeting/store', ['uses' => 'ResultsController@storeMeeting', 'as' => 'admin.store.meeting']);
+        Route::post('gallery/delete', [
+            'uses' => 'AdminGalleryController@delete',
+            'as' => 'admin.gallery.delete.ajax'
+        ]);
 
-    Route::get('results/series/create', ['uses' => 'ResultsController@createSeries', 'as' => 'admin.create.series']);
+        Route::post('gallery/folder/edit', [
+            'uses' => 'AdminGalleryController@editFolder',
+            'as' => 'admin.gallery.folder.edit'
+        ]);
 
-    Route::post('results/series/store', ['uses' => 'ResultsController@storeSeries', 'as' => 'admin.store.series']);
+        Route::post('gallery/image/edit', [
+            'uses' => 'AdminGalleryController@editImage',
+            'as' => 'admin.gallery.image.edit'
+        ]);
 
-    Route::post('results/meeting/delete/{series}/{meeting}', ['uses' => 'ResultsController@deleteMeeting', 'as' => 'admin.delete.meeting']);
+        Route::get('gallery/{folder?}', [
+            'uses' => 'AdminGalleryController@folder',
+            'as'   => 'admin.gallery.folder'
+        ])->where('folder', '(.*)');
 
-    Route::post('results/series/delete', ['uses' => 'ResultsController@deleteSeries', 'as' => 'admin.delete.series']);
+        Route::get('results', ['uses' => 'ResultsController@home', 'as' => 'admin.results']);
+
+        Route::get('meetings/{series}', ['uses' => 'ResultsController@meetings', 'as' => 'admin.series.meetings']);
+
+        Route::get('results/meeting/create/{series}', ['uses' => 'ResultsController@createMeeting', 'as' => 'admin.create.meeting']);
+
+        Route::post('results/meeting/store', ['uses' => 'ResultsController@storeMeeting', 'as' => 'admin.store.meeting']);
+
+        Route::get('results/series/create', ['uses' => 'ResultsController@createSeries', 'as' => 'admin.create.series']);
+
+        Route::post('results/series/store', ['uses' => 'ResultsController@storeSeries', 'as' => 'admin.store.series']);
+
+        Route::post('results/meeting/delete/{series}/{meeting}', ['uses' => 'ResultsController@deleteMeeting', 'as' => 'admin.delete.meeting']);
+
+        Route::post('results/series/delete', ['uses' => 'ResultsController@deleteSeries', 'as' => 'admin.delete.series']);
+
+
+        Route::post('users/{id}/ban', ['uses' => 'AdminController@banUser', 'as' => 'admin.user.ban']);
+
+        Route::post('users/{id}/unban', ['uses' => 'AdminController@unbanUser', 'as' => 'admin.user.unban']);
 });
 
 //TODO Test
 
-Route::group(array('before' => 'is.logged.in'), function() {
-
+Route::group(array('before' => 'is.logged.in'), function () {
     Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
     Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'show.user.bookings' ]);
 
-    Route::group(array('prefix' => 'settings'), function() {
+    Route::group(array('prefix' => 'settings'), function () {
 
         Route::get('booking/create/{slug}/{class_id}', ['uses' => 'BookingController@createWithClassId', 'as' => 'booking.create.class']);
 
@@ -151,14 +200,12 @@ Route::group(array('before' => 'is.logged.in'), function() {
 });
 
 
-Route::group(array('prefix' => 'password'), function() {
+Route::group(array('prefix' => 'password'), function () {
+    Route::get('recover', [ 'uses' => 'RemindersController@getRemind', 'as' => 'password.get.reminder' ]);
 
-  Route::get('recover', [ 'uses' => 'RemindersController@getRemind', 'as' => 'password.get.reminder' ]);
+    Route::post('recover', [ 'uses' => 'RemindersController@postRemind', 'as' => 'password.send.reminder' ]);
 
-  Route::post('recover', [ 'uses' => 'RemindersController@postRemind', 'as' => 'password.send.reminder' ]);
+    Route::get('reset/{token}', [ 'uses' => 'RemindersController@getReset', 'as' => 'password.get.reset' ]);
 
-  Route::get('reset/{token}', [ 'uses' => 'RemindersController@getReset', 'as' => 'password.get.reset' ]);
-
-  Route::post('reset', [ 'uses' => 'RemindersController@postReset', 'as' => 'password.send.reset' ]);
-
+    Route::post('reset', [ 'uses' => 'RemindersController@postReset', 'as' => 'password.send.reset' ]);
 });
