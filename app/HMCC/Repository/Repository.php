@@ -23,7 +23,9 @@ abstract class Repository implements RepositoryInterface
 
     $newModel->fill($data);
 
-    return $newModel->save();
+    $newModel->save();
+
+    return $newModel;
   }
 
   public function delete($id)
