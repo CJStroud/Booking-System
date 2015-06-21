@@ -31,41 +31,46 @@
 
     <div class="gallery-folders">
         @if ($path != '')
-            <a data-name=".."
-                href="<?php
-                    if (strpos($path, '/') > -1) {
-                        $upPath = substr($path, 0, strrpos($path, '/'));
-                    } else {
-                        $upPath = '';
-                    }
-                    echo route('admin.gallery.folder', $upPath) ?>"
-                class="noselect gallery-item gallery-folder"
-                data-id="up"
-                data-placement="bottom"
-                title="..">
-                <h4>
-                    <span class="fa fa-folder fa-2x"></span>
-                        <span class="name">..</span>
-                </h4>
-            </a>
+            <div class="gallery-item-container">
+                <a data-name=".."
+                    href="<?php
+                        if (strpos($path, '/') > -1) {
+                            $upPath = substr($path, 0, strrpos($path, '/'));
+                        } else {
+                            $upPath = '';
+                        }
+                        echo route('admin.gallery.folder', $upPath) ?>"
+                    class="noselect gallery-item gallery-folder"
+                    data-id="up"
+                    data-placement="bottom"
+                    title="..">
+                    <h4>
+                        <span class="fa fa-folder fa-2x"></span>
+                            <span class="name">..</span>
+                    </h4>
+                </a>
+            </div>
         @endif
         @foreach($folders as $folder)
-            <a data-name="{{ $folder->name }}"
-                href="{{ route('admin.gallery.folder', $folder->path) }}"
-                class="noselect gallery-item gallery-folder gallery-draggable"
-                data-id="{{ $folder->id }}"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="{{ $folder->name }}">
-                <h4>
-                    <span class="fa fa-folder fa-2x"></span>
-                    @if (strlen($folder->name) > 24)
-                        <span class="name">{{ substr($folder->name, 0 , 21) . '...' }}</span>
-                    @else
-                        <span class="name">{{ $folder->name }}</span>
-                    @endif
-                </h4>
-            </a>
+            <div class="gallery-item-container">
+                <a data-name="{{ $folder->name }}"
+                    href="{{ route('admin.gallery.folder', $folder->path) }}"
+                    class="noselect gallery-item gallery-folder gallery-draggable"
+                    data-id="{{ $folder->id }}"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-type="folder"
+                    title="{{ $folder->name }}">
+                    <h4>
+                        <span class="fa fa-folder fa-2x"></span>
+                        @if (strlen($folder->name) > 24)
+                            <span class="name">{{ substr($folder->name, 0 , 21) . '...' }}</span>
+                        @else
+                            <span class="name">{{ $folder->name }}</span>
+                        @endif
+                    </h4>
+                </a>
+            </div>
         @endforeach
     </div>
 
@@ -74,18 +79,26 @@
     <div class="gallery-images">
 
         @foreach ($images as $image)
-            <a href="#" class="gallery-item gallery-image noselect gallery-draggable" data-name="{{ $image->name }}" data-id="{{ $image->id }}">
-                <div class="media">
-                    <div class="media-left">
-                            <div class="media-object" style="background-image: url('{{ route('image.inline', $image->upload_id) }}')"></div>
+            <div class="gallery-item-container">
+                <a href="#" class="gallery-item gallery-image noselect gallery-draggable" data-name="{{ $image->name }}" data-id="{{ $image->id }}" data-type="image">
+                    <div class="media">
+                        <div class="media-left">
+                                <div class="media-object" style="background-image: url('{{ route('image.inline', $image->upload_id) }}')"></div>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading name">{{ $image->name }}</h4>
+                            {{ $image->description }}
+                        </div>
                     </div>
-                    <div class="media-body">
-                        <h4 class="media-heading name">{{ $image->name }}</h4>
-                        {{ $image->description }}
-                    </div>
-                </div>
-            </a>
+                </a>
+            </div>
         @endforeach
+    </div>
+    <div id="context-menu">
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#" data-id="#edit-modal"><span class="fa fa-pencil icon-spacing-right"></span>Edit</a></li>
+            <li><a href="#" data-action="delete"><span class="fa fa-trash icon-spacing-right"></span>Delete</a></li>
+        </ul>
     </div>
 </div>
 
@@ -237,8 +250,41 @@
 
             }
         });
+
+        $('.gallery-item').contextmenu({
+            target: '#context-menu',
+            before: function(e, context) {
+                if ($(context).data('id') == 'up') {
+                    e.preventDefault();
+                    return false;
+                }
+            },
+            onItem: function(context, e) {
+                var action = $(e.target).data('action');
+                e.preventDefault();
+                switch (action) {
+                    case 'delete':
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ route('admin.gallery.delete.ajax') }}",
+                            data: {
+                                id: $(context).data('id'),
+                                type: $(context).data('type')
+                            },
+                            success: function(result) {
+                                $(context).fadeTo("0.5s", 0, function() {
+                                    $(this).detach();
+                                    location.reload();
+                                });
+                            }
+                        });
+                        break;
+                }
+
+                return true;
+            }
+        });
     });
 
 </script>
-
 @stop
