@@ -53,7 +53,12 @@ class ImageCollectionRepository extends Repository
 
     public function allWithPathIncluded($path)
     {
-        return $this->model->where('path', 'LIKE', $path . '%')->get();
+        return $this->allWithPathIncludeQuery($path)->get();
+    }
+
+    public function allWithPathIncludeQuery($path)
+    {
+        return $this->model->where('path', 'LIKE', $path . '%');
     }
 
     public function updateToNewPath($oldPath, $newPath)
