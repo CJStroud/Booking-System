@@ -123,4 +123,12 @@ $(document).ready(function(){
         }
     });
 
+  $('.btn-delete-series').click(function () {
+	  $('#series-folder').val($(this).data('series-folder'));
+  });
+
+  $('.btn-delete-meeting').click(function () {
+	  $('#meeting-folder').val($(this).data('meeting-folder'));
+  });
+
 });

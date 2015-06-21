@@ -30,6 +30,7 @@
 								<ul class="dropdown-menu" role="menu">
 										<li><a href="{{ route('event.index') }}"><i class="fa fa-flag-checkered fa-lg icon-spacing-right"></i>View Events</a></li>
 										<li><a href="{{ route('show.user.bookings') }}"><i class="fa fa-calendar fa-lg icon-spacing-right"></i>My Bookings</a></li>
+										<li><a href="{{ route('results.view') }}"><i class="fa fa-bar-chart fa-lg icon-spacing-right"></i>Results</a></li>
 								</ul>
 						</li>
 					@if (Auth::check() && Auth::user()->is_admin)
