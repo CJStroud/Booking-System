@@ -95,15 +95,22 @@ class ResultsController extends \BaseController {
 
     public function storeSeries()
     {
-        $series = trim(Input::get('series-name'));
+        $errors = [];
+
+        $rules = array ('series-name' => 'required|min:3|regex:/^[a-zA-Z].+$/');
+
+        $messages = array(
+            ['series-name.regex' => 'The series name must start with a letter']);
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return Redirect::route('admin.create.series')
+                ->withErrors($validator->messages());
+        }
 
         $failed = false;
         $errors = [];
-
-        if ($series == "") {
-            $failed = true;
-            array_push($errors, "Please enter a name for the series");
-        }
 
         $series = strtolower(str_replace(' ', '-', $series));
 
