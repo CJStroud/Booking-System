@@ -112,10 +112,9 @@ class ResultsController extends \BaseController {
         $failed = false;
         $errors = [];
 
-        $series = strtolower(str_replace(' ', '-', $series));
+        $series = strtolower(str_replace(' ', '-', Input::get('series-name')));
 
         $directory = "./result/" . $series;
-
         if (!$failed && file_exists($directory)) {
             $failed = true;
             array_push($errors, "A series already exists with that name");
