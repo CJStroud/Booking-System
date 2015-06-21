@@ -1,26 +1,23 @@
-@extends('layouts.master')
+@extends('layouts.admin-settings')
 
-@section('content')
+@section('settings-content')
 
-<div class="container">
+<div class="panel panel-default panel-settings">
+    <div class="panel-heading">Create Meeting - {{ $series->name }}</div>
+    <div class="panel-body">
 
   {{ Form::open(['route' => ['admin.store.meeting'], 'role' => 'form', 'files' => true, 'id' => 'form', 'method' => 'POST' ] ) }}
 
-    <h1>Create Meeting</h1>
 
-      <div class='col-xs-12'>
-          <div class="form-group">
-              {{ Form::label('series-name', 'Series Name', ['class' => '']) }}
-              {{ Form::text('series-name', null, ['placeholder' => 'name of series ie. Series', 'class' => 'form-control']) }}
-          </div>
-      </div>
+    <input type="hidden" name="series-name" id="series-name" value={{ $series->folderName }}/>
 
         <div class='col-xs-12'>
             <div class="form-group">
                 {{ Form::label('meeting-name', 'Meeting Name', ['class' => '']) }}
-                {{ Form::text('meeting-name', null, ['placeholder' => 'name of meeting ie. round 1', 'class' => 'form-control']) }}
+                {{ Form::text('meeting-name', null, ['placeholder' => 'name of meeting ie. Round 1', 'class' => 'form-control']) }}
             </div>
         </div>
+
 
         <div class='col-xs-12'>
             <div class="form-group">
@@ -31,14 +28,15 @@
             </div>
         </div>
 
-
       <div class="col-xs-12">
         <div class="form-group">
+            {{ Form::label('upload', 'Upload Files', ['class' => '']) }}
           <div class="upload-files">
             <input name="upload[]" type="file" multiple="multiple" />
           </div>
         </div>
       </div>
+
 
         <div class="col-xs-12 col-sm-4 col-md-2">
           <div class="form-group">
@@ -50,9 +48,8 @@
             </button>
         </div>
       </div>
-
-  {{ Form::close() }}
-
 </div>
+</div>
+  {{ Form::close() }}
 
 @stop

@@ -30,7 +30,7 @@ Route::get('/gallery', ['as' => 'gallery', function() {
         return View::make('info.gallery');
     }]);
 
-Route::get('/view-results', ['uses' => 'ResultsController@view', 'as' => 'results.view']);
+Route::get('/results', ['uses' => 'ResultsController@view', 'as' => 'results.view']);
 
 Route::resource('event', 'RaceEventController');
 Route::resource('booking', 'BookingController', ['except' => 'create']);
@@ -110,9 +110,21 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function() {
 
     Route::post('users/{id}/unban', ['uses' => 'AdminController@unbanUser', 'as' => 'admin.user.unban']);
 
-    Route::get('results/create-meeting', ['uses' => 'ResultsController@createMeeting', 'as' => 'admin.create.meeting']);
+    Route::get('results', ['uses' => 'ResultsController@home', 'as' => 'admin.results']);
+
+    Route::get('meetings/{series}', ['uses' => 'ResultsController@meetings', 'as' => 'admin.series.meetings']);
+
+    Route::get('results/meeting/create/{series}', ['uses' => 'ResultsController@createMeeting', 'as' => 'admin.create.meeting']);
 
     Route::post('results/meeting/store', ['uses' => 'ResultsController@storeMeeting', 'as' => 'admin.store.meeting']);
+
+    Route::get('results/series/create', ['uses' => 'ResultsController@createSeries', 'as' => 'admin.create.series']);
+
+    Route::post('results/series/store', ['uses' => 'ResultsController@storeSeries', 'as' => 'admin.store.series']);
+
+    Route::post('results/meeting/delete/{series}/{meeting}', ['uses' => 'ResultsController@deleteMeeting', 'as' => 'admin.delete.meeting']);
+
+    Route::post('results/series/delete', ['uses' => 'ResultsController@deleteSeries', 'as' => 'admin.delete.series']);
 });
 
 //TODO Test

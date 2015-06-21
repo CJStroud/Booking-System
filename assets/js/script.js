@@ -118,4 +118,12 @@ $(document).ready(function(){
 	  $('#class-id').val($(this).data('class-id'));
   });
 
+  $('.btn-delete-series').click(function () {
+	  $('#series-folder').val($(this).data('series-folder'));
+  });
+
+  $('.btn-delete-meeting').click(function () {
+	  $('#meeting-folder').val($(this).data('meeting-folder'));
+  });
+
 });

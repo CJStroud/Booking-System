@@ -15,7 +15,7 @@
     <h3>{{ $series->name }}</h3>
       @foreach ($series->meetings as $meeting)
         <div class="col-xs-12">
-          {{ link_to($meeting->url, $meeting->name, array('target'=>'_blank')) }}
+          {{ link_to($meeting->path, $meeting->name, array('target'=>'_blank')) }}
         </div>
       @endforeach
   </div>

@@ -42,4 +42,12 @@
   <i class="fa fa-flag fa-lg"></i><span class="icon-spacing-left">Events</span>
 </a>
 
+@if ($active == 'results')
+  <a href="{{ route('admin.results') }}" class="list-group-item active">
+@else
+  <a href="{{ route('admin.results') }}" class="list-group-item">
+@endif
+  <i class="fa fa-bar-chart fa-lg"></i><span class="icon-spacing-left">Results</span>
+</a>
+
 @stop
