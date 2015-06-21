@@ -41,6 +41,13 @@ class AdminGalleryController extends BaseController
 
     public function index()
     {
+        $success = Session::get('success');
+        $successMessage = '';
+
+        if ($success != null) {
+            $successMessage = $success;
+        }
+
         $collections = $this->imgCollectionRepo->getAllTopLevelCollections();
         $images = $this->imageRepository->getTopLevelImages();
 
@@ -51,7 +58,8 @@ class AdminGalleryController extends BaseController
                 ->withActive($active)
                 ->withFolders($collections)
                 ->withImages($images)
-                ->withPath($path);
+                ->withPath($path)
+                ->withSuccess($successMessage);
     }
 
     public function newFolder()
@@ -63,6 +71,13 @@ class AdminGalleryController extends BaseController
 
     public function folder($folders)
     {
+        $success = Session::get('success');
+        $successMessage = '';
+
+        if ($success != null) {
+            $successMessage = $success;
+        }
+
         $collection = $this->imgCollectionRepo->collectionByPath($folders);
 
         $active = 'gallery';
@@ -72,7 +87,8 @@ class AdminGalleryController extends BaseController
                 ->withActive($active)
                 ->withFolders($collection->children)
                 ->withImages($collection->images)
-                ->withPath($path);
+                ->withPath($path)
+                ->withSuccess($successMessage);
 
     }
 
@@ -157,6 +173,28 @@ class AdminGalleryController extends BaseController
                 $this->imgCollectionRepo->allWithPathIncludeQuery($collection->path)->delete();
                 break;
         }
+    }
 
+    public function editFolder()
+    {
+        $folderId = Input::get('folder-id');
+        try {
+            $this->imgCollectionRepo->update($folderId, Input::all());
+        } catch (\Exception $e) {
+            App::abort(404);
+        }
+        return Redirect::back()->withSuccess('Folder updated successfully');
+    }
+
+    public function editImage()
+    {
+        $imageId = Input::get('image-id');
+        try {
+            $this->imageRepository->update($imageId, Input::all());
+        } catch (\Exception $e) {
+            App::abort(404);
+        }
+
+        return Redirect::back()->withSuccess('Image updated successfully');
     }
 }
