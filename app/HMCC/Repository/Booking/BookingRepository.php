@@ -5,6 +5,7 @@ use HMCC\Repository\User\UserRepository;
 use HMCC\Repository\RaceEvent\RaceClassRepository;
 use HMCC\Repository\RaceEvent\RaceEventRepository;
 use HMCC\Repository\Booking\BookingFrequencyRepository;
+use HMCC\Repository\Booking\BookingRepository;
 use HMCC\Repository\Repository;
 
 class BookingRepository extends Repository
@@ -78,12 +79,23 @@ class BookingRepository extends Repository
 			$booking->raceClass = $class->name;
 			$booking->raceEvent = $event->name;
 			$booking->startTime = $event->start_time;
+			$booking->closeTime = $event->close_time;
 			$booking->frequencies = $frequencies;
 			$result[] = $booking;
 		}
 
 		return $result;
 	}
+
+	public function getAllUserAfterDate($userId, $date)
+	{
+		$bookings = $this->getAllUser($userId);
+		return array_filter($bookings, function($booking) use($date) {
+			return $booking->closeTime > $date->getTimestamp();
+		});
+	}
+
+
 
 	public function store($data)
 	{

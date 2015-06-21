@@ -18,6 +18,10 @@ Route::get('/about', ['as' => 'about', function() {
                 return View::make('info.about');
         }]);
 
+Route::get('/rules', ['as' => 'rules', function() {
+				return View::make('info.rules');
+		}]);
+
 Route::get('/contact', ['as' => 'contact', function() {
                 return View::make('info.contact');
         }]);

@@ -66,7 +66,7 @@
                       <a class="btn btn-simple {{ $disable  }} btn-lg" href="{{ route('booking.create', ['slug' => $event->slug]) }}">Book<i class="fa fa-arrow-right icon-spacing-left"></i></a>
 
                       @if(Auth::check() && Auth::user()->is_admin)
-                        <a class="btn btn-simple btn-lg no-line-through" href="{{ route('admin.event.edit', ['id' => $event->id]) }}">Edit<i class="fa fa-pencil icon-spacing-left"></i></a>
+                        <a class="btn btn-simple btn-lg no-line-through {{ $disable }}" href="{{ route('admin.event.edit', ['id' => $event->id]) }}">Edit<i class="fa fa-pencil icon-spacing-left"></i></a>
                         @if ($event->cancelled)
                             {{ Form::open(['route' => ['admin.event.delete', $event->id]]) }}
                                 <button class="btn btn-simple btn-lg no-line-through" type="submit">Delete<i class="fa fa-remove icon-spacing-left"></i></button>
