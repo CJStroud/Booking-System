@@ -36,6 +36,20 @@ class ImageCollectionRepository extends Repository
         parent::store($data);
     }
 
+    public function update($folderId, $input)
+    {
+        $folder = $this->find($folderId);
+        $oldSlug = $folder->slug;
+        $oldPath = $folder->path;
+        if ($folder->name != $input['name']) {
+            $folder->name = $input['name'];
+            $folder->slug = $this->getUniqueSlug($this->toSlug($input['name']));
+            $folder->path = str_replace($oldSlug, $folder->slug, $oldPath);
+            $folder->save();
+            $this->updateToNewPath($oldPath, $folder->path);
+        }
+    }
+
     public function toSlug($string)
     {
         return rtrim(strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string))), '-');
