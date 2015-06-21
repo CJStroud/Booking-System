@@ -178,9 +178,8 @@ class ResultsController extends \BaseController {
 
         $hasIndex = false;
         for ($i=0; $i<count($_FILES['upload']['name']); $i++) {
-            if ($_FILES['upload']['name'][$i] == "index.htm") {
+            if ($_FILES['upload']['name'][$i] == "index.htm")
                 $hasIndex = true;
-            }
         }
 
         if (!$hasIndex) {
@@ -190,19 +189,6 @@ class ResultsController extends \BaseController {
 
         mkdir($directory, 0777, true);
 
-        $dateFile =$directory . "date.txt";
-        if (file_exists($dateFile)) {
-            unlink($dateFile);
-        }
-
-
-        $fileHandle = fopen($dateFile, "w");
-        $date = date("d/m/Y", strtotime(Input::get('date')));
-        fwrite($fileHandle, $date);
-        fclose($fileHandle);
-
-
-
         for ($i=0; $i<count($_FILES['upload']['name']); $i++) {
             $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
@@ -211,6 +197,16 @@ class ResultsController extends \BaseController {
                 move_uploaded_file($tmpFilePath, $newFilePath);
             }
         }
+
+        $dateFile =$directory . "date.txt";
+        if (file_exists($dateFile)) {
+            unlink($dateFile);
+        }
+
+        $fileHandle = fopen($dateFile, "w");
+        $date = date("d/m/Y", strtotime(Input::get('date')));
+        fwrite($fileHandle, $date);
+        fclose($fileHandle);
 
         return Redirect::route('admin.results')
             ->withActive('results')
