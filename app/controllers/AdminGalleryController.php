@@ -141,4 +141,22 @@ class AdminGalleryController extends BaseController
         $folder->save();
         return Response::make(['success' => true]);
     }
+
+    public function delete()
+    {
+        $itemId = Input::get('id');
+        $type = Input::get('type');
+
+        switch ($type) {
+            case 'image':
+                $this->imageRepository->delete($itemId);
+                break;
+
+            case 'folder':
+                $collection = $this->imgCollectionRepo->find($itemId);
+                $this->imgCollectionRepo->allWithPathIncludeQuery($collection->path)->delete();
+                break;
+        }
+
+    }
 }
