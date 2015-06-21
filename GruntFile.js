@@ -101,8 +101,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-autoprefixer');
 
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less:development', 'autoprefixer', 'copy']);
+
+    grunt.registerTask('default', ['concat', 'uglify', 'less:development', 'autoprefixer', 'copy']);
+    //grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less:development', 'autoprefixer', 'copy']);
     grunt.registerTask('production', ['concat', 'uglify', 'less:production', 'autoprefixer', 'copy']);
 
 };
-
