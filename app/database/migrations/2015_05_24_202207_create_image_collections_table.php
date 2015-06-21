@@ -18,7 +18,6 @@ class CreateImageCollectionsTable extends Migration {
             $table->string("name");
             $table->string("slug");
             $table->string("path");
-            $table->string("description");
             $table->integer("collection_id")->unsigned()->nullable();
         });
     }
