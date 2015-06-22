@@ -1,19 +1,26 @@
-@extends('layouts.master')
+@extends('layouts.admin-settings')
 
-@section('content')
-<div class="container">
+@section('settings-content')
 
-    @include('partials.errors')
-    @if (isset($edit))
-        <h1>Update Event</h1>
-        {{ Form::model($event, array('route' => ['admin.event.update', $event->id], 'id' => 'edit-form')) }}
-    
-    @else
 
-        <h1>Create Event</h1>
-        {{ Form::open(array('route' => 'event.store', 'id' => 'create-form')) }}
-    
-    @endif
+<div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+      @if (isset($edit))
+          <h2>Update Event</h2>
+          {{ Form::model($event, array('route' => ['admin.event.update', $event->id], 'id' => 'edit-form')) }}
+
+      @else
+
+          <h2>Create Event</h2>
+          {{ Form::open(array('route' => 'event.store', 'id' => 'create-form')) }}
+
+      @endif
+      </div>
+    </div>
+</div>
+
+
 
     <div class="row">
         <div class='col-xs-12'>
@@ -87,7 +94,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-2">
+        <div class="col-xs-12 col-sm-5 col-md-3">
             <div class="form-group">
                 <button id='btn-add' type='button' class="btn btn-primary btn-with-addon">
                     <span class="btn-text">Add Class</span>
@@ -101,43 +108,40 @@
 
 <div class="table class-table">
     <div id='class-container'>
-        <div class="container">
-            <div class="row">
-                <div class='hidden-xs'>
-                    <div class="header-element">
-                        <div class='col-sm-4 col-xs-12'>
-                            Class Name
-                        </div>
-                    </div>
-                    <div class="header-element">
-                        <div class='col-sm-4 col-xs-12'>
-                            Limit
-                        </div>
-                    </div>
-                    <div class='col-sm-4 col-xs-12'>
-                    </div>
-                </div>
-            </div>
-        </div>
+          <div class="row">
+              <div class='hidden-xs'>
+                  <div class="header-element">
+                      <div class='col-sm-4 col-xs-12'>
+                          Class Name
+                      </div>
+                  </div>
+                  <div class="header-element">
+                      <div class='col-sm-4 col-xs-12'>
+                          Limit
+                      </div>
+                  </div>
+                  <div class='col-sm-4 col-xs-12'>
+                  </div>
+              </div>
+          </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class='col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-10 col-md-2'>
-            <div class="form-group">
-                {{ Form::hidden('classes', null, ['id' => 'json-class']) }}
-                <button type="submit" class="btn btn-primary btn-with-addon btn-submit">
-                    <span class="btn-text">Submit</span>
-                    <span class="btn-addon btn-addon-primary">
-                        <i class="fa fa-arrow-right"></i>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+
+  <div class="row">
+      <div class='col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-10 col-md-2'>
+          <div class="form-group">
+              {{ Form::hidden('classes', null, ['id' => 'json-class']) }}
+              <button type="submit" class="btn btn-primary btn-with-addon btn-submit">
+                  <span class="btn-text">Submit</span>
+                  <span class="btn-addon btn-addon-primary">
+                      <i class="fa fa-arrow-right"></i>
+                  </span>
+              </button>
+          </div>
+      </div>
+  </div>
+
 {{ Form::close() }}
-</div>
 
 @stop

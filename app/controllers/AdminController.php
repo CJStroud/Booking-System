@@ -21,12 +21,6 @@ class AdminController extends BaseController {
         $this->raceClassForm = $raceClassForm;
     }
 
-
-    public function home()
-    {
-        return View::make('admin.home')->withActive('home');
-    }
-
     public function users()
     {
         $users = $this->form->repository->all();

@@ -67,7 +67,9 @@ class RaceEventController extends \BaseController {
     public function create() {
         $classes = $this->raceClassRepository->getAllActive();
 
-        return View::make('event.create')->withOptions($classes);
+        return View::make('event.create')
+          ->withOptions($classes)
+          ->withActive('events');
     }
 
     /**
@@ -102,7 +104,7 @@ class RaceEventController extends \BaseController {
      */
     public function destroy($id) {
         $this->form->delete($id);
-        
+
         return Redirect::back();
     }
 
@@ -129,55 +131,56 @@ class RaceEventController extends \BaseController {
 
         return Redirect::back();
     }
-    
+
     /**
      * Cancels the event.
-     * 
+     *
      * @param integer $event_id
      * @return Redirect
      */
     public function cancel($event_id) {
         $this->form->cancel($event_id);
-        
+
         return Redirect::back();
     }
-    
+
     public function edit($event_id) {
         $event = $this->form->repository->find($event_id);
         $storedClasses = $this->raceEventClassRepository->getEventClassesByEventId($event_id);
-        
+
         $startDateTime = $this->convertToDateTime($event->start_time);
         $closeDateTime = $this->convertToDateTime($event->close_time);
-        
+
         $event['event-date'] = $startDateTime['date'];
         $event['event-time'] = $startDateTime['time'];
-        
+
         $event['close-date'] = $closeDateTime['date'];
         $event['close-time'] = $closeDateTime['time'];
-        
+
         $event['classes'] = json_encode($storedClasses);
-        
+
         $classes = $this->raceClassRepository->getAllActive();
 
         return View::make('event.create')
                 ->withOptions($classes)
                 ->withEdit(true)
-                ->withEvent($event);
+                ->withEvent($event)
+                ->withActive('events');
     }
-    
+
     private function convertToDateTime($timestamp) {
         $date = date('j F, Y', $timestamp);
         $time = date('G:i', $timestamp);
-        
+
         return [ 'date' => $date, 'time' => $time ];
     }
-    
+
     public function update($id) {
         $input = Input::all();
         $input['cancelled'] = 0;
         $this->form->update($id, $input);
-        
+
         return Redirect::route('event.index');
     }
-    
+
 }
