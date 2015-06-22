@@ -40,17 +40,11 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-divider"></li>
           @if (Auth::check())
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="svg-icon svg-user icon-spacing-right"></i>{{ Auth::user()->forename }}<span class="caret icon-spacing-left"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="{{ route('user.show', Auth::id()) }}">
-                <i class="fa fa-newspaper-o icon-spacing-right"></i>Profile
-              </a></li>
-              <li><a href="{{ route('settings.profile') }}">
-                <i class="fa fa-gear icon-spacing-right"></i>Settings
-                </a></li>
-            </ul>
-          </li>
+
+          <li><a href="{{ route('settings.profile') }}">
+            <i class="fa fa-gear icon-spacing-right"></i>Settings
+            </a></li>
+
             <li><a href="{{ route('user.logout') }}" class="navbar-link">Logout<i class="fa fa-sign-out fa-lg icon-spacing-left"></i></a>
               </li>
           @else
