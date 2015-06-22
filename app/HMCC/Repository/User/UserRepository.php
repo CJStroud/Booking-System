@@ -40,13 +40,12 @@ class UserRepository extends Repository
   {
     $user = $this->model->findOrFail($id);
 
-    if (Auth::user()->secret == "")
+    if ($user->secret == "")
     {
-      Auth::user()->secret = str_random(15);
-      Auth::user()->save();
+      $user->secret = str_random(15);
     }
 
-    $user->password = Hash::make($newPassword . Auth::user()->secret);
+    $user->password = Hash::make($newPassword . $user->secret);
 
     return $user->save();
   }
