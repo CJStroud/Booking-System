@@ -4,7 +4,7 @@ var classes = {};
 function removeFunction() {
   var id = $(this).attr('id');
   delete classes[id];
-	$(this).parent().parent().parent().remove();
+	$(this).parents('.row.table-row').remove();
 }
 
 
@@ -14,7 +14,6 @@ $(document).ready(function(){
 
 	$('.datepicker').each(function() {
 		if ($(this).val()) {
-			console.log($(this).val());
 			var picker = $(this).pickadate('picker');
 			picker.set('select', $(this).val(), { format: 'dd mmmm, yyyy' });
 		}
@@ -27,7 +26,6 @@ $(document).ready(function(){
 
 	$('.timepicker').each(function() {
 		if ($(this).val()) {
-			console.log($(this).val());
 			var picker = $(this).pickatime('picker');
 			picker.set('select', $(this).val(), { format: 'H:i' });
 		}
@@ -60,8 +58,6 @@ $(document).ready(function(){
 	// get id of currently selected item
 	var optionSelected = $("#class-drop-down option:selected");
 	var id = $(optionSelected).attr("id");
-
-	console.log(classes[id]);
 
 	if(classes[id] === '' || classes[id] === undefined) {
 		// get selected name
