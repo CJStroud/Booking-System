@@ -5,11 +5,11 @@ use HMCC\Repository\User\UserRepository;
 class RemindersController extends Controller {
 
     protected $repository;
-    
+
     public function __construct(UserRepository $repository) {
         $this->repository = $repository;
     }
-    
+
     /**
      * Display the password reminder view.
      *
@@ -38,7 +38,7 @@ class RemindersController extends Controller {
                 return Redirect::back()->with('error', Lang::get($response));
 
             case Password::REMINDER_SENT:
-                return Redirect::back()->with('status', Lang::get($response));
+                return Redirect::route('user.login')->with('status', Lang::get($response) . ' Check your email for password reset intstructions! (don\'t forget to check your junk)');
         }
     }
 
