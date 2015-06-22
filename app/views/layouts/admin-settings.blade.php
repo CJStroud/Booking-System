@@ -1,5 +1,9 @@
 @extends('layouts.settings')
 
+@section('title')
+<h2>Admin</h2>
+@stop
+
 @section('sidebar')
 
 @if ($active == 'home')

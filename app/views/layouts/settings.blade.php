@@ -3,7 +3,9 @@
 @section('content')
 <div class="bg-lightgray">
   <div class="container settings">
-    <h2>Settings</h2>
+
+    @yield('title')
+
     @include('partials.errors')
 
     @if (isset($success) && $success != '')

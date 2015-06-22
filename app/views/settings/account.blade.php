@@ -1,5 +1,8 @@
 @extends('layouts.user-settings')
 
+@section('title')
+<h2>Settings</h2>
+@stop
 
 @section('settings-content')
 <div class="panel panel-default panel-settings">
