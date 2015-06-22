@@ -6,12 +6,12 @@
 
 @section('sidebar')
 
-@if ($active == 'home')
-  <a href="{{ route('admin.home') }}" class="list-group-item active">
+@if ($active == 'events')
+  <a href="{{ route('event.create') }}" class="list-group-item active">
 @else
-  <a href="{{ route('admin.home') }}" class="list-group-item">
+  <a href="{{ route('event.create') }}" class="list-group-item">
 @endif
-  <i class="fa fa-home fa-lg"></i><span class="icon-spacing-left">Home</span>
+  <i class="fa fa-flag fa-lg"></i><span class="icon-spacing-left">Events</span>
 </a>
 
 @if ($active == 'classes')
@@ -36,14 +36,6 @@
   <a href="{{ route('admin.gallery.index') }}" class="list-group-item">
 @endif
   <i class="fa fa-photo fa-lg"></i><span class="icon-spacing-left">Gallery</span>
-</a>
-
-@if ($active == 'events')
-  <a href="{{ route('settings.account') }}" class="list-group-item active">
-@else
-  <a href="{{ route('settings.account') }}" class="list-group-item">
-@endif
-  <i class="fa fa-flag fa-lg"></i><span class="icon-spacing-left">Events</span>
 </a>
 
 @if ($active == 'results')
