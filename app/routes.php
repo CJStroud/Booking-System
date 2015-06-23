@@ -26,9 +26,10 @@ Route::get('/contact', ['as' => 'contact', function () {
         return View::make('info.contact');
 }]);
 
-Route::get('/gallery', ['as' => 'gallery', function () {
-        return View::make('info.gallery');
-}]);
+Route::get('/gallery', [
+    'as' => 'gallery',
+    'uses' => 'GalleryController@index'
+]);
 
 Route::get('/results', ['uses' => 'ResultsController@view', 'as' => 'results.view']);
 
@@ -56,6 +57,11 @@ Route::get('/image/{id}', [
     'uses' => 'UploadController@inlineImage',
     'as' => 'image.inline'
 ]);
+
+Route::get('gallery/{folder?}', [
+    'uses' => 'GalleryController@folder',
+    'as'   => 'gallery.folder'
+])->where('folder', '(.*)');
 
 Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function () {
 
