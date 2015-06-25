@@ -1,5 +1,5 @@
 .banner {
-
+	margin-bottom: 120px;
 	background-color: @flat-darker-blue;
 	overflow: hidden;
 
@@ -12,12 +12,16 @@
 			bottom: 0;
 			position: absolute;
 		}
+	}
 
+	@media only screen and (max-width: @screen-sm) {
+		h1 {
+			font-size: 3em;
+		}
 	}
 
 	h1, h2 {
 		color: #fff;
-		word-wrap: break-word;
 	}
 
 	h1 {
