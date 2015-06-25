@@ -89,6 +89,12 @@ class RaceEventController extends \BaseController {
      */
     public function show($slug) {
         $event = $this->form->repository->getEventBySlug($slug);
+        $now = time();
+        if ($event->start_time <= $now) {
+            $event->isFinished = true;
+        } else if ($event->close_time <= $now) {
+            $event->isClosed = true;
+        }
         $classes = $event->classes;
 
         foreach ($classes as $class) {
