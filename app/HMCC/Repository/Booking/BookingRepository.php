@@ -102,7 +102,6 @@ class BookingRepository extends Repository
 		foreach ($bookings as $book)
 		{
 			$this->delete($book->id);
-			$this->delete($book->id);
 		}
 	}
 
