@@ -25,7 +25,7 @@
 
           <?php
             $disable = "";
-            if ($event->cancelled)
+            if ($event->isClosed || $event->isFinished || $event->cancelled)
             {
               $disable = "disabled";
             }
@@ -33,17 +33,19 @@
 
         <div class="col-xs-12 col-sm-3 col-sm-offset-9 booking-controls">
           <a href="{{ route('booking.create.class', [ 'slug' => $slug, 'class_id' => $class->id ]) }}" class="btn btn-simple btn-lg @if ($class->locked) disabled @endif {{ $disable }}">Book<i class="fa fa-arrow-right icon-spacing-left"></i></a>
-
-          @if (Auth::check() && Auth::user()->is_admin)
-            @if ($class->locked)
-              {{ Form::open(['route' => ['event.unlock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'unlock', 'method' => 'POST' ] ) }}
-                <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Unlock<i class="fa fa-unlock-alt icon-spacing-left"></i></button>
-              {{ Form::close() }}
-            @else
-              {{ Form::open(['route' => ['event.lock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'lock', 'method' => 'POST' ] ) }}
-                <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Lock<i class="fa fa-lock icon-spacing-left"></i></button>
-              {{ Form::close() }}
-            @endif
+          @if ($disable == "disabled")
+              @if (Auth::check() && Auth::user()->is_admin)
+                @if ($class->locked)
+                  {{ Form::open(['route' => ['event.unlock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'unlock', 'method' => 'POST' ] ) }}
+                    <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Unlock<i class="fa fa-unlock-alt icon-spacing-left"></i></button>
+                  {{ Form::close() }}
+                @else
+                    @if ()
+                  {{ Form::open(['route' => ['event.lock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'lock', 'method' => 'POST' ] ) }}
+                    <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Lock<i class="fa fa-lock icon-spacing-left"></i></button>
+                  {{ Form::close() }}
+                @endif
+              @endif
           @endif
 
           </div>
