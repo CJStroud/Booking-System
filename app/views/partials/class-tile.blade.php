@@ -40,7 +40,6 @@
                     <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Unlock<i class="fa fa-unlock-alt icon-spacing-left"></i></button>
                   {{ Form::close() }}
                 @else
-                    @if ()
                   {{ Form::open(['route' => ['event.lock', 'event_id' => $event->id, 'class_id' => $class->id], 'role' => 'form', 'id' => 'lock', 'method' => 'POST' ] ) }}
                     <button type="submit" class="btn btn-simple btn-lg {{ $disable }}">Lock<i class="fa fa-lock icon-spacing-left"></i></button>
                   {{ Form::close() }}
