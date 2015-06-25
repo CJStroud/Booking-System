@@ -1,4 +1,5 @@
-<?php namespace HMCC\Repository\Booking;
+<?php
+namespace HMCC\Repository\Booking;
 
 use Booking;
 use HMCC\Repository\User\UserRepository;
@@ -93,6 +94,22 @@ class BookingRepository extends Repository
 		return array_filter($bookings, function($booking) use($date) {
 			return $booking->closeTime > $date->getTimestamp();
 		});
+	}
+
+	public function deleteByEventId($id)
+	{
+		$bookings = $this->model->where('event_id', $id)->get();
+		foreach ($bookings as $book)
+		{
+			$this->delete($book->id);
+			$this->delete($book->id);
+		}
+	}
+
+	public function delete($id)
+	{
+		$this->bookingFrequencyRepository->deleteByBookingId($id);
+		parent::delete($id);
 	}
 
 

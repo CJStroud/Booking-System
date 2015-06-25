@@ -1,7 +1,8 @@
 <?php namespace HMCC\Repository\RaceEvent;
-
+use App;
 use HMCC\Repository\Repository;
 use RaceEvent;
+use HMCC\Repository\Booking\BookingRepository;
 
 class RaceEventRepository extends Repository
 {
@@ -11,8 +12,10 @@ class RaceEventRepository extends Repository
      */
     protected $raceEventClassRepository;
 
-    public function __construct(RaceEvent $raceEvent, RaceEventClassRepository $raceEventClassRepository)
-    {
+    public function __construct(
+        RaceEvent $raceEvent,
+        RaceEventClassRepository $raceEventClassRepository
+    ) {
         $this->model = $raceEvent;
 
         $this->raceEventClassRepository = $raceEventClassRepository;
@@ -33,17 +36,17 @@ class RaceEventRepository extends Repository
             $this->storeClasses($data['classes'], $event->id);
         }
     }
-    
+
     public function update($id, $data)
     {
         parent::update($id, $data);
-        
+
         if (isset($data['classes'])) {
             $this->raceEventClassRepository->deleteEventClassesByEventId($id);
             $this->storeClasses($data['classes'], $id);
         }
     }
-    
+
     private function storeClasses($classes, $eventId)
     {
         foreach($classes as $class)
@@ -71,13 +74,11 @@ class RaceEventRepository extends Repository
         $events = $this->model->orderBy('start_time', 'desc')->get();
         return $events;
     }
-    
+
     public function delete($id) {
-        $classes = $this->raceEventClassRepository->getEventClassesByEventId($id);
-        foreach($classes as $class)
-        {
-            $this->raceEventClassRepository->delete($class->id);
-        }
+        $this->bookingRepository = App::make('HMCC\Repository\Booking\BookingRepository');
+        $this->raceEventClassRepository->deleteEventClassesByEventId($id);
+        $this->bookingRepository->deleteByEventId($id);
         $this->model->find($id)->delete();
     }
 
