@@ -77,8 +77,6 @@
                                 {{ Form::open(['route' => ['admin.event.cancel', $event->id]]) }}
                                     <button class="btn btn-simple {{ $disable }} btn-lg" type="submit">Cancel<i class="fa fa-remove icon-spacing-left"></i></button>
                                 {{ Form::close() }}
-                            @else
-                                <button class="btn btn-simple {{ $disable }} btn-lg" type="submit">Cancel<i class="fa fa-remove icon-spacing-left"></i></button>
                             @endif
                         @endif
                       @endif
