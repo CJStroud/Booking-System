@@ -122,6 +122,11 @@ label {
 .bg-lightgray {
 	background-color: @light-gray;
 }
+
+.text-secondary {
+	color: @secondary;
+}
+
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -133,4 +138,39 @@ label {
 
 .spacing-bottom {
 	margin-bottom: 10px;
+}
+
+.panel-home {
+	h2 {
+		margin-top: 0px;
+	}
+	p {
+		font-size: 18px;
+	}
+	padding: 20px;
+}
+
+.tint {
+	position: relative;
+	float: left;
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0,255,255, 0.5);
+	}
+
+	img {
+		width: 100%;
+	}
+}
+
+.band {
+	margin-top: 120px;
+	margin-bottom: -15px;
+	box-shadow: inset 0px 0px 30px #000;
 }

@@ -31,8 +31,6 @@ Route::get('/gallery', [
     'uses' => 'GalleryController@index'
 ]);
 
-Route::get('/results', ['uses' => 'ResultsController@view', 'as' => 'results.view']);
-
 Route::resource('event', 'RaceEventController');
 Route::resource('booking', 'BookingController', ['except' => 'create']);
 
@@ -188,6 +186,7 @@ Route::group(array('before' => 'is.admin', 'prefix' => 'admin'), function () {
 Route::group(array('before' => 'is.logged.in'), function () {
     Route::get('booking/create/{slug}', ['uses' => 'BookingController@create', 'as' => 'booking.create']);
     Route::get('/my-bookings', ['uses' => 'BookingController@showUserBookings', 'as' => 'show.user.bookings' ]);
+    Route::get('/results', ['uses' => 'ResultsController@view', 'as' => 'results.view']);
 
     Route::group(array('prefix' => 'settings'), function () {
 
