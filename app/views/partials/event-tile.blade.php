@@ -73,7 +73,7 @@
                                 <button class="btn btn-simple btn-lg no-line-through" type="submit">Delete<i class="fa fa-remove icon-spacing-left"></i></button>
                             {{ Form::close() }}
                         @else
-                            @if ($disable == 'disabled')
+                            @if ($disable != 'disabled')
                                 {{ Form::open(['route' => ['admin.event.cancel', $event->id]]) }}
                                     <button class="btn btn-simple {{ $disable }} btn-lg" type="submit">Cancel<i class="fa fa-remove icon-spacing-left"></i></button>
                                 {{ Form::close() }}
