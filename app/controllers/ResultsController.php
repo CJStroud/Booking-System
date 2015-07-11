@@ -24,7 +24,14 @@ class ResultsController extends \BaseController {
                 // meeting is an object with a name and folder
                     $meeting = new stdClass();
                     $meeting->name = $meetingFolders[$j];
-                    $meeting->path = "./result/" . $series->name . "/" . $meeting->name . "/index.htm";
+
+                    $path = "./result/" . $series->name . "/" . $meeting->name . "/index.htm";
+
+                    if (!file_exists($path)) {
+                        $path = "./result/" . $series->name . "/" . $meeting->name . "/series.htm";
+                    }
+
+                    $meeting->path = $path;
                     array_push($meetings, $meeting);
 
 
@@ -184,13 +191,13 @@ class ResultsController extends \BaseController {
 
         $hasIndex = false;
         for ($i=0; $i<count($_FILES['upload']['name']); $i++) {
-            if ($_FILES['upload']['name'][$i] == "index.htm")
+            if ($_FILES['upload']['name'][$i] == "index.htm" || $_FILES['upload']['name'][$i] == "series.htm")
                 $hasIndex = true;
         }
 
         if (!$hasIndex) {
             return Redirect::route('admin.series.meetings', $series)
-                ->withErrors(['You must upload an "index.htm" file']);
+                ->withErrors(['You must upload an "index.htm" or a "series.htm" file']);
         }
 
         mkdir($directory, 0777, true);
