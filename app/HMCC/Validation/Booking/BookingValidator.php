@@ -59,8 +59,13 @@ class BookingValidator extends Validator
             return false;
         }
 
+        if (count($input['frequencies']) < 1 || $input['frequencies'][0] == "")
+        {
+          $this->errors->add('frequencies', 'You must select at least one frequency!');
+          return false;
+        }
+
 
         return $passes;
     }
 }
-
